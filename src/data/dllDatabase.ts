@@ -1117,11 +1117,102 @@ export const getPopularDlls = (limit: number = 10): DllFile[] => {
     .slice(0, limit);
 };
 
-// 获取相关 DLL
-export const getRelatedDlls = (dll: DllFile): DllFile[] => {
-  return dll.relatedDlls
+// 获取相关 DLL (增强版 - 智能关联同类型 DLL)
+export const getRelatedDlls = (dll: DllFile, limit: number = 6): DllFile[] => {
+  // 首先获取手动定义的相关 DLL
+  const manualRelated = dll.relatedDlls
     .map(id => getDllById(id))
     .filter((d): d is DllFile => d !== undefined);
+  
+  // 如果手动定义的不够，补充同类型的热门 DLL
+  if (manualRelated.length < limit) {
+    const sameTypeDlls = dllDatabase
+      .filter(d => 
+        d.id !== dll.id && 
+        d.fixType === dll.fixType && 
+        !manualRelated.some(r => r.id === d.id)
+      )
+      .sort((a, b) => b.downloadCount - a.downloadCount)
+      .slice(0, limit - manualRelated.length);
+    
+    return [...manualRelated, ...sameTypeDlls];
+  }
+  
+  return manualRelated.slice(0, limit);
+};
+
+// 获取与 DLL 相关的指南
+export const getRelatedGuidesForDll = (dll: DllFile): { slug: string; title: string }[] => {  // 基于 fixType 映射到相关指南
+  const guideMappings: Record<string, string[]> = {
+    visual_cpp: [
+      'install-visual-cpp-redistributable-all-versions',
+      'how-to-fix-0xc000007b-error',
+      'fix-0xc0000142-error',
+      'fix-msvcr100-dll-missing'
+    ],
+    directx: [
+      'install-directx-windows-11',
+      'how-to-fix-0xc000007b-error',
+      'fix-openal32-dll-missing'
+    ],
+    system_core: [
+      'fix-event-id-1000-application-error',
+      'fix-ucrtbase-dll-missing',
+      'fix-0xc0000142-error'
+    ],
+    game: [
+      'steam-api-dll-errors-fix',
+      'fix-openal32-dll-missing',
+      'fix-physxloader-dll-missing',
+      'fix-xlive-dll-missing'
+    ],
+    dotnet: [
+      'fix-net-framework-errors',
+      'fix-event-id-1000-application-error',
+      'how-to-fix-0xc000007b-error'
+    ],
+    driver: [
+      'fix-event-id-1000-application-error',
+      'are-dll-download-sites-safe',
+      'how-to-fix-0xc000007b-error'
+    ]
+  };
+
+  const relatedSlugs = guideMappings[dll.fixType] || [];
+  
+  // 指南标题映射
+  const guideTitles: Record<string, string> = {
+    'install-visual-cpp-redistributable-all-versions': 'Install All Visual C++ Redistributables',
+    'how-to-fix-0xc000007b-error': 'Fix 0xc000007b Application Error',
+    'install-directx-windows-11': 'Install DirectX on Windows 11/10',
+    'fix-event-id-1000-application-error': 'Fix Event ID 1000 Error',
+    'steam-api-dll-errors-fix': 'Fix Steam API DLL Errors',
+    'are-dll-download-sites-safe': 'DLL Download Safety Guide',
+    'fix-msvcr100-dll-missing': 'Fix MSVCR100.dll Missing',
+    'fix-mfc140u-dll-missing': 'Fix MFC140U.dll Missing',
+    'fix-openal32-dll-missing': 'Fix OpenAL32.dll for Games',
+    'fix-physxloader-dll-missing': 'Fix PhysXLoader.dll Missing',
+    'fix-xlive-dll-missing': 'Fix XLIVE.dll (Games for Windows)',
+    'fix-binkw32-dll-missing': 'Fix Binkw32.dll Missing',
+    'fix-0xc0000142-error': 'Fix 0xc0000142 Error',
+    'fix-net-framework-errors': 'Fix .NET Framework Errors',
+    'fix-ucrtbase-dll-missing': 'Fix UCRTBASE.dll Missing'
+  };
+
+  return relatedSlugs
+    .filter(slug => guideTitles[slug])
+    .map(slug => ({
+      slug,
+      title: guideTitles[slug]
+    }));
+};
+
+// 获取同类别热门 DLL (用于内部链接)
+export const getPopularDllsByCategory = (category: string, excludeId?: string, limit: number = 8): DllFile[] => {
+  return dllDatabase
+    .filter(dll => dll.fixType === category && dll.id !== excludeId)
+    .sort((a, b) => b.downloadCount - a.downloadCount)
+    .slice(0, limit);
 };
 
 // 获取所有 DLL

@@ -1,0 +1,436 @@
+/**
+ * 自动生成长尾关键词指南
+ * 运行: npx tsx scripts/auto-generate-guides.ts
+ * 
+ * 这个脚本会自动生成高价值的 SEO 内容
+ */
+
+import * as fs from 'fs';
+import * as path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+interface GuideTemplate {
+  slug: string;
+  title: string;
+  metaTitle: string;
+  metaDescription: string;
+  excerpt: string;
+  category: 'Error Codes' | 'Gaming' | 'Software' | 'System';
+  keywords: string[];
+  searchVolume: 'high' | 'medium' | 'low';
+}
+
+// ============ 高价值长尾关键词模板 ============
+
+// 错误代码类 (高搜索量)
+const errorCodeGuides: GuideTemplate[] = [
+  {
+    slug: 'fix-0xc0000142-application-error',
+    title: 'How to Fix Error 0xc0000142 - Application Unable to Start',
+    metaTitle: 'Fix 0xc0000142 Application Error in Windows 11/10 (2025)',
+    metaDescription: 'Complete guide to fix the 0xc0000142 application was unable to start correctly error. Works for games, Office, and other apps.',
+    excerpt: 'The 0xc0000142 error prevents applications from starting correctly. This guide provides tested solutions.',
+    category: 'Error Codes',
+    keywords: ['0xc0000142', 'application unable to start', 'windows error 0xc0000142', 'fix 0xc0000142'],
+    searchVolume: 'high'
+  },
+  {
+    slug: 'fix-0xc0000005-access-violation',
+    title: 'How to Fix Error 0xc0000005 - Access Violation',
+    metaTitle: 'Fix 0xc0000005 Access Violation Error Windows 11/10 (2025)',
+    metaDescription: 'Learn how to fix the 0xc0000005 access violation error that causes programs to crash. Step-by-step solutions.',
+    excerpt: 'Error 0xc0000005 indicates an access violation in memory. Here is how to fix it.',
+    category: 'Error Codes',
+    keywords: ['0xc0000005', 'access violation', 'exception access violation', 'memory error'],
+    searchVolume: 'high'
+  },
+  {
+    slug: 'fix-side-by-side-configuration-incorrect',
+    title: 'Fix "Side by Side Configuration is Incorrect" Error',
+    metaTitle: 'Fix Side by Side Configuration Error Windows 11/10 (2025)',
+    metaDescription: 'Solve the side by side configuration is incorrect error preventing applications from starting. Complete fix guide.',
+    excerpt: 'The side-by-side configuration error is caused by corrupted C++ redistributables.',
+    category: 'Error Codes',
+    keywords: ['side by side configuration', 'sxs error', 'application has failed to start', 'c++ runtime error'],
+    searchVolume: 'high'
+  },
+  {
+    slug: 'fix-bad-image-error-windows',
+    title: 'How to Fix Bad Image Error in Windows 11/10',
+    metaTitle: 'Fix Bad Image Error (0xc000012f, 0xc0000020) Windows 2025',
+    metaDescription: 'Complete guide to fix Bad Image errors 0xc000012f and 0xc0000020. Caused by corrupted DLL files.',
+    excerpt: 'Bad Image errors occur when a DLL file is corrupted or incompatible.',
+    category: 'Error Codes',
+    keywords: ['bad image error', '0xc000012f', '0xc0000020', 'dll is not designed to run on windows'],
+    searchVolume: 'high'
+  },
+  {
+    slug: 'fix-entry-point-not-found-error',
+    title: 'Fix "Entry Point Not Found" DLL Error',
+    metaTitle: 'Fix Entry Point Not Found Error Windows 11/10 (2025 Guide)',
+    metaDescription: 'Solve the "The procedure entry point could not be located" error in Windows. Step-by-step fix.',
+    excerpt: 'Entry point not found errors indicate DLL version mismatches.',
+    category: 'Error Codes',
+    keywords: ['entry point not found', 'procedure entry point', 'could not be located', 'dll error'],
+    searchVolume: 'medium'
+  },
+  {
+    slug: 'fix-0x80070005-access-denied',
+    title: 'Fix Error 0x80070005 - Access Denied',
+    metaTitle: 'Fix 0x80070005 Access Denied Error Windows 11/10 (2025)',
+    metaDescription: 'Resolve the 0x80070005 access denied error that blocks Windows updates and app installations.',
+    excerpt: 'Error 0x80070005 is a permission issue preventing system operations.',
+    category: 'Error Codes',
+    keywords: ['0x80070005', 'access denied', 'permission error', 'windows update error'],
+    searchVolume: 'high'
+  },
+];
+
+// 游戏类 (高搜索量)
+const gamingGuides: GuideTemplate[] = [
+  {
+    slug: 'elden-ring-dll-errors-fix',
+    title: 'Fix All Elden Ring DLL Errors on PC',
+    metaTitle: 'Elden Ring DLL Errors Fix - MSVCP, VCRUNTIME, D3D (2025)',
+    metaDescription: 'Fix Elden Ring DLL missing errors including MSVCP140.dll, VCRUNTIME140.dll, and DirectX errors.',
+    excerpt: 'Elden Ring requires Visual C++ and DirectX runtimes to run properly.',
+    category: 'Gaming',
+    keywords: ['elden ring dll', 'elden ring msvcp140', 'elden ring wont start', 'elden ring crash'],
+    searchVolume: 'high'
+  },
+  {
+    slug: 'cyberpunk-2077-dll-errors-fix',
+    title: 'Fix Cyberpunk 2077 DLL Missing Errors',
+    metaTitle: 'Cyberpunk 2077 DLL Errors Fix - Complete Guide (2025)',
+    metaDescription: 'Solve Cyberpunk 2077 DLL missing errors including MSVCP, VCRUNTIME, and AMD/NVIDIA driver issues.',
+    excerpt: 'Cyberpunk 2077 may crash due to missing Visual C++ or GPU driver DLLs.',
+    category: 'Gaming',
+    keywords: ['cyberpunk 2077 dll', 'cyberpunk crash', 'cyberpunk wont start', 'cyberpunk flatlined'],
+    searchVolume: 'high'
+  },
+  {
+    slug: 'hogwarts-legacy-dll-errors-fix',
+    title: 'Fix Hogwarts Legacy DLL Errors on PC',
+    metaTitle: 'Hogwarts Legacy DLL Missing Fix - All Errors (2025)',
+    metaDescription: 'Fix Hogwarts Legacy DLL errors including MSVCP140.dll, d3d12.dll, and Unreal Engine crashes.',
+    excerpt: 'Hogwarts Legacy requires updated runtimes and DirectX 12.',
+    category: 'Gaming',
+    keywords: ['hogwarts legacy dll', 'hogwarts legacy crash', 'hogwarts legacy wont launch', 'ue4 crash'],
+    searchVolume: 'high'
+  },
+  {
+    slug: 'valorant-dll-errors-fix',
+    title: 'Fix Valorant DLL Errors and Crashes',
+    metaTitle: 'Valorant DLL Error Fix - MSVCP, VCRUNTIME, Vanguard (2025)',
+    metaDescription: 'Solve Valorant DLL missing errors and Vanguard anti-cheat issues preventing game launch.',
+    excerpt: 'Valorant requires specific DLLs and the Vanguard anti-cheat to function.',
+    category: 'Gaming',
+    keywords: ['valorant dll', 'valorant crash', 'valorant wont start', 'vanguard error'],
+    searchVolume: 'high'
+  },
+  {
+    slug: 'minecraft-java-dll-errors-fix',
+    title: 'Fix Minecraft Java Edition DLL Errors',
+    metaTitle: 'Minecraft DLL Errors Fix - Java, LWJGL, OpenGL (2025)',
+    metaDescription: 'Solve Minecraft Java DLL errors including LWJGL, OpenGL, and JNI crashes.',
+    excerpt: 'Minecraft Java requires proper Java installation and OpenGL support.',
+    category: 'Gaming',
+    keywords: ['minecraft dll', 'minecraft crash', 'lwjgl error', 'minecraft java error', 'opengl minecraft'],
+    searchVolume: 'high'
+  },
+  {
+    slug: 'call-of-duty-warzone-dll-fix',
+    title: 'Fix Call of Duty Warzone DLL Errors',
+    metaTitle: 'COD Warzone DLL Fix - Dev Error, DirectX, MSVCP (2025)',
+    metaDescription: 'Fix Call of Duty Warzone DLL missing errors, Dev Errors, and DirectX crashes.',
+    excerpt: 'Warzone requires updated DirectX and Visual C++ runtimes.',
+    category: 'Gaming',
+    keywords: ['warzone dll', 'cod dll error', 'warzone crash', 'dev error', 'warzone wont launch'],
+    searchVolume: 'high'
+  },
+  {
+    slug: 'fifa-24-ea-fc-dll-errors-fix',
+    title: 'Fix EA FC 24 (FIFA 24) DLL Errors',
+    metaTitle: 'EA FC 24 DLL Errors Fix - All Solutions (2025)',
+    metaDescription: 'Solve EA Sports FC 24 DLL missing errors and crashes including DirectX and anti-cheat issues.',
+    excerpt: 'EA FC 24 requires updated Visual C++ and DirectX for smooth gameplay.',
+    category: 'Gaming',
+    keywords: ['fifa 24 dll', 'ea fc 24 dll', 'fifa 24 crash', 'ea fc 24 wont start'],
+    searchVolume: 'high'
+  },
+  {
+    slug: 'palworld-dll-errors-fix',
+    title: 'Fix Palworld DLL Errors on PC',
+    metaTitle: 'Palworld DLL Missing Fix - Crash Solutions (2025)',
+    metaDescription: 'Fix Palworld DLL errors and crashes including Unreal Engine and Visual C++ issues.',
+    excerpt: 'Palworld uses Unreal Engine and requires specific runtime libraries.',
+    category: 'Gaming',
+    keywords: ['palworld dll', 'palworld crash', 'palworld wont start', 'palworld error'],
+    searchVolume: 'high'
+  },
+];
+
+// 软件类
+const softwareGuides: GuideTemplate[] = [
+  {
+    slug: 'after-effects-dll-errors-fix',
+    title: 'Fix Adobe After Effects DLL Errors',
+    metaTitle: 'After Effects DLL Error Fix - All Solutions (2025)',
+    metaDescription: 'Solve Adobe After Effects DLL missing errors including MSVCP, GPU driver, and plugin issues.',
+    excerpt: 'After Effects requires specific Visual C++ and GPU components.',
+    category: 'Software',
+    keywords: ['after effects dll', 'after effects crash', 'after effects wont open', 'adobe dll error'],
+    searchVolume: 'medium'
+  },
+  {
+    slug: 'blender-dll-errors-fix',
+    title: 'Fix Blender DLL Errors and Crashes',
+    metaTitle: 'Blender DLL Error Fix - Python, OpenGL, CUDA (2025)',
+    metaDescription: 'Fix Blender DLL missing errors including Python, OpenGL, and CUDA/OptiX rendering issues.',
+    excerpt: 'Blender requires Python, OpenGL, and optionally CUDA for GPU rendering.',
+    category: 'Software',
+    keywords: ['blender dll', 'blender crash', 'blender python error', 'blender gpu error'],
+    searchVolume: 'medium'
+  },
+  {
+    slug: 'autocad-dll-errors-fix',
+    title: 'Fix AutoCAD DLL Errors',
+    metaTitle: 'AutoCAD DLL Error Fix - All Versions (2025)',
+    metaDescription: 'Solve AutoCAD DLL missing errors including .NET Framework and Visual C++ issues.',
+    excerpt: 'AutoCAD requires .NET Framework and Visual C++ redistributables.',
+    category: 'Software',
+    keywords: ['autocad dll', 'autocad crash', 'autocad wont start', 'autocad error'],
+    searchVolume: 'medium'
+  },
+  {
+    slug: 'visual-studio-dll-errors-fix',
+    title: 'Fix Visual Studio DLL Errors',
+    metaTitle: 'Visual Studio DLL Error Fix - All Solutions (2025)',
+    metaDescription: 'Solve Visual Studio DLL and dependency errors preventing IDE startup.',
+    excerpt: 'Visual Studio depends on many runtime components that can become corrupted.',
+    category: 'Software',
+    keywords: ['visual studio dll', 'visual studio crash', 'vs error', 'devenv error'],
+    searchVolume: 'medium'
+  },
+  {
+    slug: 'chrome-dll-errors-fix',
+    title: 'Fix Google Chrome DLL Errors',
+    metaTitle: 'Chrome DLL Error Fix - Crash, Missing Module (2025)',
+    metaDescription: 'Fix Google Chrome DLL errors causing crashes and "module not found" messages.',
+    excerpt: 'Chrome DLL errors usually indicate corrupted installation or extension conflicts.',
+    category: 'Software',
+    keywords: ['chrome dll', 'chrome crash', 'chrome wont open', 'chrome error'],
+    searchVolume: 'medium'
+  },
+];
+
+// 系统类
+const systemGuides: GuideTemplate[] = [
+  {
+    slug: 'sfc-scannow-complete-guide',
+    title: 'Complete SFC /scannow Guide - Fix System Files',
+    metaTitle: 'SFC /scannow Complete Guide - Fix Corrupted Files (2025)',
+    metaDescription: 'Learn how to use SFC /scannow to repair corrupted Windows system files and DLLs.',
+    excerpt: 'System File Checker (SFC) is a built-in Windows tool to repair corrupted files.',
+    category: 'System',
+    keywords: ['sfc scannow', 'system file checker', 'repair windows', 'fix corrupted files'],
+    searchVolume: 'high'
+  },
+  {
+    slug: 'dism-restorehealth-guide',
+    title: 'DISM /RestoreHealth Complete Guide',
+    metaTitle: 'DISM RestoreHealth Guide - Repair Windows Image (2025)',
+    metaDescription: 'Use DISM to repair Windows component store and fix DLL errors that SFC cannot fix.',
+    excerpt: 'DISM can repair the Windows image when SFC fails to fix issues.',
+    category: 'System',
+    keywords: ['dism restorehealth', 'dism repair', 'windows image repair', 'component store'],
+    searchVolume: 'medium'
+  },
+  {
+    slug: 'windows-11-24h2-dll-issues',
+    title: 'Fix Windows 11 24H2 DLL Compatibility Issues',
+    metaTitle: 'Windows 11 24H2 DLL Issues Fix - Compatibility Guide (2025)',
+    metaDescription: 'Solve DLL compatibility problems after upgrading to Windows 11 version 24H2.',
+    excerpt: 'Windows 11 24H2 may cause DLL compatibility issues with older software.',
+    category: 'System',
+    keywords: ['windows 11 24h2', 'windows 11 dll', 'windows 11 compatibility', 'windows 11 update problems'],
+    searchVolume: 'high'
+  },
+  {
+    slug: 'clean-boot-troubleshooting',
+    title: 'Windows Clean Boot - Fix DLL Conflicts',
+    metaTitle: 'Clean Boot Windows 11/10 - Troubleshoot DLL Conflicts (2025)',
+    metaDescription: 'Use Windows Clean Boot to identify DLL conflicts and software incompatibilities.',
+    excerpt: 'Clean boot helps identify which startup programs or services cause DLL conflicts.',
+    category: 'System',
+    keywords: ['clean boot', 'msconfig', 'startup conflict', 'dll conflict'],
+    searchVolume: 'medium'
+  },
+];
+
+// ============ 内容生成函数 ============
+
+function generateGuideContent(template: GuideTemplate): string {
+  const sections = [];
+  
+  if (template.category === 'Error Codes') {
+    sections.push({
+      heading: `What Causes the ${template.slug.split('-')[1]?.toUpperCase() || 'Error'} Error?`,
+      content: `This error typically occurs when Windows encounters issues with:
+
+**1. Corrupted or Missing DLL Files**: Essential system or application DLL files are damaged or missing.
+
+**2. Visual C++ Runtime Issues**: The Microsoft Visual C++ Redistributable packages are corrupted or incomplete.
+
+**3. Registry Problems**: Windows registry entries related to the application are corrupted.
+
+**4. Software Conflicts**: Third-party software or antivirus programs interfering with application launch.
+
+**5. Insufficient Permissions**: The application lacks necessary permissions to access required resources.`
+    });
+  } else if (template.category === 'Gaming') {
+    sections.push({
+      heading: 'Common Causes',
+      content: `Game DLL errors are typically caused by:
+
+**1. Missing Visual C++ Redistributables**: Most games require Microsoft Visual C++ 2015-2022.
+
+**2. Outdated DirectX**: Games often require specific DirectX versions.
+
+**3. GPU Driver Issues**: Outdated or corrupted graphics drivers.
+
+**4. Anti-Cheat Conflicts**: Game anti-cheat systems may conflict with system files.
+
+**5. Incomplete Installation**: Game files may be corrupted or incomplete.`
+    });
+  }
+
+  sections.push({
+    heading: 'Solution 1: Install Visual C++ Redistributables',
+    content: `This is the most effective solution for most DLL errors.
+
+**Step 1**: Download the Visual C++ Redistributable installer:
+- [VC++ 2015-2022 x64](https://aka.ms/vs/17/release/vc_redist.x64.exe)
+- [VC++ 2015-2022 x86](https://aka.ms/vs/17/release/vc_redist.x86.exe)
+
+**Step 2**: Install BOTH x64 and x86 versions.
+
+**Step 3**: Restart your computer.`
+  });
+
+  sections.push({
+    heading: 'Solution 2: Run System File Checker',
+    content: `Windows built-in repair tool can fix corrupted DLLs.
+
+**Step 1**: Open Command Prompt as Administrator.
+
+**Step 2**: Run: \`sfc /scannow\`
+
+**Step 3**: Wait for the scan to complete.
+
+**Step 4**: If issues found, run: \`DISM /Online /Cleanup-Image /RestoreHealth\``
+  });
+
+  sections.push({
+    heading: 'Solution 3: Reinstall DirectX',
+    content: `DirectX components are required by most games and multimedia apps.
+
+**Step 1**: Download [DirectX End-User Runtime](https://www.microsoft.com/en-us/download/details.aspx?id=35).
+
+**Step 2**: Run the installer.
+
+**Step 3**: Restart your computer.`
+  });
+
+  if (template.category === 'Gaming') {
+    sections.push({
+      heading: 'Solution 4: Verify Game Files',
+      content: `Repair corrupted game files through your game launcher.
+
+**Steam**:
+1. Right-click the game → Properties
+2. Go to Installed Files tab
+3. Click "Verify integrity of game files"
+
+**Epic Games**:
+1. Click the three dots next to the game
+2. Select "Verify"
+
+**EA App/Origin**:
+1. Right-click the game → Repair`
+    });
+  }
+
+  sections.push({
+    heading: 'Prevention Tips',
+    content: `Avoid DLL errors in the future:
+
+1. **Keep Windows Updated**: Enable automatic Windows updates.
+
+2. **Install All Runtimes**: Keep Visual C++, DirectX, and .NET updated.
+
+3. **Use Official Sources**: Only download software from official websites.
+
+4. **Regular Maintenance**: Run disk cleanup and SFC periodically.
+
+5. **Quality Antivirus**: Use a reputable antivirus that doesn't cause conflicts.`
+  });
+
+  return JSON.stringify(sections, null, 2);
+}
+
+// ============ 主程序 ============
+
+function main() {
+  console.log('🚀 Auto-generating SEO guides...\n');
+  
+  const allTemplates = [
+    ...errorCodeGuides,
+    ...gamingGuides,
+    ...softwareGuides,
+    ...systemGuides,
+  ];
+  
+  console.log(`📝 Total templates: ${allTemplates.length}`);
+  console.log('\n📊 Breakdown:');
+  console.log(`   - Error Codes: ${errorCodeGuides.length}`);
+  console.log(`   - Gaming: ${gamingGuides.length}`);
+  console.log(`   - Software: ${softwareGuides.length}`);
+  console.log(`   - System: ${systemGuides.length}`);
+  
+  // 生成完整的指南数据
+  const guides = allTemplates.map(template => ({
+    id: template.slug,
+    slug: template.slug,
+    title: template.title,
+    metaTitle: template.metaTitle,
+    metaDescription: template.metaDescription,
+    excerpt: template.excerpt,
+    category: template.category,
+    publishDate: new Date().toISOString().split('T')[0],
+    updateDate: new Date().toISOString().split('T')[0],
+    author: 'System Admin Team',
+    keywords: template.keywords,
+    searchVolume: template.searchVolume,
+    sections: JSON.parse(generateGuideContent(template)),
+    relatedDlls: [],
+  }));
+  
+  // 写入 JSON 文件
+  const outputPath = path.join(__dirname, '../src/data/auto-generated-guides.json');
+  fs.writeFileSync(outputPath, JSON.stringify(guides, null, 2));
+  
+  console.log(`\n✅ Generated ${guides.length} guides`);
+  console.log(`📁 Output: ${outputPath}`);
+  
+  // 输出高优先级指南
+  console.log('\n🔥 High Search Volume Guides:');
+  guides
+    .filter(g => g.searchVolume === 'high')
+    .forEach(g => console.log(`   - ${g.slug}`));
+}
+
+main();

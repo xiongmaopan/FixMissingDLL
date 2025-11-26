@@ -54,6 +54,3 @@ Disallow: /
 
 # Sitemap locations
 Sitemap: https://fixmissingdll.com/sitemap-index.xml
-Sitemap: https://fixmissingdll.com/sitemap-main.xml
-Sitemap: https://fixmissingdll.com/sitemap-dll.xml
-Sitemap: https://fixmissingdll.com/sitemap-guides.xml

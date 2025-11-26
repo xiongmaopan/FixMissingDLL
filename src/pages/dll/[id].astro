@@ -4,7 +4,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import HashVerifier from '../../components/HashVerifier.astro';
 import AdUnit from '../../components/AdUnit.astro';
-import { dllDatabase, getAllDllIds, getDllById, getRelatedDlls } from '../../data/dllDatabase';
+import { dllDatabase, getAllDllIds, getDllById, getRelatedDlls, getRelatedGuidesForDll, getPopularDllsByCategory } from '../../data/dllDatabase';
 import { generateDllSchema, generateDllTitle, generateDllDescription, BUILD_DATE } from '../../utils/seo';
 
 // 静态路径生成
@@ -17,7 +17,9 @@ export function getStaticPaths() {
 
 const { dll } = Astro.props;
 const schema = generateDllSchema(dll);
-const relatedDlls = getRelatedDlls(dll);
+const relatedDlls = getRelatedDlls(dll, 6);
+const relatedGuides = getRelatedGuidesForDll(dll);
+const categoryDlls = getPopularDllsByCategory(dll.fixType, dll.id, 8);
 const title = generateDllTitle(dll);
 const description = generateDllDescription(dll);
 
@@ -276,6 +278,60 @@ const fixInfo = fixTypeLabels[dll.fixType] || fixTypeLabels.driver;
                 </span>
               ))}
             </div>
+          </section>        )}
+
+        <!-- Related Guides Section (内部链接优化) -->
+        {relatedGuides.length > 0 && (
+          <section class="mb-8">
+            <h2 class="text-xl font-bold text-gray-900 mb-4">📚 Related Guides</h2>
+            <div class="grid gap-3">
+              {relatedGuides.map((guide) => (
+                <a 
+                  href={`/guides/${guide.slug}`}
+                  class="flex items-center gap-3 p-4 bg-white border border-gray-200 rounded-xl hover:border-blue-300 hover:shadow-sm transition-all group"
+                >
+                  <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
+                    <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                  </div>
+                  <div class="flex-1">
+                    <div class="font-medium text-gray-900 group-hover:text-blue-600 transition-colors">{guide.title}</div>
+                    <div class="text-sm text-gray-500">Step-by-step guide</div>
+                  </div>
+                  <svg class="w-5 h-5 text-gray-400 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <!-- More DLLs in Same Category (SEO 内部链接) -->
+        {categoryDlls.length > 0 && (
+          <section class="mb-8">
+            <h2 class="text-xl font-bold text-gray-900 mb-4">More {fixInfo.label} DLLs</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+              {categoryDlls.map((catDll) => (
+                <a 
+                  href={`/dll/${catDll.id}`}
+                  class="text-sm px-3 py-2 bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-200 rounded-lg text-gray-700 hover:text-blue-600 transition-colors truncate text-center"
+                  title={catDll.name}
+                >
+                  {catDll.name}
+                </a>
+              ))}
+            </div>
+            <a 
+              href="/dll" 
+              class="inline-flex items-center gap-1 text-sm text-blue-600 hover:text-blue-700 mt-3"
+            >
+              View all DLL files
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+              </svg>
+            </a>
           </section>
         )}
 

@@ -1,3 +1,11 @@
+# 
+# IMPORTANT: Google lastmod Policy (2025)
+# "Google uses the <lastmod> value if it's consistently and verifiably accurate."
+# "The <lastmod> value should reflect the date of the last SIGNIFICANT update."
+# 
+# This workflow only updates lastmod when there are ACTUAL content changes!
+# Do NOT fake lastmod dates - Google verifies and may ignore dishonest signals.
+#
 name: Weekly Freshness Update
 
 on:
@@ -27,20 +35,45 @@ jobs:
         working-directory: ./astro-site
         run: npm ci
       
-      - name: Update BUILD_DATE in seo.ts
+      # NOTE: We intentionally do NOT update BUILD_DATE automatically
+      # Only update CONTENT_UPDATE_DATE in generate-sitemaps.ts when there are
+      # ACTUAL significant content changes (new DLLs, new guides, etc.)
+      # 
+      # Google's policy: "lastmod should reflect last SIGNIFICANT update"
+      # Faking dates = Google ignores your lastmod signals
+      
+      - name: Check for content updates this week
         working-directory: ./astro-site
+        id: content-check
         run: |
-          BUILD_DATE=$(date -u +"%Y-%m-%d")
-          sed -i "s/export const BUILD_DATE = .*/export const BUILD_DATE = '$BUILD_DATE';/" src/utils/seo.ts
-          echo "Updated BUILD_DATE to $BUILD_DATE"
+          # Check if any content files were modified in the last 7 days
+          CHANGES=$(git log --since="7 days ago" --name-only --pretty=format: -- 'src/data/' 'src/pages/' | grep -v '^$' | wc -l)
+          echo "content_changes=$CHANGES" >> $GITHUB_OUTPUT
+          if [ "$CHANGES" -gt 0 ]; then
+            echo "✅ Found $CHANGES content file changes in last 7 days"
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "ℹ️ No content changes this week - skipping lastmod update"
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Update CONTENT_UPDATE_DATE (only if changes exist)
+        working-directory: ./astro-site
+        if: steps.content-check.outputs.has_changes == 'true'
+        run: |
+          UPDATE_DATE=$(date -u +"%Y-%m-%d")
+          sed -i "s/const CONTENT_UPDATE_DATE = .*/const CONTENT_UPDATE_DATE = '$UPDATE_DATE';/" scripts/generate-sitemaps.ts
+          echo "Updated CONTENT_UPDATE_DATE to $UPDATE_DATE"
       
       - name: Generate fresh sitemaps
         working-directory: ./astro-site
+        if: steps.content-check.outputs.has_changes == 'true'
         run: |
           npx ts-node scripts/generate-sitemaps.ts
       
       - name: Commit changes
         working-directory: ./astro-site
+        if: steps.content-check.outputs.has_changes == 'true'
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
@@ -48,12 +81,12 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "chore: weekly freshness update ($(date -u +%Y-%m-%d))"
+            git commit -m "chore: weekly freshness update - real content changes ($(date -u +%Y-%m-%d))"
             git push
           fi
       
       - name: Trigger Cloudflare Pages rebuild
-        if: success()
+        if: steps.content-check.outputs.has_changes == 'true'
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -62,17 +95,38 @@ jobs:
           curl -X POST "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/$CLOUDFLARE_PROJECT_NAME/deployments" \
             -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
             -H "Content-Type: application/json"
-
-  # Optional: Ping search engines after update
+  # Ping search engines and submit to IndexNow
   notify-search-engines:
     needs: update-freshness
     runs-on: ubuntu-latest
     
     steps:
-      - name: Ping Google
-        run: |
-          curl -s "https://www.google.com/ping?sitemap=https://fixmissingdll.com/sitemap-index.xml"
-      
-      - name: Ping Bing
+      - name: Ping Bing Sitemap
         run: |
           curl -s "https://www.bing.com/ping?sitemap=https://fixmissingdll.com/sitemap-index.xml"
+          echo "Pinged Bing with sitemap"
+      
+      - name: Ping Yandex Sitemap
+        run: |
+          curl -s "https://webmaster.yandex.com/ping?sitemap=https://fixmissingdll.com/sitemap-index.xml"
+          echo "Pinged Yandex with sitemap"
+      
+      - name: Submit to IndexNow (Bing)
+        run: |
+          curl -X POST "https://www.bing.com/indexnow" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "host": "fixmissingdll.com",
+              "key": "f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2",
+              "keyLocation": "https://fixmissingdll.com/f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2.txt",
+              "urlList": [
+                "https://fixmissingdll.com/",
+                "https://fixmissingdll.com/dll/",
+                "https://fixmissingdll.com/guides/",
+                "https://fixmissingdll.com/dll/msvcp140.dll",
+                "https://fixmissingdll.com/dll/vcruntime140.dll",
+                "https://fixmissingdll.com/dll/d3dx9_43.dll",
+                "https://fixmissingdll.com/guides/visual-cpp-redistributable"
+              ]
+            }'
+          echo "Submitted key pages to IndexNow"

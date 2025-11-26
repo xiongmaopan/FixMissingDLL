@@ -1,13 +1,14 @@
 ---
 // 指南详情页 - 长尾词文章
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { guidesDatabase, getGuideBySlug, getRelatedGuides } from '../../data/guidesDatabase';
+import { getAllGuides, getGuideBySlug, getRelatedGuides } from '../../data/guidesDatabase';
 import { getDllById } from '../../data/dllDatabase';
 import { generateGuideSchema, BUILD_DATE } from '../../utils/seo';
 
 // 静态路径生成
 export function getStaticPaths() {
-  return guidesDatabase.map((guide) => ({
+  const allGuides = getAllGuides();
+  return allGuides.map((guide) => ({
     params: { slug: guide.slug },
     props: { guide }
   }));

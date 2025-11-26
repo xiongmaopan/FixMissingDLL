@@ -1,0 +1,522 @@
+---
+/**
+ * DLL FAQ 页面 - 针对高搜索量问题优化
+ * 基于关键词研究创建
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const faqs = [
+  {
+    id: 'what-does-dll-missing-mean',
+    question: 'What does it mean when a DLL is missing?',
+    answer: `When Windows displays a "DLL is missing" error, it means the operating system or an application cannot find a Dynamic Link Library file that it needs to run. DLLs contain code, data, and resources that multiple programs can use simultaneously. Common causes include:
+    
+• The DLL file was accidentally deleted or moved
+• A program uninstallation removed a shared DLL
+• Malware infection corrupted or deleted the file
+• Windows system files are corrupted
+• The application installation was incomplete`,
+    relatedGuides: ['how-to-fix-0xc000007b-error', 'install-visual-cpp-redistributable-all-versions']
+  },
+  {
+    id: 'how-to-fix-dll-not-found',
+    question: 'How to fix DLL not found?',
+    answer: `To fix a "DLL not found" error, follow these steps:
+
+1. **Restart your computer** - Sometimes a simple restart resolves temporary issues
+2. **Reinstall the affected program** - This restores any missing DLLs the program needs
+3. **Install Visual C++ Redistributable** - Many DLL errors are fixed by installing the appropriate VC++ runtime
+4. **Run Windows System File Checker** - Open Command Prompt as admin and run: sfc /scannow
+5. **Update Windows** - Install all pending Windows updates
+6. **Reinstall DirectX** - For gaming-related DLL errors`,
+    relatedGuides: ['install-visual-cpp-redistributable-all-versions', 'sfc-scannow-complete-guide']
+  },
+  {
+    id: 'what-is-dll-error',
+    question: 'What is a DLL error?',
+    answer: `A DLL error occurs when Windows cannot load or find a Dynamic Link Library file required by a program. DLL errors typically appear as pop-up messages with text like:
+
+• "The program can't start because [filename].dll is missing"
+• "The code execution cannot proceed because [filename].dll was not found"
+• "[filename].dll is either not designed to run on Windows or contains an error"
+
+These errors prevent applications from launching or cause them to crash during use.`,
+    relatedGuides: ['fix-0xc0000142-application-error', 'fix-bad-image-error-windows']
+  },
+  {
+    id: 'how-to-get-rid-of-dll-error',
+    question: 'How to get rid of DLL file error?',
+    answer: `To permanently get rid of DLL errors:
+
+1. **Identify the missing DLL** - Note the exact filename from the error message
+2. **Determine the source program** - Find which runtime package provides this DLL
+3. **Install the correct runtime**:
+   - For msvcp/vcruntime DLLs → Install Visual C++ Redistributable
+   - For d3dx/xinput DLLs → Install DirectX End-User Runtime
+   - For .NET DLLs → Install .NET Framework
+4. **Repair Windows** - Use DISM and SFC commands
+5. **Check for malware** - Run a full antivirus scan`,
+    relatedGuides: ['dism-restorehealth-guide', 'clean-boot-troubleshooting']
+  },
+  {
+    id: 'what-is-best-dll-fixer',
+    question: 'What is the best DLL fixer?',
+    answer: `The best way to fix DLL errors is using official tools and sources:
+
+**Recommended (Free & Safe):**
+1. **Windows System File Checker (SFC)** - Built into Windows, repairs system DLLs
+2. **DISM Tool** - Repairs Windows image and restores system files
+3. **Visual C++ Redistributable** - Official Microsoft package for VC++ DLLs
+4. **DirectX End-User Runtime** - Official Microsoft package for DirectX DLLs
+
+**Warning:** Avoid third-party "DLL fixer" software. Many are scams or contain malware. Always get DLLs from official sources.`,
+    relatedGuides: ['are-dll-download-sites-safe', 'sfc-scannow-complete-guide']
+  },
+  {
+    id: 'how-to-repair-dll-file',
+    question: 'How to repair a .DLL file?',
+    answer: `DLL files cannot be directly "repaired" like documents. Instead, you need to replace corrupted DLLs with working copies:
+
+**Method 1: System File Checker**
+\`\`\`
+sfc /scannow
+\`\`\`
+
+**Method 2: DISM Repair**
+\`\`\`
+DISM /Online /Cleanup-Image /RestoreHealth
+\`\`\`
+
+**Method 3: Reinstall the Program**
+Uninstall and reinstall the application that's showing the error.
+
+**Method 4: Install Runtime Packages**
+Install the appropriate Microsoft runtime (VC++, DirectX, .NET).`,
+    relatedGuides: ['sfc-scannow-complete-guide', 'dism-restorehealth-guide']
+  },
+  {
+    id: 'is-dll-fixer-safe',
+    question: 'Is bitwar DLL fixer safe?',
+    answer: `**We do not recommend third-party DLL fixer tools** for several reasons:
+
+1. **Security risks** - Many contain malware, adware, or PUPs
+2. **Unreliable sources** - DLL files may be outdated or modified
+3. **Registry damage** - Some tools modify registry entries unsafely
+4. **Unnecessary costs** - They charge for what Windows tools do for free
+
+**Safe alternatives:**
+- Use Windows built-in SFC and DISM tools
+- Download runtimes from Microsoft's official website
+- Reinstall affected applications`,
+    relatedGuides: ['are-dll-download-sites-safe']
+  },
+  {
+    id: 'how-to-repair-dll-windows-10',
+    question: 'How do I repair all DLL files in Windows 10?',
+    answer: `To repair all DLL files in Windows 10/11, follow these steps:
+
+**Step 1: Run SFC Scan**
+\`\`\`cmd
+sfc /scannow
+\`\`\`
+Wait for completion (may take 15-30 minutes).
+
+**Step 2: Run DISM Repair**
+\`\`\`cmd
+DISM /Online /Cleanup-Image /CheckHealth
+DISM /Online /Cleanup-Image /ScanHealth
+DISM /Online /Cleanup-Image /RestoreHealth
+\`\`\`
+
+**Step 3: Install All Visual C++ Redistributables**
+Download and install all versions from 2005 to 2022.
+
+**Step 4: Update Windows**
+Settings → Windows Update → Check for updates`,
+    relatedGuides: ['sfc-scannow-complete-guide', 'dism-restorehealth-guide', 'install-visual-cpp-redistributable-all-versions']
+  },
+  {
+    id: 'what-program-edit-dll',
+    question: 'What program to edit DLL files?',
+    answer: `DLL files can be viewed or edited with specialized tools:
+
+**For Viewing/Analysis:**
+- **Dependency Walker** - View DLL dependencies
+- **PE Explorer** - Analyze PE structure
+- **Resource Hacker** - View/edit resources (icons, strings, dialogs)
+
+**For Development:**
+- **Visual Studio** - Create and debug DLLs
+- **IDA Pro** - Disassemble and analyze DLLs
+- **Ghidra** - Free reverse engineering tool
+
+**⚠️ Warning:** Editing system DLLs can break Windows. Only modify DLLs if you're a developer who knows what you're doing.`,
+    relatedGuides: []
+  },
+  {
+    id: 'can-dism-repair-corrupt-files',
+    question: 'Can DISM repair corrupt files?',
+    answer: `Yes, DISM (Deployment Image Servicing and Management) can repair corrupt system files in Windows:
+
+**How DISM Works:**
+1. Downloads fresh copies of corrupted files from Windows Update
+2. Replaces damaged system files including DLLs
+3. Repairs the Windows component store
+
+**Commands to use:**
+\`\`\`cmd
+DISM /Online /Cleanup-Image /CheckHealth
+DISM /Online /Cleanup-Image /ScanHealth  
+DISM /Online /Cleanup-Image /RestoreHealth
+\`\`\`
+
+DISM is more powerful than SFC because it can download replacement files from Microsoft's servers.`,
+    relatedGuides: ['dism-restorehealth-guide', 'sfc-scannow-complete-guide']
+  },
+  {
+    id: 'what-does-dll-stand-for',
+    question: 'What does .DLL stand for?',
+    answer: `**DLL stands for Dynamic Link Library.**
+
+A DLL is a file format used in Windows that contains code and data that can be used by multiple programs simultaneously. Key characteristics:
+
+- **Dynamic** - Loaded into memory only when needed
+- **Link** - Programs link to the DLL's functions at runtime
+- **Library** - Contains reusable code, functions, and resources
+
+**Benefits of DLLs:**
+- Reduce memory usage by sharing code
+- Enable modular software design
+- Allow updates without recompiling applications
+- Facilitate plugin architectures`,
+    relatedGuides: []
+  },
+  {
+    id: 'what-is-purpose-of-dll',
+    question: 'What is the purpose of a DLL file?',
+    answer: `DLL files serve several important purposes in Windows:
+
+1. **Code Sharing** - Multiple programs can use the same DLL, saving disk space and memory
+
+2. **Modular Design** - Programs can be built from separate components that are easier to update
+
+3. **Resource Efficiency** - DLLs are loaded only when needed, reducing startup time
+
+4. **Easy Updates** - Update a single DLL to fix bugs in all programs that use it
+
+5. **Plugin Support** - Many applications use DLLs to add features via plugins
+
+**Examples:**
+- kernel32.dll - Core Windows functions
+- msvcp140.dll - C++ runtime functions
+- d3d11.dll - DirectX 11 graphics`,
+    relatedGuides: []
+  },
+  {
+    id: 'what-program-opens-dll',
+    question: 'What program opens a DLL file?',
+    answer: `DLL files are not meant to be "opened" like documents. However, you can view their contents with:
+
+**For General Users:**
+- DLLs are automatically loaded by programs that need them
+- You don't need to manually open DLL files
+
+**For Developers/Advanced Users:**
+- **Visual Studio** - Debug and analyze DLLs
+- **Dependency Walker** - View DLL dependencies
+- **PE Explorer** - Examine DLL structure
+- **7-Zip** - Extract resources from DLLs
+- **Resource Hacker** - View/edit embedded resources
+
+**Note:** Simply double-clicking a DLL won't open it in a useful way.`,
+    relatedGuides: []
+  },
+  {
+    id: 'is-it-okay-to-delete-dll',
+    question: 'Is it okay to delete DLL files?',
+    answer: `**Generally, NO - do not delete DLL files**, especially:
+
+❌ **Never delete:**
+- System DLLs in C:\\Windows\\System32
+- DLLs in program installation folders
+- Any DLL you don't fully understand
+
+**Why it's dangerous:**
+- Programs depending on that DLL will stop working
+- Windows itself may become unstable or unbootable
+- You may not know which programs need the DLL
+
+✅ **Safe to delete:**
+- DLLs left behind after properly uninstalling a program
+- DLLs in your Downloads folder that you copied there
+- Malware DLLs identified by antivirus software`,
+    relatedGuides: []
+  },
+  {
+    id: 'do-i-need-dll-files',
+    question: 'Do I need DLL files?',
+    answer: `**Yes, DLL files are essential for Windows to function.**
+
+**Why you need them:**
+- Windows itself uses hundreds of DLLs
+- Every program you run depends on DLLs
+- Games require DirectX and Visual C++ DLLs
+- Without DLLs, nothing on your computer would work
+
+**What you should do:**
+- Keep Windows updated to maintain system DLLs
+- Install Visual C++ Redistributable packages
+- Don't delete DLLs unless you're certain they're safe to remove
+- Let Windows and programs manage their own DLLs`,
+    relatedGuides: ['install-visual-cpp-redistributable-all-versions']
+  },
+  {
+    id: 'likely-cause-dll-not-found',
+    question: 'What is the likely cause of a DLL not found error?',
+    answer: `The most common causes of "DLL not found" errors:
+
+**1. Missing Runtime Package (Most Common)**
+- Visual C++ Redistributable not installed
+- DirectX components missing
+- .NET Framework not installed
+
+**2. Corrupted Installation**
+- Application didn't install correctly
+- Installation was interrupted
+- Installer file was corrupted
+
+**3. Deleted or Moved Files**
+- User accidentally deleted the DLL
+- Antivirus quarantined the file
+- Disk cleanup removed the file
+
+**4. Windows System Corruption**
+- System files damaged by crash or malware
+- Failed Windows update
+- Hardware issues causing file corruption
+
+**5. Incompatible Software**
+- 32-bit program on 64-bit system (or vice versa)
+- Program requires newer Windows version`,
+    relatedGuides: ['fix-0xc000007b-error', 'clean-boot-troubleshooting']
+  }
+];
+
+const pageTitle = "DLL FAQ - Frequently Asked Questions About DLL Errors";
+const pageDescription = "Find answers to common DLL questions: What does DLL missing mean? How to fix DLL errors? What is the best DLL fixer? Expert answers to all your DLL questions.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <main class="container">
+    <nav class="breadcrumb">
+      <a href="/">Home</a> &gt; <span>FAQ</span>
+    </nav>
+    
+    <header class="page-header">
+      <h1>DLL Frequently Asked Questions</h1>
+      <p class="subtitle">Expert answers to the most common DLL questions</p>
+    </header>
+
+    <div class="faq-container">
+      {faqs.map((faq, index) => (
+        <article class="faq-item" id={faq.id}>
+          <h2 class="faq-question">
+            <span class="faq-number">{index + 1}</span>
+            {faq.question}
+          </h2>
+          <div class="faq-answer">
+            <Fragment set:html={faq.answer.replace(/\n/g, '<br>').replace(/```(\w+)?\n([\s\S]*?)```/g, '<pre><code>$2</code></pre>')} />
+            
+            {faq.relatedGuides.length > 0 && (
+              <div class="related-guides">
+                <strong>📚 Related Guides:</strong>
+                <ul>
+                  {faq.relatedGuides.map(slug => (
+                    <li><a href={`/guides/${slug}`}>{slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</a></li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <section class="cta-section">
+      <h2>Still Have Questions?</h2>
+      <p>Search our database of 8,000+ DLL files or browse our detailed guides.</p>
+      <div class="cta-buttons">
+        <a href="/search" class="btn btn-primary">Search DLL Database</a>
+        <a href="/guides" class="btn btn-secondary">Browse Guides</a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer.replace(/\n/g, ' ').replace(/```[\s\S]*?```/g, '').trim()
+    }
+  }))
+})} />
+
+<style>
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .breadcrumb {
+    margin-bottom: 1.5rem;
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  .breadcrumb a {
+    color: #0066cc;
+  }
+  
+  .page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .page-header h1 {
+    font-size: 2.5rem;
+    color: #1a1a2e;
+    margin-bottom: 0.5rem;
+  }
+  
+  .subtitle {
+    color: #666;
+    font-size: 1.2rem;
+  }
+  
+  .faq-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .faq-item {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border-left: 4px solid #0066cc;
+  }
+  
+  .faq-question {
+    font-size: 1.3rem;
+    color: #1a1a2e;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  
+  .faq-number {
+    background: #0066cc;
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+  
+  .faq-answer {
+    color: #444;
+    line-height: 1.8;
+  }
+  
+  .faq-answer pre {
+    background: #1a1a2e;
+    color: #0f0;
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 1rem 0;
+  }
+  
+  .faq-answer code {
+    font-family: 'Consolas', monospace;
+  }
+  
+  .related-guides {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+  }
+  
+  .related-guides ul {
+    margin: 0.5rem 0 0 1.5rem;
+  }
+  
+  .related-guides a {
+    color: #0066cc;
+  }
+  
+  .cta-section {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    color: white;
+  }
+  
+  .cta-section h2 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  .btn-primary {
+    background: white;
+    color: #667eea;
+  }
+  
+  .btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      padding: 1rem;
+    }
+    
+    .page-header h1 {
+      font-size: 1.8rem;
+    }
+    
+    .faq-question {
+      font-size: 1.1rem;
+    }
+  }
+</style>

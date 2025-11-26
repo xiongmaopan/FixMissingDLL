@@ -1,12 +1,34 @@
 // Sitemap generation script for FixMissingDLL
 // Run with: npx ts-node scripts/generate-sitemaps.ts
+// 
+// Google Official lastmod Policy (2025):
+// "Google uses the <lastmod> value if it's consistently and verifiably accurate."
+// "The <lastmod> value should reflect the date of the last SIGNIFICANT update."
+// Source: https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap
 
 import * as fs from 'fs';
 import * as path from 'path';
+import { fileURLToPath } from 'url';
+
+// ES Module compatibility
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Import data (adjust paths based on build output)
 const SITE_URL = 'https://fixmissingdll.com';
-const BUILD_DATE = new Date().toISOString().split('T')[0];
+
+// Honest lastmod strategy - based on actual content creation/update dates
+// NOT using current date for all pages (that would be dishonest and Google may ignore it)
+const SITE_LAUNCH_DATE = '2025-06-22'; // Domain registered & initial site launch
+const CONTENT_UPDATE_DATE = '2025-11-26'; // Last MAJOR refactor - all pages significantly updated
+const BUILD_DATE = new Date().toISOString().split('T')[0]; // Today's date for truly dynamic content
+
+// Since 2025-11-26 is a major site-wide refactor, all pages have been significantly updated
+// Using CONTENT_UPDATE_DATE for all static pages is HONEST because:
+// 1. Site structure changed
+// 2. All templates updated
+// 3. SEO improvements applied to all pages
+// 4. This is a genuine "significant update" per Google's definition
 
 // DLL data - simplified version for sitemap generation
 // In production, this would import from the actual database
@@ -64,14 +86,18 @@ const guides = [
 ];
 
 const staticPages = [
-  { path: '/', priority: 1.0, changefreq: 'daily' },
-  { path: '/dll/', priority: 0.9, changefreq: 'daily' },
-  { path: '/guides/', priority: 0.8, changefreq: 'weekly' },
-  { path: '/search/', priority: 0.6, changefreq: 'monthly' },
-  { path: '/about/', priority: 0.5, changefreq: 'monthly' },
-  { path: '/privacy/', priority: 0.3, changefreq: 'yearly' },
-  { path: '/terms/', priority: 0.3, changefreq: 'yearly' },
-  { path: '/dmca/', priority: 0.3, changefreq: 'yearly' },
+  // Homepage - updated when major site updates happen
+  { path: '/', priority: 1.0, changefreq: 'daily', lastmod: CONTENT_UPDATE_DATE },
+  // Index pages - updated when new content added
+  { path: '/dll/', priority: 0.9, changefreq: 'daily', lastmod: CONTENT_UPDATE_DATE },
+  { path: '/guides/', priority: 0.8, changefreq: 'weekly', lastmod: CONTENT_UPDATE_DATE },
+  // Functional pages - rarely change
+  { path: '/search/', priority: 0.6, changefreq: 'monthly', lastmod: SITE_LAUNCH_DATE },
+  // Static info pages - almost never change
+  { path: '/about/', priority: 0.5, changefreq: 'monthly', lastmod: SITE_LAUNCH_DATE },
+  { path: '/privacy/', priority: 0.3, changefreq: 'yearly', lastmod: SITE_LAUNCH_DATE },
+  { path: '/terms/', priority: 0.3, changefreq: 'yearly', lastmod: SITE_LAUNCH_DATE },
+  { path: '/dmca/', priority: 0.3, changefreq: 'yearly', lastmod: SITE_LAUNCH_DATE },
 ];
 
 function generateSitemapXML(urls: Array<{ loc: string; lastmod: string; changefreq: string; priority: number }>): string {
@@ -110,10 +136,10 @@ function main() {
     fs.mkdirSync(outputDir, { recursive: true });
   }
 
-  // Generate main sitemap (static pages)
+  // Generate main sitemap (static pages) - using honest lastmod from page definitions
   const mainUrls = staticPages.map(page => ({
     loc: `${SITE_URL}${page.path}`,
-    lastmod: BUILD_DATE,
+    lastmod: page.lastmod, // Use defined lastmod, not BUILD_DATE
     changefreq: page.changefreq,
     priority: page.priority,
   }));
@@ -123,10 +149,11 @@ function main() {
   );
   console.log('Generated sitemap-main.xml');
 
-  // Generate DLL sitemap
+  // Generate DLL sitemap - 2025-11-26 was a MAJOR refactor affecting all pages
+  // All templates, SEO elements, and page structure were significantly updated
   const dllUrls = dlls.map(dll => ({
     loc: `${SITE_URL}/dll/${dll.id}/`,
-    lastmod: BUILD_DATE,
+    lastmod: CONTENT_UPDATE_DATE, // Major site-wide refactor on 2025-11-26
     changefreq: dll.changefreq,
     priority: dll.priority,
   }));
@@ -136,10 +163,10 @@ function main() {
   );
   console.log('Generated sitemap-dll.xml');
 
-  // Generate Guides sitemap
+  // Generate Guides sitemap - guides are actively updated
   const guideUrls = guides.map(guide => ({
     loc: `${SITE_URL}/guides/${guide.slug}/`,
-    lastmod: BUILD_DATE,
+    lastmod: CONTENT_UPDATE_DATE, // Guides were updated when we added new ones
     changefreq: guide.changefreq,
     priority: guide.priority,
   }));
@@ -151,9 +178,9 @@ function main() {
 
   // Generate sitemap index
   const sitemapIndex = generateSitemapIndex([
-    { loc: `${SITE_URL}/sitemap-main.xml`, lastmod: BUILD_DATE },
-    { loc: `${SITE_URL}/sitemap-dll.xml`, lastmod: BUILD_DATE },
-    { loc: `${SITE_URL}/sitemap-guides.xml`, lastmod: BUILD_DATE },
+    { loc: `${SITE_URL}/sitemap-main.xml`, lastmod: CONTENT_UPDATE_DATE },
+    { loc: `${SITE_URL}/sitemap-dll.xml`, lastmod: CONTENT_UPDATE_DATE },
+    { loc: `${SITE_URL}/sitemap-guides.xml`, lastmod: CONTENT_UPDATE_DATE },
   ]);
   fs.writeFileSync(
     path.join(outputDir, 'sitemap-index.xml'),
@@ -161,7 +188,11 @@ function main() {
   );
   console.log('Generated sitemap-index.xml');
 
-  console.log(`\nAll sitemaps generated successfully! (${BUILD_DATE})`);
+  console.log(`\n✅ All sitemaps generated with honest lastmod dates!`);
+  console.log(`   Site Launch Date: ${SITE_LAUNCH_DATE}`);
+  console.log(`   Content Update Date: ${CONTENT_UPDATE_DATE}`);
+  console.log(`\n📌 Google Policy: "lastmod should reflect the last SIGNIFICANT update"`);
+  console.log(`   - Don't fake dates - Google verifies and may ignore dishonest lastmod`);
 }
 
 main();
