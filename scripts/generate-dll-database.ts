@@ -251,7 +251,9 @@ function generateFullDatabase(): void {
   
   console.log(`Generated ${uniqueDlls.length} unique DLL entries`);
   
-  // 输出为 JSON
+  // 输出为 JSON (使用 import.meta.url 代替 __dirname)
+  const __filename = new URL(import.meta.url).pathname.replace(/^\/([A-Z]:)/, '$1');
+  const __dirname = path.dirname(__filename);
   const outputPath = path.join(__dirname, '../src/data/generated-dlls.json');
   fs.writeFileSync(outputPath, JSON.stringify(uniqueDlls, null, 2));
   console.log(`Saved to ${outputPath}`);

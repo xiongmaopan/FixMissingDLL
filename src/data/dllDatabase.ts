@@ -1057,6 +1057,26 @@ const additionalDlls: DllFile[] = [
   }
 ];
 
+// 从生成的 JSON 加载更多 DLL
+import generatedDlls from './generated-dlls.json';
+
+// 过滤掉已存在的 DLL（避免重复）
+const existingIds = new Set([
+  ...visualCppDlls,
+  ...directxDlls,
+  ...systemCoreDlls,
+  ...gameDlls,
+  ...dotnetDlls,
+  ...additionalDlls
+].map(d => d.id));
+
+const extraDlls: DllFile[] = (generatedDlls as any[])
+  .filter(d => !existingIds.has(d.id))
+  .map(d => ({
+    ...d,
+    lastScanned: new Date().toISOString().split('T')[0]
+  }));
+
 // 合并所有 DLL
 export const dllDatabase: DllFile[] = [
   ...visualCppDlls,
@@ -1064,7 +1084,8 @@ export const dllDatabase: DllFile[] = [
   ...systemCoreDlls,
   ...gameDlls,
   ...dotnetDlls,
-  ...additionalDlls
+  ...additionalDlls,
+  ...extraDlls
 ];
 
 // 导出按字母分类的 DLL
