@@ -270,7 +270,7 @@ const letterGroups = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0'.split('');
       <div class="flex flex-wrap justify-center gap-2">
         {letterGroups.map((letter) => (
           <a 
-            href={`/dll?letter=${letter === '0' ? 'num' : letter.toLowerCase()}`}
+            href={`/dll/letter/${letter === '0' ? 'num' : letter.toLowerCase()}/`}
             class="w-10 h-10 flex items-center justify-center bg-white border border-gray-200 rounded-lg text-gray-700 font-medium hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-colors"
           >
             {letter === '0' ? '#' : letter}
