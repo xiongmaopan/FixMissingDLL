@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { generateBreadcrumbSchema } from '../utils/seo';
+
+const title = 'DMCA Policy | FixMissingDLL';
+const description = 'DMCA Policy and copyright information for FixMissingDLL.com. Learn how to submit a takedown notice for copyrighted content.';
+
+const breadcrumbs = [
+  { name: 'Home', url: 'https://fixmissingdll.com/' },
+  { name: 'DMCA Policy', url: 'https://fixmissingdll.com/dmca/' }
+];
+
+const lastUpdated = '2025-01-01';
+---
+
+<BaseLayout 
+  title={title}
+  description={description}
+  canonicalUrl="https://fixmissingdll.com/dmca/"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(generateBreadcrumbSchema(breadcrumbs))} />
+  
+  <div class="container mx-auto px-4 py-8 max-w-4xl">
+    <!-- Breadcrumb -->
+    <nav class="text-sm mb-6">
+      <ol class="flex items-center space-x-2">
+        <li><a href="/" class="text-blue-600 hover:underline">Home</a></li>
+        <li class="text-gray-400">/</li>
+        <li class="text-gray-600">DMCA Policy</li>
+      </ol>
+    </nav>
+
+    <article class="prose prose-lg max-w-none">
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">DMCA Policy</h1>
+      <p class="text-gray-500 mb-8">Last Updated: {lastUpdated}</p>
+
+      <p class="text-gray-700 mb-6">
+        FixMissingDLL.com respects the intellectual property rights of others and expects 
+        users of our website to do the same. In accordance with the Digital Millennium 
+        Copyright Act of 1998 ("DMCA"), we will respond expeditiously to claims of copyright 
+        infringement.
+      </p>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Our Position on DLL Files</h2>
+      <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+        <p class="text-blue-800 mb-4">
+          DLL files provided on this website are offered for educational and troubleshooting 
+          purposes. Many DLL files are components of software packages that are freely 
+          distributable (such as Microsoft Visual C++ Redistributable, DirectX, etc.).
+        </p>
+        <p class="text-blue-800 mb-0">
+          We always recommend downloading official runtime packages from Microsoft or the 
+          original software vendor as the primary solution.
+        </p>
+      </div>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Filing a DMCA Takedown Notice</h2>
+      <p class="text-gray-700 mb-4">
+        If you believe that content available on our website infringes your copyright, you 
+        may submit a DMCA takedown notice. To be effective, the notice must be in writing 
+        and include the following information:
+      </p>
+      <ol class="list-decimal pl-6 text-gray-700 space-y-3 mb-6">
+        <li>
+          <strong>Physical or electronic signature</strong> of a person authorized to act 
+          on behalf of the copyright owner
+        </li>
+        <li>
+          <strong>Identification of the copyrighted work</strong> claimed to have been 
+          infringed (or a representative list if multiple works)
+        </li>
+        <li>
+          <strong>Identification of the infringing material</strong> and information 
+          reasonably sufficient to locate it on our website (please provide specific URLs)
+        </li>
+        <li>
+          <strong>Your contact information</strong> including address, telephone number, 
+          and email address
+        </li>
+        <li>
+          <strong>A statement</strong> that you have a good faith belief that use of the 
+          material is not authorized by the copyright owner, its agent, or the law
+        </li>
+        <li>
+          <strong>A statement</strong> that the information in the notification is accurate, 
+          and under penalty of perjury, that you are authorized to act on behalf of the 
+          copyright owner
+        </li>
+      </ol>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Where to Send DMCA Notices</h2>
+      <div class="bg-gray-100 rounded-lg p-6 mb-6">
+        <p class="text-gray-700 mb-2"><strong>DMCA Agent:</strong></p>
+        <p class="text-gray-700 mb-0">
+          Email: <a href="mailto:dmca@fixmissingdll.com" class="text-blue-600 hover:underline">dmca@fixmissingdll.com</a>
+        </p>
+        <p class="text-gray-700 mt-2 mb-0">
+          Subject Line: DMCA Takedown Notice
+        </p>
+      </div>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Counter-Notification</h2>
+      <p class="text-gray-700 mb-4">
+        If you believe your content was removed by mistake or misidentification, you may 
+        file a counter-notification. The counter-notification must include:
+      </p>
+      <ol class="list-decimal pl-6 text-gray-700 space-y-3 mb-6">
+        <li>Your physical or electronic signature</li>
+        <li>Identification of the material that was removed and its previous location</li>
+        <li>A statement under penalty of perjury that you have a good faith belief that 
+            the material was removed as a result of mistake or misidentification</li>
+        <li>Your name, address, telephone number, and email address</li>
+        <li>A statement that you consent to the jurisdiction of the federal court in your 
+            district and that you will accept service of process from the person who 
+            provided the original DMCA notice</li>
+      </ol>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Repeat Infringers</h2>
+      <p class="text-gray-700 mb-4">
+        In accordance with the DMCA, we will terminate, in appropriate circumstances, users 
+        or account holders who are deemed to be repeat infringers.
+      </p>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Response Time</h2>
+      <p class="text-gray-700 mb-4">
+        We aim to respond to valid DMCA notices within 48-72 hours. Upon receiving a valid 
+        notice, we will:
+      </p>
+      <ul class="list-disc pl-6 text-gray-700 space-y-2 mb-4">
+        <li>Remove or disable access to the allegedly infringing material</li>
+        <li>Notify the content provider (if applicable)</li>
+        <li>Provide information about counter-notification procedures</li>
+      </ul>
+
+      <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6 mt-8">
+        <h3 class="font-bold text-yellow-800 mb-2">⚠️ False Claims Warning</h3>
+        <p class="text-sm text-yellow-700 mb-0">
+          Please note that under Section 512(f) of the DMCA, any person who knowingly 
+          materially misrepresents that material is infringing may be subject to liability 
+          for damages, including costs and attorneys' fees incurred by us or our users.
+        </p>
+      </div>
+    </article>
+  </div>
+</BaseLayout>

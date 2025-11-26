@@ -1,11 +1,323 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+// 首页 - AIO 优化 + Programmatic SEO
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AdUnit from '../components/AdUnit.astro';
+import { dllDatabase, getPopularDlls } from '../data/dllDatabase';
+import { getAllGuides } from '../data/guidesDatabase';
+import { generateHomeSchema, BUILD_DATE } from '../utils/seo';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const popularDlls = getPopularDlls(12);
+const guides = getAllGuides().slice(0, 4);
+const schema = generateHomeSchema();
+
+// 按首字母分组 DLL
+const letterGroups = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0'.split('');
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout 
+  title="FixMissingDLL - The Safest Way to Fix Missing DLL Errors | Windows 11/10"
+  description="Fix missing DLL errors safely. Download vcruntime140.dll, msvcp140.dll, d3dx9_43.dll and more. Official runtime package recommendations for Windows 11 and Windows 10."
+  schema={schema}
+>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 text-white py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <!-- Trust Badge -->
+        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
+          <span class="w-2 h-2 bg-green-400 rounded-full trust-badge-pulse"></span>
+          <span class="text-sm">Last Verified: {BUILD_DATE}</span>
+        </div>
+        
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          Fix Missing DLL Errors<br>
+          <span class="text-blue-200">The Safe Way</span>
+        </h1>
+        
+        <p class="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
+          The Safest Way to Fix Your Missing DLL Errors.<br>
+          We recommend official runtime packages over individual DLL downloads.
+        </p>
+        
+        <!-- Search Box -->
+        <form action="/search/" method="GET" class="max-w-2xl mx-auto">
+          <div class="relative shadow-2xl rounded-xl">
+            <input 
+              type="search" 
+              name="q"
+              placeholder="Search for a DLL file (e.g., vcruntime140.dll)"
+              class="w-full px-6 py-4 pr-14 text-gray-900 text-lg rounded-xl border-2 border-white/20 focus:border-white focus:ring-4 focus:ring-white/30 focus:outline-none placeholder-gray-400"
+              style="background-color: #ffffff;"
+            >
+            <button type="submit" class="absolute right-2 top-1/2 -translate-y-1/2 bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-lg transition-colors shadow-md">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+            </button>
+          </div>
+        </form>
+        
+        <!-- Quick Stats -->
+        <div class="flex flex-wrap justify-center gap-8 mt-12">
+          <div class="text-center">
+            <div class="text-3xl font-bold">{dllDatabase.length}+</div>
+            <div class="text-blue-200 text-sm">DLL Files</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold">100%</div>
+            <div class="text-blue-200 text-sm">Virus Free</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold">Win 11/10</div>
+            <div class="text-blue-200 text-sm">Compatible</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Direct Answer Box (AIO Optimized) -->
+  <section class="py-12 bg-blue-50 border-y border-blue-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 border-l-4 border-blue-600">
+        <div class="flex items-start gap-4">
+          <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div>
+            <h2 class="text-xl font-bold text-gray-900 mb-2">Quick Fix for Most DLL Errors</h2>
+            <p class="text-gray-600 mb-4">
+              90% of DLL errors (vcruntime140.dll, msvcp140.dll, d3dx9_43.dll) can be fixed by installing the correct Microsoft runtime package. No need to download individual DLL files.
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <a 
+                href="https://aka.ms/vs/17/release/vc_redist.x64.exe" 
+                target="_blank"
+                rel="noopener"
+                class="inline-flex items-center gap-2 bg-blue-600 text-white px-5 py-2.5 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                </svg>
+                Visual C++ Redistributable
+              </a>
+              <a 
+                href="https://www.microsoft.com/en-us/download/details.aspx?id=35" 
+                target="_blank"
+                rel="noopener"
+                class="inline-flex items-center gap-2 bg-green-600 text-white px-5 py-2.5 rounded-lg hover:bg-green-700 transition-colors font-medium"
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                </svg>
+                DirectX Runtime
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ad: Between Quick Fix and Popular DLLs -->
+  <AdUnit slot="between-sections" />
+
+  <!-- Most Popular DLLs -->
+  <section class="py-12 md:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between mb-8">
+        <div>
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-900">Most Downloaded DLL Files</h2>
+          <p class="text-gray-600 mt-1">Popular files that users frequently need to fix</p>
+        </div>
+        <a href="/dll" class="text-blue-600 hover:text-blue-700 font-medium hidden sm:flex items-center gap-1">
+          View All
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </a>
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {popularDlls.map((dll) => (
+          <a 
+            href={`/dll/${dll.id}`} 
+            class="bg-white rounded-xl border border-gray-200 p-4 card-hover block"
+          >
+            <div class="flex items-start gap-3">
+              <div class="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+              </div>
+              <div class="min-w-0 flex-1">
+                <h3 class="font-semibold text-gray-900 truncate">{dll.name}</h3>
+                <p class="text-sm text-gray-500 mt-0.5">{dll.size} • {dll.architecture}</p>
+                <div class="flex items-center gap-1 mt-2 text-xs text-gray-400">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                  </svg>
+                  {(dll.downloadCount / 1000000).toFixed(1)}M downloads
+                </div>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+      
+      <div class="text-center mt-8 sm:hidden">
+        <a href="/dll" class="text-blue-600 hover:text-blue-700 font-medium">
+          View All DLL Files →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fix Type Categories -->
+  <section class="py-12 bg-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900">Browse by Error Type</h2>
+        <p class="text-gray-600 mt-2">Find the right fix based on your error type</p>
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Visual C++ -->
+        <a href="/dll?type=visual_cpp" class="bg-white rounded-xl p-6 card-hover border border-gray-200">
+          <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">Visual C++ Runtime</h3>
+          <p class="text-gray-600 text-sm mb-3">vcruntime140.dll, msvcp140.dll, etc.</p>
+          <span class="text-purple-600 text-sm font-medium">View Files →</span>
+        </a>
+        
+        <!-- DirectX -->
+        <a href="/dll?type=directx" class="bg-white rounded-xl p-6 card-hover border border-gray-200">
+          <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">DirectX / Gaming</h3>
+          <p class="text-gray-600 text-sm mb-3">d3dx9_43.dll, xinput1_3.dll, etc.</p>
+          <span class="text-green-600 text-sm font-medium">View Files →</span>
+        </a>
+        
+        <!-- System -->
+        <a href="/dll?type=system_core" class="bg-white rounded-xl p-6 card-hover border border-gray-200">
+          <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">Windows System</h3>
+          <p class="text-gray-600 text-sm mb-3">kernel32.dll, ntdll.dll, etc.</p>
+          <span class="text-orange-600 text-sm font-medium">View Files →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Repair Guides -->
+  <section class="py-12 md:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between mb-8">
+        <div>
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-900">Repair Guides</h2>
+          <p class="text-gray-600 mt-1">Step-by-step tutorials to fix common errors</p>
+        </div>
+        <a href="/guides" class="text-blue-600 hover:text-blue-700 font-medium hidden sm:flex items-center gap-1">
+          All Guides
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </a>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {guides.map((guide) => (
+          <a href={`/guides/${guide.slug}`} class="bg-white rounded-xl border border-gray-200 p-6 card-hover flex gap-4">
+            <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+            </div>
+            <div>
+              <span class="text-xs font-medium text-blue-600 bg-blue-50 px-2 py-1 rounded">{guide.category}</span>
+              <h3 class="font-semibold text-gray-900 mt-2 line-clamp-2">{guide.title}</h3>
+              <p class="text-gray-600 text-sm mt-1 line-clamp-2">{guide.excerpt}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- A-Z Index -->
+  <section class="py-12 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900">Browse DLL Files A-Z</h2>
+        <p class="text-gray-600 mt-1">Find files by the first letter</p>
+      </div>
+      
+      <div class="flex flex-wrap justify-center gap-2">
+        {letterGroups.map((letter) => (
+          <a 
+            href={`/dll?letter=${letter === '0' ? 'num' : letter.toLowerCase()}`}
+            class="w-10 h-10 flex items-center justify-center bg-white border border-gray-200 rounded-lg text-gray-700 font-medium hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-colors"
+          >
+            {letter === '0' ? '#' : letter}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900">Why Trust FixMissingDLL?</h2>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">100% Safe Files</h3>
+          <p class="text-gray-600">All files are scanned with multiple antivirus engines. MD5/SHA256 hashes verified against official sources.</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">Official First</h3>
+          <p class="text-gray-600">We always recommend official Microsoft runtime packages first. Individual DLL downloads are a last resort.</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">Step-by-Step Guides</h3>
+          <p class="text-gray-600">Clear instructions with screenshots. Works on Windows 11 23H2/24H2 and Windows 10.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

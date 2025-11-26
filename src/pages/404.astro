@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getAllDlls } from '../data/dllDatabase';
+
+const title = '404 - Page Not Found | FixMissingDLL';
+const description = 'The page you are looking for could not be found. Search our DLL database or browse our guides.';
+
+// Get popular DLLs for suggestions
+const popularDlls = getAllDlls()
+  .filter(dll => dll.popularity === 'critical' || dll.popularity === 'high')
+  .slice(0, 6);
+---
+
+<BaseLayout 
+  title={title}
+  description={description}
+>
+  <div class="container mx-auto px-4 py-16 max-w-2xl text-center">
+    <!-- Error Icon -->
+    <div class="text-9xl mb-6">🔍</div>
+    
+    <!-- Error Code -->
+    <h1 class="text-6xl font-bold text-gray-900 mb-4">404</h1>
+    
+    <!-- Error Message -->
+    <h2 class="text-2xl font-semibold text-gray-700 mb-4">Page Not Found</h2>
+    <p class="text-gray-600 mb-8">
+      The page you are looking for might have been moved, deleted, or never existed.
+      <br/>
+      Don't worry, let's help you find what you need!
+    </p>
+
+    <!-- Search Box -->
+    <div class="mb-8">
+      <form action="/search/" method="GET" class="flex gap-2">
+        <input 
+          type="text" 
+          name="q"
+          placeholder="Search for a DLL file..."
+          class="flex-1 px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
+        />
+        <button 
+          type="submit"
+          class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+        >
+          Search
+        </button>
+      </form>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="flex flex-wrap justify-center gap-4 mb-12">
+      <a 
+        href="/"
+        class="px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+      >
+        🏠 Go Home
+      </a>
+      <a 
+        href="/dll/"
+        class="px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+      >
+        📁 Browse DLLs
+      </a>
+      <a 
+        href="/guides/"
+        class="px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+      >
+        📚 View Guides
+      </a>
+    </div>
+
+    <!-- Popular DLLs -->
+    <div class="bg-gray-50 rounded-xl p-6">
+      <h3 class="text-lg font-semibold text-gray-700 mb-4">Popular DLL Files</h3>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+        {popularDlls.map(dll => (
+          <a 
+            href={`/dll/${dll.id}/`}
+            class="p-3 bg-white rounded-lg shadow hover:shadow-md transition-shadow text-left"
+          >
+            <div class="font-mono text-sm font-semibold text-blue-600">{dll.fileName}</div>
+            <div class="text-xs text-gray-500 truncate">{dll.description}</div>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Help Section -->
+    <div class="mt-12 text-sm text-gray-500">
+      <p>
+        If you believe this is a broken link, please 
+        <a href="mailto:support@fixmissingdll.com" class="text-blue-600 hover:underline">let us know</a>.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

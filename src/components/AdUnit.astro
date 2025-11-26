@@ -1,0 +1,92 @@
+---
+/**
+ * Google AdSense 广告单元组件
+ * 支持多种广告位置和尺寸
+ */
+interface Props {
+  slot: 'header' | 'sidebar' | 'in-article' | 'footer' | 'between-sections';
+  class?: string;
+}
+
+const { slot, class: className = '' } = Astro.props;
+
+// 广告位配置 - 根据位置优化用户体验
+const adConfig = {
+  'header': {
+    format: 'horizontal',
+    style: 'min-height: 90px;',
+    label: 'Advertisement'
+  },
+  'sidebar': {
+    format: 'rectangle',
+    style: 'min-height: 250px;',
+    label: 'Sponsored'
+  },
+  'in-article': {
+    format: 'fluid',
+    style: 'min-height: 150px;',
+    label: 'Advertisement'
+  },
+  'footer': {
+    format: 'horizontal',
+    style: 'min-height: 90px;',
+    label: 'Advertisement'
+  },
+  'between-sections': {
+    format: 'auto',
+    style: 'min-height: 100px;',
+    label: 'Sponsored Content'
+  }
+};
+
+const config = adConfig[slot];
+---
+
+<div class={`ad-container ad-${slot} ${className}`} data-ad-slot={slot}>
+  <div class="text-center text-xs text-gray-400 mb-1">{config.label}</div>
+  <ins 
+    class="adsbygoogle"
+    style={`display:block; ${config.style}`}
+    data-ad-client="ca-pub-1411631093585461"
+    data-ad-slot="auto"
+    data-ad-format={config.format}
+    data-full-width-responsive="true"
+  ></ins>
+  <script is:inline>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+<style>
+  .ad-container {
+    margin: 1rem 0;
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  .ad-header {
+    margin-top: 0;
+  }
+  
+  .ad-sidebar {
+    position: sticky;
+    top: 5rem;
+  }
+  
+  .ad-in-article {
+    margin: 2rem auto;
+    max-width: 728px;
+  }
+  
+  .ad-between-sections {
+    padding: 1rem 0;
+    background: linear-gradient(to bottom, #f9fafb, #ffffff, #f9fafb);
+  }
+  
+  /* 响应式隐藏小屏幕的某些广告 */
+  @media (max-width: 768px) {
+    .ad-sidebar {
+      display: none;
+    }
+  }
+</style>

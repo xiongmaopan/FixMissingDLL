@@ -1,0 +1,173 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { generateBreadcrumbSchema } from '../utils/seo';
+
+const title = 'Terms of Service | FixMissingDLL';
+const description = 'Terms of Service for FixMissingDLL.com. Please read these terms carefully before using our website and downloading DLL files.';
+
+const breadcrumbs = [
+  { name: 'Home', url: 'https://fixmissingdll.com/' },
+  { name: 'Terms of Service', url: 'https://fixmissingdll.com/terms/' }
+];
+
+const lastUpdated = '2025-01-01';
+---
+
+<BaseLayout 
+  title={title}
+  description={description}
+  canonicalUrl="https://fixmissingdll.com/terms/"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(generateBreadcrumbSchema(breadcrumbs))} />
+  
+  <div class="container mx-auto px-4 py-8 max-w-4xl">
+    <!-- Breadcrumb -->
+    <nav class="text-sm mb-6">
+      <ol class="flex items-center space-x-2">
+        <li><a href="/" class="text-blue-600 hover:underline">Home</a></li>
+        <li class="text-gray-400">/</li>
+        <li class="text-gray-600">Terms of Service</li>
+      </ol>
+    </nav>
+
+    <article class="prose prose-lg max-w-none">
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">Terms of Service</h1>
+      <p class="text-gray-500 mb-8">Last Updated: {lastUpdated}</p>
+
+      <p class="text-gray-700 mb-6">
+        Welcome to FixMissingDLL.com. By accessing or using our website, you agree to be bound 
+        by these Terms of Service ("Terms"). If you disagree with any part of these terms, 
+        please do not use our website.
+      </p>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">1. Acceptance of Terms</h2>
+      <p class="text-gray-700 mb-4">
+        By accessing and using this website, you accept and agree to be bound by the terms and 
+        provision of this agreement. Additionally, when using this website's services, you shall 
+        be subject to any posted guidelines or rules applicable to such services.
+      </p>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">2. Description of Service</h2>
+      <p class="text-gray-700 mb-4">
+        FixMissingDLL.com provides information about DLL files and offers downloads of DLL files 
+        for the purpose of fixing Windows system errors. We also provide guides and tutorials 
+        for troubleshooting common Windows issues.
+      </p>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">3. Disclaimer of Warranties</h2>
+      <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6 mb-4">
+        <p class="text-yellow-800 font-semibold mb-2">IMPORTANT:</p>
+        <p class="text-yellow-700 mb-0">
+          THE WEBSITE AND ALL DLL FILES ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT ANY 
+          WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED. WE DO NOT WARRANT THAT THE FILES WILL 
+          BE ERROR-FREE, THAT DEFECTS WILL BE CORRECTED, OR THAT THE WEBSITE OR SERVER ARE 
+          FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS.
+        </p>
+      </div>
+      <p class="text-gray-700 mb-4">
+        While we make every effort to ensure the safety and authenticity of files provided:
+      </p>
+      <ul class="list-disc pl-6 text-gray-700 space-y-2 mb-4">
+        <li>We cannot guarantee that all files will work in all environments</li>
+        <li>Files may not be compatible with all versions of Windows</li>
+        <li>Installing DLL files carries inherent risks to your system</li>
+        <li>We recommend creating a system restore point before any installation</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">4. Limitation of Liability</h2>
+      <p class="text-gray-700 mb-4">
+        IN NO EVENT SHALL FIXMISSINGDLL.COM, ITS OWNERS, EMPLOYEES, OR AFFILIATES BE LIABLE 
+        FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING 
+        WITHOUT LIMITATION, LOSS OF PROFITS, DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, 
+        RESULTING FROM:
+      </p>
+      <ul class="list-disc pl-6 text-gray-700 space-y-2 mb-4">
+        <li>Your use or inability to use the website or downloaded files</li>
+        <li>Any unauthorized access to or alteration of your transmissions or data</li>
+        <li>Any damage to your computer system or data</li>
+        <li>Any bugs, viruses, or other harmful code that may be transmitted through our service</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">5. User Responsibilities</h2>
+      <p class="text-gray-700 mb-4">By using this website, you agree to:</p>
+      <ul class="list-disc pl-6 text-gray-700 space-y-2 mb-4">
+        <li>Use downloaded files at your own risk</li>
+        <li>Verify file hashes before installation when possible</li>
+        <li>Create system backups before making system changes</li>
+        <li>Not redistribute files for commercial purposes</li>
+        <li>Not use automated tools to mass-download files</li>
+        <li>Comply with all applicable laws and regulations</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">6. Intellectual Property</h2>
+      <p class="text-gray-700 mb-4">
+        The DLL files provided on this website are the intellectual property of their respective 
+        owners (Microsoft Corporation, third-party developers, etc.). We provide these files 
+        for educational and troubleshooting purposes only.
+      </p>
+      <p class="text-gray-700 mb-4">
+        The website design, content, and original materials (excluding DLL files) are the 
+        property of FixMissingDLL.com and are protected by copyright laws.
+      </p>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">7. DMCA Compliance</h2>
+      <p class="text-gray-700 mb-4">
+        We respect the intellectual property rights of others. If you believe any content on 
+        our website infringes your copyright, please see our <a href="/dmca" class="text-blue-600 hover:underline">DMCA Policy</a> 
+        for information on how to submit a takedown notice.
+      </p>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">8. Third-Party Links</h2>
+      <p class="text-gray-700 mb-4">
+        Our website may contain links to third-party websites (such as Microsoft's official 
+        download pages). We are not responsible for the content or privacy practices of these 
+        external sites.
+      </p>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">9. Prohibited Uses</h2>
+      <p class="text-gray-700 mb-4">You agree NOT to:</p>
+      <ul class="list-disc pl-6 text-gray-700 space-y-2 mb-4">
+        <li>Use automated bots or scrapers to access the website</li>
+        <li>Attempt to gain unauthorized access to our servers</li>
+        <li>Redistribute our content without permission</li>
+        <li>Use the website for any illegal purpose</li>
+        <li>Interfere with or disrupt the website's operation</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">10. Modifications to Service</h2>
+      <p class="text-gray-700 mb-4">
+        We reserve the right to modify, suspend, or discontinue the website (or any part thereof) 
+        at any time without notice. We shall not be liable to you or any third party for any 
+        modification, suspension, or discontinuance of the service.
+      </p>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">11. Changes to Terms</h2>
+      <p class="text-gray-700 mb-4">
+        We reserve the right to update these Terms at any time. Changes will be effective 
+        immediately upon posting to the website. Your continued use of the website following 
+        the posting of changes constitutes your acceptance of such changes.
+      </p>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">12. Governing Law</h2>
+      <p class="text-gray-700 mb-4">
+        These Terms shall be governed by and construed in accordance with applicable laws, 
+        without regard to conflict of law principles.
+      </p>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">13. Contact Information</h2>
+      <p class="text-gray-700 mb-4">
+        If you have any questions about these Terms, please contact us at:
+      </p>
+      <ul class="text-gray-700">
+        <li>📧 Email: <a href="mailto:legal@fixmissingdll.com" class="text-blue-600 hover:underline">legal@fixmissingdll.com</a></li>
+      </ul>
+
+      <div class="bg-gray-100 rounded-lg p-6 mt-8">
+        <p class="text-sm text-gray-600 mb-0">
+          By using FixMissingDLL.com, you acknowledge that you have read, understood, and agree 
+          to be bound by these Terms of Service.
+        </p>
+      </div>
+    </article>
+  </div>
+</BaseLayout>

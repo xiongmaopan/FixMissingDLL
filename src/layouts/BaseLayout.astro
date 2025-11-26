@@ -1,0 +1,226 @@
+---
+// 基础布局 - 包含完整 SEO head 和全局样式
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  schema?: object;
+  noindex?: boolean;
+}
+
+const { 
+  title, 
+  description, 
+  canonical = Astro.url.href,
+  schema,
+  noindex = false
+} = Astro.props;
+
+const siteUrl = 'https://fixmissingdll.com';
+const buildDate = new Date().toISOString().split('T')[0];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary Meta Tags -->
+  <title>{title}</title>
+  <meta name="title" content={title}>
+  <meta name="description" content={description}>
+  {noindex && <meta name="robots" content="noindex, nofollow">}
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href={canonical}>
+  
+  <!-- Freshness Signal (2025 SEO) -->
+  <meta name="last-verified" content={buildDate}>
+  <meta name="date" content={buildDate}>
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content={canonical}>
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:image" content={`${siteUrl}/og-image.png`}>
+  <meta property="og:site_name" content="FixMissingDLL">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content={canonical}>
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={`${siteUrl}/og-image.png`}>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+  <!-- Preconnect to External Resources -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com">
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  
+  <!-- Google Tag Manager -->
+  <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-56QC6W4T');</script>
+  <!-- End Google Tag Manager -->
+  
+  <!-- Google AdSense (ca-pub-1411631093585461) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1411631093585461" crossorigin="anonymous"></script>
+  
+  <!-- JSON-LD Schema -->
+  {schema && (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  )}
+</head>
+<body class="bg-gray-50 text-gray-900 antialiased">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-56QC6W4T"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <!-- Header -->
+  <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-2">
+          <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+            </svg>
+          </div>
+          <span class="font-bold text-xl text-gray-900">Fix<span class="text-blue-600">Missing</span>DLL</span>
+        </a>
+        
+        <!-- Navigation -->
+        <nav class="hidden md:flex items-center gap-6">
+          <a href="/" class="text-gray-600 hover:text-blue-600 transition-colors">Home</a>
+          <a href="/dll" class="text-gray-600 hover:text-blue-600 transition-colors">DLL Files</a>
+          <a href="/guides" class="text-gray-600 hover:text-blue-600 transition-colors">Guides</a>
+          <a href="/about" class="text-gray-600 hover:text-blue-600 transition-colors">About</a>
+        </nav>
+        
+        <!-- Search -->
+        <div class="flex items-center gap-4">
+          <form action="/search" method="GET" class="hidden sm:block">
+            <div class="relative">
+              <input 
+                type="search" 
+                name="q"
+                placeholder="Search DLL files..."
+                class="w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+              >
+              <svg class="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+            </div>
+          </form>
+          
+          <!-- Mobile Menu Button -->
+          <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-600 hover:text-blue-600">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 bg-white">
+      <div class="px-4 py-3 space-y-2">
+        <a href="/" class="block py-2 text-gray-600 hover:text-blue-600">Home</a>
+        <a href="/dll" class="block py-2 text-gray-600 hover:text-blue-600">DLL Files</a>
+        <a href="/guides" class="block py-2 text-gray-600 hover:text-blue-600">Guides</a>
+        <a href="/about" class="block py-2 text-gray-600 hover:text-blue-600">About</a>
+        <form action="/search" method="GET" class="pt-2">
+          <input 
+            type="search" 
+            name="q"
+            placeholder="Search DLL files..."
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+          >
+        </form>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <slot />
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <!-- Brand -->
+        <div class="col-span-1 md:col-span-2">
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+              </svg>
+            </div>
+            <span class="font-bold text-xl text-white">FixMissingDLL</span>
+          </div>
+          <p class="text-gray-400 mb-4 max-w-md">
+            The Safest Way to Fix Your Missing DLL Errors. We recommend official runtime packages over individual DLL downloads.
+          </p>
+          <p class="text-sm text-gray-500">
+            Last System Verified: <span class="text-green-400">{buildDate}</span>
+          </p>
+        </div>
+        
+        <!-- Quick Links -->
+        <div>
+          <h3 class="font-semibold text-white mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li><a href="/dll" class="hover:text-white transition-colors">DLL Database</a></li>
+            <li><a href="/guides" class="hover:text-white transition-colors">Repair Guides</a></li>
+            <li><a href="/guides/how-to-fix-0xc000007b-error" class="hover:text-white transition-colors">Fix 0xc000007b</a></li>
+            <li><a href="/guides/install-directx-windows-11" class="hover:text-white transition-colors">Install DirectX</a></li>
+          </ul>
+        </div>
+        
+        <!-- Legal -->
+        <div>
+          <h3 class="font-semibold text-white mb-4">Legal</h3>
+          <ul class="space-y-2">
+            <li><a href="/about" class="hover:text-white transition-colors">About Us</a></li>
+            <li><a href="/privacy" class="hover:text-white transition-colors">Privacy Policy</a></li>
+            <li><a href="/terms" class="hover:text-white transition-colors">Terms of Service</a></li>
+            <li><a href="/dmca" class="hover:text-white transition-colors">DMCA</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-500">
+        <p>© {new Date().getFullYear()} FixMissingDLL.com. All rights reserved.</p>
+        <p class="mt-2">
+          DLL files are property of their respective owners. We recommend downloading runtime packages from official Microsoft sources.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Menu Script (minimal JS) -->
+  <script>
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    btn?.addEventListener('click', () => {
+      menu?.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>

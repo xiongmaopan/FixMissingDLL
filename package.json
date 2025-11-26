@@ -1,14 +1,24 @@
 {
-  "name": "astro-site",
+  "name": "fixmissingdll",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "description": "FixMissingDLL.com - The Safest Way to Fix Your Missing DLL Errors",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "generate-sitemaps": "npx ts-node scripts/generate-sitemaps.ts",
+    "deploy": "npm run build && npx wrangler pages deploy dist"
   },
   "dependencies": {
-    "astro": "^5.16.0"
+    "@astrojs/sitemap": "^3.6.0",
+    "@tailwindcss/vite": "^4.1.17",
+    "astro": "^5.16.0",
+    "tailwindcss": "^4.1.17"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "wrangler": "^3.0.0"
   }
 }

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GTM Verification - FixMissingDLL</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    h1 { color: #333; }
+    .status { 
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+    .success { background: #d4edda; color: #155724; }
+    .error { background: #f8d7da; color: #721c24; }
+    .info { background: #e7f3ff; color: #0c5460; }
+    pre {
+      background: #1a1a2e;
+      color: #eee;
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+    code { font-family: 'Monaco', 'Consolas', monospace; }
+    .check-item {
+      display: flex;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .check-icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 12px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+    .check-pass { background: #28a745; color: white; }
+    .check-fail { background: #dc3545; color: white; }
+    .check-pending { background: #ffc107; color: #333; }
+  </style>
+</head>
+<body>
+  <h1>🔍 Google Tag Manager Verification</h1>
+  
+  <div class="card">
+    <h2>GTM Container: GTM-56QC6W4T</h2>
+    <div id="gtm-status"></div>
+    <div id="check-results"></div>
+  </div>
+  
+  <div class="card">
+    <h2>DataLayer Contents</h2>
+    <pre id="datalayer-output">Loading...</pre>
+  </div>
+  
+  <div class="card">
+    <h2>Manual Verification Steps</h2>
+    <ol>
+      <li>Open Browser DevTools (F12)</li>
+      <li>Go to Network tab</li>
+      <li>Filter by "gtm"</li>
+      <li>Refresh the page</li>
+      <li>You should see a request to <code>gtm.js?id=GTM-56QC6W4T</code></li>
+    </ol>
+  </div>
+  
+  <div class="card">
+    <h2>Google Tag Assistant</h2>
+    <p>Install the <a href="https://chrome.google.com/webstore/detail/tag-assistant-legacy-by-g/kejbdjndbnbjgmefkgdddjlbokphdefk" target="_blank">Tag Assistant Legacy</a> Chrome extension for detailed verification.</p>
+  </div>
+
+  <script>
+    // Check GTM
+    const checks = [];
+    const resultsDiv = document.getElementById('check-results');
+    const statusDiv = document.getElementById('gtm-status');
+    const datalayerOutput = document.getElementById('datalayer-output');
+    
+    function addCheck(name, passed, details = '') {
+      checks.push({ name, passed, details });
+    }
+    
+    function renderChecks() {
+      resultsDiv.innerHTML = checks.map(check => `
+        <div class="check-item">
+          <div class="check-icon ${check.passed ? 'check-pass' : 'check-fail'}">
+            ${check.passed ? '✓' : '✗'}
+          </div>
+          <div>
+            <strong>${check.name}</strong>
+            ${check.details ? `<br><small style="color:#666">${check.details}</small>` : ''}
+          </div>
+        </div>
+      `).join('');
+      
+      const allPassed = checks.every(c => c.passed);
+      statusDiv.innerHTML = allPassed 
+        ? '<div class="status success">✅ GTM is properly installed!</div>'
+        : '<div class="status error">❌ Some checks failed. See details below.</div>';
+    }
+    
+    // Check 1: dataLayer exists
+    addCheck('dataLayer exists', typeof window.dataLayer !== 'undefined', 
+      typeof window.dataLayer !== 'undefined' ? `Array with ${window.dataLayer.length} items` : 'Not found');
+    
+    // Check 2: GTM script loaded
+    const gtmScript = document.querySelector('script[src*="googletagmanager.com/gtm.js"]');
+    addCheck('GTM script in DOM', !!gtmScript, 
+      gtmScript ? 'Script tag found' : 'Script tag not found');
+    
+    // Check 3: GTM container ID
+    const hasGtmId = document.documentElement.innerHTML.includes('GTM-56QC6W4T');
+    addCheck('GTM-56QC6W4T in page', hasGtmId, 
+      hasGtmId ? 'Container ID found' : 'Container ID not found');
+    
+    // Check 4: noscript fallback
+    const noscript = document.querySelector('noscript iframe[src*="GTM-56QC6W4T"]');
+    addCheck('Noscript fallback', !!noscript, 
+      noscript ? 'Noscript iframe found' : 'Noscript iframe not found');
+    
+    // Check 5: gtm.start event
+    const hasGtmStart = window.dataLayer && window.dataLayer.some(item => item['gtm.start']);
+    addCheck('gtm.start event', hasGtmStart, 
+      hasGtmStart ? 'GTM initialization event found' : 'No gtm.start event');
+    
+    // Render results
+    renderChecks();
+    
+    // Show dataLayer
+    if (window.dataLayer) {
+      datalayerOutput.textContent = JSON.stringify(window.dataLayer, null, 2);
+    } else {
+      datalayerOutput.textContent = 'dataLayer is undefined';
+    }
+  </script>
+</body>
+</html>

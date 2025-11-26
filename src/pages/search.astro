@@ -1,0 +1,312 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getAllDlls } from '../data/dllDatabase';
+import { getAllGuides } from '../data/guidesDatabase';
+
+const title = 'Search DLL Files & Guides | FixMissingDLL';
+const description = 'Search our database of DLL files and troubleshooting guides. Find solutions for missing DLL errors on Windows 11/10/8/7.';
+
+const allDlls = getAllDlls();
+const allGuides = getAllGuides();
+
+// Build search index for client-side search
+const searchIndex = {
+  dlls: allDlls.map(dll => ({
+    id: dll.id,
+    fileName: dll.name,
+    description: dll.description,
+    category: dll.fixType,
+    keywords: [
+      dll.name.toLowerCase(),
+      dll.description.toLowerCase(),
+      ...dll.commonErrors.map(e => e.toLowerCase()),
+      ...dll.eventIds.map(e => e.toLowerCase())
+    ].join(' ')
+  })),
+  guides: allGuides.map(guide => ({
+    slug: guide.slug,
+    title: guide.title,
+    description: guide.metaDescription,
+    keywords: [
+      guide.title.toLowerCase(),
+      guide.metaDescription.toLowerCase(),
+      ...guide.keywords
+    ].join(' ')
+  }))
+};
+---
+
+<BaseLayout 
+  title={title}
+  description={description}
+  canonicalUrl="https://fixmissingdll.com/search/"
+>
+  <div class="container mx-auto px-4 py-8 max-w-4xl">
+    <!-- Breadcrumb -->
+    <nav class="text-sm mb-6">
+      <ol class="flex items-center space-x-2">
+        <li><a href="/" class="text-blue-600 hover:underline">Home</a></li>
+        <li class="text-gray-400">/</li>
+        <li class="text-gray-600">Search</li>
+      </ol>
+    </nav>
+
+    <h1 class="text-3xl font-bold text-gray-900 mb-6">Search DLL Files & Guides</h1>
+
+    <!-- Search Box -->
+    <div class="mb-8">
+      <div class="relative">
+        <input 
+          type="text" 
+          id="search-input"
+          placeholder="Enter DLL file name or error message (e.g., vcruntime140.dll, 0xc000007b)..."
+          class="w-full px-6 py-4 text-lg border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:outline-none"
+          autofocus
+        />
+        <div class="absolute right-4 top-1/2 -translate-y-1/2">
+          <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </div>
+      </div>
+      <p class="text-sm text-gray-500 mt-2">
+        Tip: You can search by file name, error code, or Event ID
+      </p>
+    </div>
+
+    <!-- Popular Searches -->
+    <div id="popular-searches" class="mb-8">
+      <h2 class="text-lg font-semibold text-gray-700 mb-4">Popular Searches</h2>
+      <div class="flex flex-wrap gap-2">
+        <button class="search-tag px-4 py-2 bg-gray-100 hover:bg-blue-100 text-gray-700 hover:text-blue-700 rounded-lg transition-colors" data-search="vcruntime140.dll">
+          vcruntime140.dll
+        </button>
+        <button class="search-tag px-4 py-2 bg-gray-100 hover:bg-blue-100 text-gray-700 hover:text-blue-700 rounded-lg transition-colors" data-search="msvcp140.dll">
+          msvcp140.dll
+        </button>
+        <button class="search-tag px-4 py-2 bg-gray-100 hover:bg-blue-100 text-gray-700 hover:text-blue-700 rounded-lg transition-colors" data-search="0xc000007b">
+          0xc000007b error
+        </button>
+        <button class="search-tag px-4 py-2 bg-gray-100 hover:bg-blue-100 text-gray-700 hover:text-blue-700 rounded-lg transition-colors" data-search="d3dx9">
+          d3dx9 DLLs
+        </button>
+        <button class="search-tag px-4 py-2 bg-gray-100 hover:bg-blue-100 text-gray-700 hover:text-blue-700 rounded-lg transition-colors" data-search="xinput">
+          xinput DLLs
+        </button>
+        <button class="search-tag px-4 py-2 bg-gray-100 hover:bg-blue-100 text-gray-700 hover:text-blue-700 rounded-lg transition-colors" data-search="steam_api">
+          Steam API
+        </button>
+      </div>
+    </div>
+
+    <!-- Search Results -->
+    <div id="search-results" class="hidden">
+      <div id="results-header" class="mb-4">
+        <h2 class="text-lg font-semibold text-gray-700">
+          Results for "<span id="search-term"></span>"
+        </h2>
+        <p id="results-count" class="text-sm text-gray-500"></p>
+      </div>
+
+      <!-- DLL Results -->
+      <div id="dll-results" class="mb-8">
+        <h3 class="text-md font-semibold text-gray-600 mb-3 flex items-center gap-2">
+          <span class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">📁</span>
+          DLL Files
+        </h3>
+        <div id="dll-results-list" class="space-y-3">
+          <!-- Results populated by JS -->
+        </div>
+        <p id="no-dll-results" class="text-gray-500 hidden">No DLL files found</p>
+      </div>
+
+      <!-- Guide Results -->
+      <div id="guide-results">
+        <h3 class="text-md font-semibold text-gray-600 mb-3 flex items-center gap-2">
+          <span class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">📚</span>
+          Guides & Tutorials
+        </h3>
+        <div id="guide-results-list" class="space-y-3">
+          <!-- Results populated by JS -->
+        </div>
+        <p id="no-guide-results" class="text-gray-500 hidden">No guides found</p>
+      </div>
+    </div>
+
+    <!-- No Results -->
+    <div id="no-results" class="hidden text-center py-12">
+      <div class="text-6xl mb-4">🔍</div>
+      <h2 class="text-xl font-semibold text-gray-700 mb-2">No results found</h2>
+      <p class="text-gray-500 mb-4">Try a different search term or browse our categories</p>
+      <div class="flex justify-center gap-4">
+        <a href="/dll/" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+          Browse All DLLs
+        </a>
+        <a href="/guides/" class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors">
+          View Guides
+        </a>
+      </div>
+    </div>
+
+    <!-- Browse All Section -->
+    <div class="mt-12 pt-8 border-t">
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">Or Browse By Category</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <a href="/dll/?category=vcpp" class="p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
+          <div class="text-2xl mb-2">🔧</div>
+          <div class="font-medium">Visual C++</div>
+          <div class="text-sm text-gray-500">Runtime DLLs</div>
+        </a>
+        <a href="/dll/?category=directx" class="p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
+          <div class="text-2xl mb-2">🎮</div>
+          <div class="font-medium">DirectX</div>
+          <div class="text-sm text-gray-500">Gaming DLLs</div>
+        </a>
+        <a href="/dll/?category=system" class="p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
+          <div class="text-2xl mb-2">💻</div>
+          <div class="font-medium">System Core</div>
+          <div class="text-sm text-gray-500">Windows DLLs</div>
+        </a>
+        <a href="/dll/?category=gaming" class="p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
+          <div class="text-2xl mb-2">🕹️</div>
+          <div class="font-medium">Gaming</div>
+          <div class="text-sm text-gray-500">Steam & OpenAL</div>
+        </a>
+        <a href="/dll/?category=dotnet" class="p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
+          <div class="text-2xl mb-2">🟣</div>
+          <div class="font-medium">.NET Framework</div>
+          <div class="text-sm text-gray-500">.NET DLLs</div>
+        </a>
+        <a href="/guides/" class="p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
+          <div class="text-2xl mb-2">📖</div>
+          <div class="font-medium">All Guides</div>
+          <div class="text-sm text-gray-500">Tutorials</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Index Data -->
+  <script type="application/json" id="search-index" set:html={JSON.stringify(searchIndex)} />
+
+  <script>
+    // Client-side search functionality
+    const searchIndex = JSON.parse(document.getElementById('search-index')?.textContent || '{}');
+    const searchInput = document.getElementById('search-input') as HTMLInputElement;
+    const searchResults = document.getElementById('search-results');
+    const popularSearches = document.getElementById('popular-searches');
+    const noResults = document.getElementById('no-results');
+    const searchTerm = document.getElementById('search-term');
+    const resultsCount = document.getElementById('results-count');
+    const dllResultsList = document.getElementById('dll-results-list');
+    const guideResultsList = document.getElementById('guide-results-list');
+    const noDllResults = document.getElementById('no-dll-results');
+    const noGuideResults = document.getElementById('no-guide-results');
+
+    // Get query from URL if present
+    const urlParams = new URLSearchParams(window.location.search);
+    const queryParam = urlParams.get('q');
+    if (queryParam && searchInput) {
+      searchInput.value = queryParam;
+      performSearch(queryParam);
+    }
+
+    // Search input handler
+    searchInput?.addEventListener('input', (e) => {
+      const query = (e.target as HTMLInputElement).value;
+      if (query.length >= 2) {
+        performSearch(query);
+      } else {
+        hideResults();
+      }
+    });
+
+    // Popular search tags
+    document.querySelectorAll('.search-tag').forEach(tag => {
+      tag.addEventListener('click', () => {
+        const search = tag.getAttribute('data-search');
+        if (search && searchInput) {
+          searchInput.value = search;
+          performSearch(search);
+        }
+      });
+    });
+
+    function performSearch(query: string) {
+      const q = query.toLowerCase().trim();
+      
+      // Search DLLs
+      const dllResults = searchIndex.dlls?.filter((dll: any) => 
+        dll.keywords.includes(q) || 
+        dll.fileName.toLowerCase().includes(q) ||
+        dll.description.toLowerCase().includes(q)
+      ) || [];
+
+      // Search Guides
+      const guideResults = searchIndex.guides?.filter((guide: any) =>
+        guide.keywords.includes(q) ||
+        guide.title.toLowerCase().includes(q) ||
+        guide.description.toLowerCase().includes(q)
+      ) || [];
+
+      const totalResults = dllResults.length + guideResults.length;
+
+      if (totalResults === 0) {
+        showNoResults();
+        return;
+      }
+
+      // Show results
+      if (searchTerm) searchTerm.textContent = query;
+      if (resultsCount) resultsCount.textContent = `Found ${totalResults} result${totalResults === 1 ? '' : 's'}`;
+
+      // Render DLL results
+      if (dllResultsList) {
+        if (dllResults.length > 0) {
+          dllResultsList.innerHTML = dllResults.slice(0, 10).map((dll: any) => `
+            <a href="/dll/${dll.id}" class="block p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
+              <div class="font-mono font-semibold text-blue-600">${dll.fileName}</div>
+              <div class="text-sm text-gray-600">${dll.description}</div>
+            </a>
+          `).join('');
+          noDllResults?.classList.add('hidden');
+        } else {
+          dllResultsList.innerHTML = '';
+          noDllResults?.classList.remove('hidden');
+        }
+      }
+
+      // Render Guide results
+      if (guideResultsList) {
+        if (guideResults.length > 0) {
+          guideResultsList.innerHTML = guideResults.slice(0, 5).map((guide: any) => `
+            <a href="/guides/${guide.slug}" class="block p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
+              <div class="font-semibold text-green-600">${guide.title}</div>
+              <div class="text-sm text-gray-600">${guide.description}</div>
+            </a>
+          `).join('');
+          noGuideResults?.classList.add('hidden');
+        } else {
+          guideResultsList.innerHTML = '';
+          noGuideResults?.classList.remove('hidden');
+        }
+      }
+
+      searchResults?.classList.remove('hidden');
+      popularSearches?.classList.add('hidden');
+      noResults?.classList.add('hidden');
+    }
+
+    function hideResults() {
+      searchResults?.classList.add('hidden');
+      popularSearches?.classList.remove('hidden');
+      noResults?.classList.add('hidden');
+    }
+
+    function showNoResults() {
+      searchResults?.classList.add('hidden');
+      popularSearches?.classList.add('hidden');
+      noResults?.classList.remove('hidden');
+    }
+  </script>
+</BaseLayout>

@@ -1,0 +1,365 @@
+---
+// DLL 详情页 - 核心流量页 (Landing Page)
+// 静态生成所有 DLL 页面 (SSG)
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HashVerifier from '../../components/HashVerifier.astro';
+import AdUnit from '../../components/AdUnit.astro';
+import { dllDatabase, getAllDllIds, getDllById, getRelatedDlls } from '../../data/dllDatabase';
+import { generateDllSchema, generateDllTitle, generateDllDescription, BUILD_DATE } from '../../utils/seo';
+
+// 静态路径生成
+export function getStaticPaths() {
+  return dllDatabase.map((dll) => ({
+    params: { id: dll.id },
+    props: { dll }
+  }));
+}
+
+const { dll } = Astro.props;
+const schema = generateDllSchema(dll);
+const relatedDlls = getRelatedDlls(dll);
+const title = generateDllTitle(dll);
+const description = generateDllDescription(dll);
+
+// 修复类型映射
+const fixTypeLabels: Record<string, { label: string; color: string }> = {
+  visual_cpp: { label: 'Visual C++ Runtime', color: 'purple' },
+  directx: { label: 'DirectX', color: 'green' },
+  system_core: { label: 'Windows System', color: 'orange' },
+  dotnet: { label: '.NET Framework', color: 'blue' },
+  game: { label: 'Gaming', color: 'pink' },
+  driver: { label: 'Driver', color: 'gray' }
+};
+
+const fixInfo = fixTypeLabels[dll.fixType] || fixTypeLabels.driver;
+---
+
+<BaseLayout 
+  title={title}
+  description={description}
+  schema={schema}
+>
+  <!-- Breadcrumb -->
+  <nav class="bg-gray-50 border-b border-gray-200 py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <ol class="flex items-center gap-2 text-sm">
+        <li><a href="/" class="text-gray-500 hover:text-blue-600">Home</a></li>
+        <li class="text-gray-400">/</li>
+        <li><a href="/dll" class="text-gray-500 hover:text-blue-600">DLL Files</a></li>
+        <li class="text-gray-400">/</li>
+        <li class="text-gray-900 font-medium">{dll.name}</li>
+      </ol>
+    </div>
+  </nav>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="lg:grid lg:grid-cols-3 lg:gap-8">
+      <!-- Main Content -->
+      <div class="lg:col-span-2">
+        <!-- Title & Trust Badges -->
+        <div class="mb-6">
+          <div class="flex flex-wrap items-center gap-3 mb-3">
+            <span class={`text-xs font-medium px-2.5 py-1 rounded bg-${fixInfo.color}-100 text-${fixInfo.color}-700`}>
+              {fixInfo.label}
+            </span>
+            <span class="text-xs text-gray-500">Version {dll.version}</span>
+          </div>
+          
+          <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+            Fix {dll.name} Missing Error
+          </h1>
+          
+          <!-- Trust Indicators -->
+          <div class="flex flex-wrap items-center gap-4 text-sm">
+            <div class="flex items-center gap-1.5 text-green-600">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span>Scanned: {BUILD_DATE}</span>
+            </div>
+            <div class="flex items-center gap-1.5 text-blue-600">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span>MD5 Verified</span>
+            </div>
+            <div class="text-gray-500">
+              {(dll.downloadCount / 1000000).toFixed(1)}M+ downloads
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Fix Box (AIO Optimized - bg-blue-50) -->
+        <div class="bg-blue-50 rounded-2xl p-6 mb-8 border border-blue-100">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h2 class="text-xl font-bold text-gray-900 mb-2">
+                ⚡ Quick Fix: Install {dll.associatedSoftware}
+              </h2>
+              <p class="text-gray-600 mb-4">
+                This is the <strong>recommended fix</strong> from Microsoft. It will restore {dll.name} and all related runtime files automatically.
+              </p>
+              <div class="flex flex-wrap gap-3">
+                <a 
+                  href={dll.officialDownloadUrl}
+                  target="_blank"
+                  rel="noopener"
+                  class="btn-download inline-flex items-center gap-2 text-white px-6 py-3 rounded-xl font-semibold"
+                >
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                  </svg>
+                  Download Official Package
+                </a>
+                <span class="inline-flex items-center text-sm text-gray-500">
+                  <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                  </svg>
+                  From Microsoft.com
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Common Error Messages -->
+        <section class="mb-8">
+          <h2 class="text-xl font-bold text-gray-900 mb-4">Common Error Messages</h2>
+          <div class="bg-gray-900 rounded-xl p-4 text-sm font-mono text-gray-300 space-y-2">
+            {dll.commonErrors.map((error) => (
+              <div class="flex items-start gap-2">
+                <span class="text-red-400">✗</span>
+                <span>{error}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- About This File -->
+        <section class="mb-8">
+          <h2 class="text-xl font-bold text-gray-900 mb-4">What is {dll.name}?</h2>
+          <div class="prose max-w-none">
+            <p class="text-gray-600 leading-relaxed">{dll.description}</p>
+          </div>
+        </section>
+
+        <!-- How to Fix -->
+        <section class="mb-8">
+          <h2 class="text-xl font-bold text-gray-900 mb-4">How to Fix "{dll.name} is missing" Error</h2>
+          
+          {dll.fixType === 'visual_cpp' && (
+            <div class="space-y-6">
+              <div class="bg-white border border-gray-200 rounded-xl p-5">
+                <h3 class="font-semibold text-lg text-gray-900 mb-3 flex items-center gap-2">
+                  <span class="w-6 h-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-sm font-bold">1</span>
+                  Method 1: Install Visual C++ Redistributable (Recommended)
+                </h3>
+                <p class="text-gray-600 mb-4">This is the safest and most effective solution. It installs all Visual C++ runtime files at once.</p>
+                <ol class="list-decimal list-inside space-y-2 text-gray-700 mb-4">
+                  <li>Download the <a href="https://aka.ms/vs/17/release/vc_redist.x64.exe" class="text-blue-600 hover:underline" target="_blank" rel="noopener">Visual C++ Redistributable x64</a></li>
+                  <li>Also download the <a href="https://aka.ms/vs/17/release/vc_redist.x86.exe" class="text-blue-600 hover:underline" target="_blank" rel="noopener">x86 version</a> (for 32-bit apps)</li>
+                  <li>Run both installers</li>
+                  <li>Restart your computer</li>
+                </ol>
+              </div>
+              
+              <div class="bg-white border border-gray-200 rounded-xl p-5">
+                <h3 class="font-semibold text-lg text-gray-900 mb-3 flex items-center gap-2">
+                  <span class="w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-bold">2</span>
+                  Method 2: Run System File Checker
+                </h3>
+                <p class="text-gray-600 mb-4">If the runtime package doesn't work, try repairing Windows system files:</p>
+                <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto"><code>sfc /scannow</code></pre>
+                <p class="text-gray-500 text-sm mt-2">Run this in Command Prompt (Admin)</p>
+              </div>
+            </div>
+          )}
+          
+          {dll.fixType === 'directx' && (
+            <div class="space-y-6">
+              <div class="bg-white border border-gray-200 rounded-xl p-5">
+                <h3 class="font-semibold text-lg text-gray-900 mb-3 flex items-center gap-2">
+                  <span class="w-6 h-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-sm font-bold">1</span>
+                  Method 1: Install DirectX End-User Runtime (Recommended)
+                </h3>
+                <p class="text-gray-600 mb-4">This package includes all legacy DirectX files (d3dx9, xinput, xaudio, etc.)</p>
+                <ol class="list-decimal list-inside space-y-2 text-gray-700">
+                  <li>Download <a href="https://www.microsoft.com/en-us/download/details.aspx?id=35" class="text-blue-600 hover:underline" target="_blank" rel="noopener">DirectX End-User Runtime Web Installer</a></li>
+                  <li>Run dxwebsetup.exe</li>
+                  <li>Follow the installation wizard</li>
+                  <li>Restart your computer</li>
+                </ol>
+              </div>
+              
+              <div class="bg-white border border-gray-200 rounded-xl p-5">
+                <h3 class="font-semibold text-lg text-gray-900 mb-3 flex items-center gap-2">
+                  <span class="w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-bold">2</span>
+                  Method 2: Verify Game Files (For Steam Games)
+                </h3>
+                <p class="text-gray-600 mb-4">If this error occurs in a Steam game:</p>
+                <ol class="list-decimal list-inside space-y-2 text-gray-700">
+                  <li>Open Steam Library</li>
+                  <li>Right-click the game → Properties</li>
+                  <li>Go to Local Files tab</li>
+                  <li>Click "Verify integrity of game files"</li>
+                </ol>
+              </div>
+            </div>
+          )}
+          
+          {(dll.fixType === 'system_core' || dll.fixType === 'dotnet' || dll.fixType === 'game' || dll.fixType === 'driver') && (
+            <div class="space-y-6">
+              <div class="bg-white border border-gray-200 rounded-xl p-5">
+                <h3 class="font-semibold text-lg text-gray-900 mb-3 flex items-center gap-2">
+                  <span class="w-6 h-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-sm font-bold">1</span>
+                  Method 1: Run System File Checker
+                </h3>
+                <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto mb-4"><code>sfc /scannow</code></pre>
+                <p class="text-gray-600">Open Command Prompt as Administrator and run this command. It will scan and repair corrupted system files.</p>
+              </div>
+              
+              <div class="bg-white border border-gray-200 rounded-xl p-5">
+                <h3 class="font-semibold text-lg text-gray-900 mb-3 flex items-center gap-2">
+                  <span class="w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-bold">2</span>
+                  Method 2: DISM Repair
+                </h3>
+                <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto mb-4"><code>DISM /Online /Cleanup-Image /RestoreHealth</code></pre>
+                <p class="text-gray-600">If SFC doesn't work, run this command to repair the Windows image.</p>
+              </div>
+            </div>
+          )}
+        </section>
+
+        <!-- Manual Download (Last Resort) -->
+        <section class="mb-8">
+          <h2 class="text-xl font-bold text-gray-900 mb-4">Manual Download (Last Resort)</h2>
+          <div class="bg-amber-50 border border-amber-200 rounded-xl p-5">
+            <div class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-amber-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+              </svg>
+              <div>
+                <h3 class="font-semibold text-amber-800 mb-2">⚠️ Important Warning</h3>
+                <p class="text-amber-700 text-sm mb-3">
+                  Downloading individual DLL files is <strong>not recommended</strong>. We strongly advise using the official runtime package above. Only use manual download if the official method fails.
+                </p>
+                <p class="text-amber-700 text-sm mb-4">
+                  If you must manually place the file:<br>
+                  • <strong>64-bit apps:</strong> <code class="bg-amber-100 px-1 rounded">C:\Windows\System32</code><br>
+                  • <strong>32-bit apps on 64-bit Windows:</strong> <code class="bg-amber-100 px-1 rounded">C:\Windows\SysWOW64</code>
+                </p>
+                <button 
+                  disabled
+                  class="bg-gray-400 text-white px-4 py-2 rounded-lg text-sm cursor-not-allowed"
+                >
+                  Manual download coming soon
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>        <!-- Event IDs Section (长尾词优化) -->
+        {dll.eventIds.length > 0 && (
+          <section class="mb-8">
+            <h2 class="text-xl font-bold text-gray-900 mb-4">Related Windows Event Logs</h2>
+            <p class="text-gray-600 mb-4">
+              If you see these errors in Windows Event Viewer (eventvwr.msc), they may be related to {dll.name}:
+            </p>
+            <div class="flex flex-wrap gap-2">
+              {dll.eventIds.map((eventId) => (
+                <span class="bg-gray-100 text-gray-700 px-3 py-1.5 rounded-lg text-sm font-mono">
+                  {eventId} {dll.name}
+                </span>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <!-- In-article Ad (Between content sections) -->
+        <AdUnit slot="in-article" />
+      </div>
+
+      <!-- Sidebar -->
+      <div class="lg:col-span-1 mt-8 lg:mt-0">
+        <div class="sticky-toc space-y-6">
+          <!-- File Details Card -->
+          <div class="bg-white border border-gray-200 rounded-xl p-5">
+            <h3 class="font-semibold text-gray-900 mb-4">File Details</h3>
+            <dl class="space-y-3 text-sm">
+              <div class="flex justify-between">
+                <dt class="text-gray-500">Filename:</dt>
+                <dd class="font-medium text-gray-900">{dll.name}</dd>
+              </div>
+              <div class="flex justify-between">
+                <dt class="text-gray-500">Version:</dt>
+                <dd class="font-medium text-gray-900">{dll.version}</dd>
+              </div>
+              <div class="flex justify-between">
+                <dt class="text-gray-500">Size:</dt>
+                <dd class="font-medium text-gray-900">{dll.size}</dd>
+              </div>
+              <div class="flex justify-between">
+                <dt class="text-gray-500">Architecture:</dt>
+                <dd class="font-medium text-gray-900">{dll.architecture}</dd>
+              </div>
+              <div class="flex justify-between">
+                <dt class="text-gray-500">Last Scanned:</dt>
+                <dd class="font-medium text-green-600">{BUILD_DATE}</dd>
+              </div>
+            </dl>
+          </div>          <!-- Hash Verification Tool -->
+          <HashVerifier 
+            expectedMd5={dll.md5}
+            expectedSha256={dll.sha256}
+            fileName={dll.name}
+          />
+
+          <!-- Related DLLs -->
+          {relatedDlls.length > 0 && (
+            <div class="bg-white border border-gray-200 rounded-xl p-5">
+              <h3 class="font-semibold text-gray-900 mb-4">Related Files</h3>
+              <div class="space-y-2">
+                {relatedDlls.map((related) => (
+                  <a 
+                    href={`/dll/${related.id}`}
+                    class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 transition-colors"
+                  >
+                    <div class="w-8 h-8 bg-blue-100 rounded flex items-center justify-center">
+                      <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <div class="font-medium text-gray-900 text-sm">{related.name}</div>
+                      <div class="text-xs text-gray-500">{related.size}</div>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}          <!-- Safety Section -->
+          <div class="bg-green-50 border border-green-200 rounded-xl p-5">
+            <div class="flex items-center gap-2 mb-3">
+              <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <h3 class="font-semibold text-green-800">Safety Guarantee</h3>
+            </div>
+            <ul class="text-sm text-green-700 space-y-1">
+              <li>✓ Scanned with 70+ antivirus engines</li>
+              <li>✓ Hash verified against MSDN sources</li>
+              <li>✓ Digital signature checked</li>
+            </ul>
+          </div>
+
+          <!-- Sidebar Ad -->
+          <AdUnit slot="sidebar" />
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

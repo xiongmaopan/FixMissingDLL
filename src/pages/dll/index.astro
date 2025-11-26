@@ -1,0 +1,179 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getAllDlls, getDllsByCategory, categories } from '../../data/dllDatabase';
+import { generateBreadcrumbSchema } from '../../utils/seo';
+
+const allDlls = getAllDlls();
+
+// Group DLLs by first letter for A-Z index
+const dllsByLetter: Record<string, typeof allDlls> = {};
+allDlls.forEach(dll => {
+  const letter = dll.name.charAt(0).toUpperCase();
+  if (!dllsByLetter[letter]) {
+    dllsByLetter[letter] = [];
+  }
+  dllsByLetter[letter].push(dll);
+});
+
+// Sort letters
+const sortedLetters = Object.keys(dllsByLetter).sort();
+
+// Get DLLs by category
+const dllsByCategory = Object.entries(categories).map(([key, category]) => ({
+  key,
+  ...category,
+  dlls: getDllsByCategory(key)
+}));
+
+const title = 'DLL Files Directory - Complete A-Z Index | FixMissingDLL';
+const description = 'Browse our complete directory of DLL files. Find safe downloads for missing DLL errors on Windows 11/10. All files are virus-scanned and verified.';
+
+const breadcrumbs = [
+  { name: 'Home', url: 'https://fixmissingdll.com/' },
+  { name: 'DLL Directory', url: 'https://fixmissingdll.com/dll/' }
+];
+---
+
+<BaseLayout 
+  title={title}
+  description={description}
+  canonicalUrl="https://fixmissingdll.com/dll/"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(generateBreadcrumbSchema(breadcrumbs))} />
+  
+  <div class="container mx-auto px-4 py-8">
+    <!-- Breadcrumb -->
+    <nav class="text-sm mb-6">
+      <ol class="flex items-center space-x-2">
+        <li><a href="/" class="text-blue-600 hover:underline">Home</a></li>
+        <li class="text-gray-400">/</li>
+        <li class="text-gray-600">DLL Directory</li>
+      </ol>
+    </nav>
+
+    <!-- Header -->
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-gray-900 mb-4">DLL Files Directory</h1>
+      <p class="text-lg text-gray-600">
+        Browse our complete collection of {allDlls.length}+ DLL files. All files are scanned for viruses 
+        and verified for authenticity. Choose a category or browse alphabetically.
+      </p>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+      <div class="bg-white rounded-lg shadow p-4 text-center">
+        <div class="text-2xl font-bold text-blue-600">{allDlls.length}+</div>
+        <div class="text-sm text-gray-600">DLL Files</div>
+      </div>
+      <div class="bg-white rounded-lg shadow p-4 text-center">
+        <div class="text-2xl font-bold text-green-600">100%</div>
+        <div class="text-sm text-gray-600">Virus Scanned</div>
+      </div>
+      <div class="bg-white rounded-lg shadow p-4 text-center">
+        <div class="text-2xl font-bold text-purple-600">{Object.keys(categories).length}</div>
+        <div class="text-sm text-gray-600">Categories</div>
+      </div>
+      <div class="bg-white rounded-lg shadow p-4 text-center">
+        <div class="text-2xl font-bold text-orange-600">Free</div>
+        <div class="text-sm text-gray-600">All Downloads</div>
+      </div>
+    </div>
+
+    <!-- A-Z Quick Navigation -->
+    <div class="bg-gray-100 rounded-lg p-4 mb-8">
+      <h2 class="text-lg font-semibold mb-3">Quick Navigation (A-Z)</h2>
+      <div class="flex flex-wrap gap-2">
+        {sortedLetters.map(letter => (
+          <a 
+            href={`#letter-${letter}`}
+            class="w-10 h-10 flex items-center justify-center bg-white rounded-lg shadow hover:bg-blue-600 hover:text-white transition-colors font-semibold"
+          >
+            {letter}
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Browse by Category -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">Browse by Category</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {dllsByCategory.map(category => (
+          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="text-3xl">{category.icon}</span>
+              <div>
+                <h3 class="font-bold text-gray-900">{category.name}</h3>
+                <p class="text-sm text-gray-500">{category.dlls.length} files</p>
+              </div>
+            </div>
+            <p class="text-sm text-gray-600 mb-4">{category.description}</p>
+            <div class="flex flex-wrap gap-2">
+              {category.dlls.slice(0, 4).map(dll => (
+                <a 
+                  href={`/dll/${dll.id}`}
+                  class="text-xs bg-gray-100 hover:bg-blue-100 text-gray-700 hover:text-blue-700 px-2 py-1 rounded transition-colors"
+                >
+                  {dll.name}
+                </a>
+              ))}
+              {category.dlls.length > 4 && (
+                <span class="text-xs text-gray-500 px-2 py-1">
+                  +{category.dlls.length - 4} more
+                </span>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- A-Z Directory -->
+    <section>
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">Complete A-Z Directory</h2>
+      
+      {sortedLetters.map(letter => (
+        <div id={`letter-${letter}`} class="mb-8 scroll-mt-20">
+          <h3 class="text-xl font-bold text-blue-600 border-b-2 border-blue-600 pb-2 mb-4">
+            {letter}
+          </h3>
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+            {dllsByLetter[letter].map(dll => (
+              <a 
+                href={`/dll/${dll.id}`}
+                class="bg-white rounded-lg shadow p-3 hover:shadow-md hover:bg-blue-50 transition-all group"
+              >
+                <div class="font-mono text-sm font-semibold text-gray-900 group-hover:text-blue-600 truncate">
+                  {dll.name}
+                </div>
+                <div class="text-xs text-gray-500 truncate">{dll.description}</div>
+                <div class="flex items-center gap-2 mt-2">
+                  <span class="text-xs bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded">
+                    {dll.version}
+                  </span>
+                  {dll.downloadCount > 1000000 && (
+                    <span class="text-xs bg-red-100 text-red-600 px-1.5 py-0.5 rounded">Hot</span>
+                  )}
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </section>
+
+    <!-- Back to Top -->
+    <div class="fixed bottom-8 right-8">
+      <a 
+        href="#"
+        class="w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg flex items-center justify-center hover:bg-blue-700 transition-colors"
+        aria-label="Back to top"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</BaseLayout>

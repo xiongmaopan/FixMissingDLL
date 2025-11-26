@@ -1,0 +1,59 @@
+# FixMissingDLL.com Robots.txt
+# Last Updated: 2025-01-01
+
+User-agent: *
+Allow: /
+Allow: /dll/
+Allow: /guides/
+Allow: /search/
+Allow: /about/
+Allow: /privacy/
+Allow: /terms/
+Allow: /dmca/
+
+# Disallow search result pages with parameters (prevent spider traps)
+Disallow: /search?*
+Disallow: /*?sort=*
+Disallow: /*?filter=*
+Disallow: /*?page=*
+Disallow: /*?ref=*
+Disallow: /*?utm_*
+
+# Disallow administrative and system paths
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_astro/
+Disallow: /404
+Disallow: /500
+
+# Block common bot traps and tracking URLs
+Disallow: /track/
+Disallow: /redirect/
+Disallow: /click/
+Disallow: /out/
+Disallow: /go/
+
+# Crawl rate limiting
+Crawl-delay: 1
+
+# Specific bot rules for aggressive crawlers
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Crawl-delay: 10
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+# Sitemap locations
+Sitemap: https://fixmissingdll.com/sitemap-index.xml
+Sitemap: https://fixmissingdll.com/sitemap-main.xml
+Sitemap: https://fixmissingdll.com/sitemap-dll.xml
+Sitemap: https://fixmissingdll.com/sitemap-guides.xml

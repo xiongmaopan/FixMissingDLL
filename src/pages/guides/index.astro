@@ -1,0 +1,87 @@
+---
+// 指南列表页
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getAllGuides } from '../../data/guidesDatabase';
+
+const guides = getAllGuides();
+
+// 按分类分组
+const categories = [...new Set(guides.map(g => g.category))];
+---
+
+<BaseLayout 
+  title="Windows Repair Guides - Fix DLL Errors, 0xc000007b, DirectX | FixMissingDLL"
+  description="Step-by-step guides to fix common Windows errors including 0xc000007b, missing DLL files, DirectX issues, and Visual C++ runtime errors."
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-gray-900 to-gray-800 text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">Windows Repair Guides</h1>
+      <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+        Step-by-step tutorials to fix common DLL errors, application crashes, and system issues on Windows 11 and Windows 10.
+      </p>
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Category Filter -->
+    <div class="flex flex-wrap gap-2 mb-8">
+      <span class="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium">All Guides</span>
+      {categories.map((cat) => (
+        <a href={`#${cat.toLowerCase().replace(' ', '-')}`} class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
+          {cat}
+        </a>
+      ))}
+    </div>
+
+    <!-- Guides Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {guides.map((guide) => (
+        <a 
+          href={`/guides/${guide.slug}`}
+          class="bg-white rounded-xl border border-gray-200 overflow-hidden card-hover"
+        >
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-xs font-medium text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full">
+                {guide.category}
+              </span>
+              <span class="text-xs text-gray-400">
+                Updated {guide.updateDate}
+              </span>
+            </div>
+            
+            <h2 class="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
+              {guide.title}
+            </h2>
+            
+            <p class="text-gray-600 text-sm line-clamp-3 mb-4">
+              {guide.excerpt}
+            </p>
+            
+            <div class="flex items-center text-blue-600 text-sm font-medium">
+              Read Guide
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- Related DLLs Section -->
+    <section class="mt-16">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">Most Common DLL Issues</h2>
+      <div class="bg-gray-50 rounded-xl p-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+          {['vcruntime140.dll', 'msvcp140.dll', 'd3dx9_43.dll', 'xinput1_3.dll', 'api-ms-win-crt-runtime-l1-1-0.dll', 'kernel32.dll'].map((dll) => (
+            <a href={`/dll/${dll}`} class="bg-white px-4 py-2 rounded-lg text-sm text-center text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors border border-gray-200">
+              {dll}
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
