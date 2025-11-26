@@ -1,36 +1,304 @@
 /**
- * DLL 数据库生成器
- * 可扩展生成 50,000+ DLL 条目
+ * DLL 数据库生成器 - 大规模版本
+ * 生成 5000+ DLL 条目，覆盖各种类型
  * 运行: npx ts-node scripts/generate-dll-database.ts
  */
 
 import * as fs from 'fs';
 import * as path from 'path';
 
-// 常见 DLL 前缀和后缀模式
-const visualCppPrefixes = ['vcruntime', 'msvcp', 'msvcr', 'vcomp', 'concrt', 'mfc', 'atl', 'vccorlib'];
-const visualCppVersions = ['71', '80', '90', '100', '110', '120', '140', '140_1', '141', '142'];
+// ==================== Visual C++ 运行时 ====================
+const visualCppPrefixes = [
+  'vcruntime', 'msvcp', 'msvcr', 'vcomp', 'concrt', 'mfc', 'atl', 'vccorlib',
+  'mfcm', 'mfc1', 'mfco', 'vcamp', 'vcompd', 'vcclrit', 'msdia', 'mspdb',
+  'msvci', 'msvcirt', 'msvfw32', 'mcvcr', 'msvcm', 'msvcpd', 'msvbvm',
+  'api-ms-win-crt-runtime', 'api-ms-win-crt-heap', 'api-ms-win-crt-string',
+  'api-ms-win-crt-stdio', 'api-ms-win-crt-locale', 'api-ms-win-crt-math',
+  'api-ms-win-crt-multibyte', 'api-ms-win-crt-time', 'api-ms-win-crt-filesystem',
+  'api-ms-win-crt-convert', 'api-ms-win-crt-environment', 'api-ms-win-crt-process',
+  'api-ms-win-crt-conio', 'api-ms-win-crt-utility', 'api-ms-win-crt-private',
+  'ucrtbase', 'ucrtbased'
+];
+const visualCppVersions = ['60', '70', '71', '80', '90', '100', '110', '120', '140', '140_1', '141', '142', '143'];
 
-const directxPrefixes = ['d3dx9_', 'd3dx10_', 'd3dx11_', 'd3dcompiler_', 'xinput1_', 'xaudio2_', 'x3daudio1_'];
-const directxVersions = ['24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43'];
+// ==================== DirectX 相关 ====================
+const directxPrefixes = [
+  'd3dx9_', 'd3dx10_', 'd3dx11_', 'd3dcompiler_', 'xinput1_', 'xaudio2_', 'x3daudio1_',
+  'd3dcsx_', 'd3dx10d_', 'd3dx11d_', 'xapofx1_', 'd3dxof'
+];
+const directxVersions = Array.from({length: 50}, (_, i) => String(i + 1));
 
-// 系统 DLL 列表（按字母顺序）
-const systemDlls = [
-  'advapi32', 'bcrypt', 'cfgmgr32', 'combase', 'comctl32', 'comdlg32', 'crypt32',
-  'd2d1', 'd3d9', 'd3d10', 'd3d11', 'd3d12', 'dbghelp', 'dwmapi', 'dxgi',
-  'gdi32', 'gdiplus', 'imagehlp', 'imm32', 'iphlpapi', 'kernel32', 'kernelbase',
-  'mpr', 'mscoree', 'msi', 'msimg32', 'msvcrt', 'mswsock', 'netapi32', 'normaliz', 'ntdll',
-  'ole32', 'oleaut32', 'opengl32', 'pdh', 'powrprof', 'psapi', 'rpcrt4',
-  'secur32', 'setupapi', 'shell32', 'shlwapi', 'sspicli', 'uxtheme', 'user32', 'userenv', 'usp10',
-  'version', 'winhttp', 'wininet', 'winmm', 'winspool', 'wintrust', 'ws2_32', 'wsock32', 'wtsapi32'
+// 额外的 DirectX 核心 DLL
+const directxCoreDlls = [
+  'd3d8', 'd3d9', 'd3d10', 'd3d10_1', 'd3d10core', 'd3d11', 'd3d11_1', 'd3d11_2', 'd3d11_3', 'd3d12', 'd3d12core',
+  'dxgi', 'dxgidebug', 'dxguid', 'd2d1', 'd2d1debug', 'dwrite', 'dcomp',
+  'dinput', 'dinput8', 'dsound', 'dsound3d', 'ddraw', 'dplayx', 'dpnet', 'dpnhpast',
+  'dsetup', 'dsetup32', 'dxdiagn', 'dxerr9', 'dxerr8', 'dxva2',
+  'xact3', 'xactengine3_0', 'xactengine3_1', 'xactengine3_2', 'xactengine3_3', 'xactengine3_4',
+  'xactengine3_5', 'xactengine3_6', 'xactengine3_7',
+  'xapofx1_1', 'xapofx1_2', 'xapofx1_3', 'xapofx1_4', 'xapofx1_5'
 ];
 
-// 游戏相关 DLL
+// ==================== 系统核心 DLL ====================
+const systemDlls = [
+  // Windows 核心
+  'kernel32', 'kernelbase', 'ntdll', 'user32', 'gdi32', 'shell32', 'advapi32', 'ole32',
+  'oleaut32', 'combase', 'comctl32', 'comdlg32', 'msvcrt', 'sechost', 'rpcrt4',
+  // 加密和安全
+  'bcrypt', 'ncrypt', 'crypt32', 'cryptbase', 'cryptdll', 'cryptnet', 'cryptsp', 'cryptui',
+  'secur32', 'sspicli', 'sspisrv', 'schannel', 'wintrust', 'webauthn',
+  // 网络
+  'ws2_32', 'wsock32', 'winhttp', 'wininet', 'urlmon', 'iphlpapi', 'dnsapi', 'netapi32',
+  'mswsock', 'dhcpcsvc', 'dhcpcsvc6', 'nlaapi', 'winrnr', 'rasapi32', 'rasman',
+  'fwpuclnt', 'ndfapi', 'wlanapi', 'wlanutil', 'bluetoothapis',
+  // 图形和多媒体
+  'gdiplus', 'windowscodecs', 'wmcodecdspps', 'mf', 'mfplat', 'mfcore', 'mfmp4srcsnk',
+  'mfreadwrite', 'mfsvr', 'evr', 'dxva2', 'quartz', 'wmvcore', 'wmp', 'wmadmod',
+  // 音频
+  'winmm', 'mmdevapi', 'audioses', 'audioeng', 'audiosrv', 'wdmaud', 'ksuser',
+  // 打印
+  'winspool', 'spoolss', 'printui', 'localspl',
+  // 文件系统
+  'shlwapi', 'propsys', 'thumbcache', 'explorerframe', 'srvcli',
+  // 电源管理
+  'powrprof', 'batterypowercontrol',
+  // 设备管理
+  'cfgmgr32', 'devobj', 'hid', 'setupapi', 'newdev',
+  // COM 相关
+  'comsvcs', 'mtxdm', 'mtxex',
+  // 调试和诊断
+  'dbghelp', 'dbgcore', 'pdh', 'psapi', 'tlhelp32',
+  // 其他系统组件
+  'uxtheme', 'dwmapi', 'dui70', 'usp10', 'msimg32', 'version', 'normaliz', 'mpr',
+  'imm32', 'userenv', 'wtsapi32', 'wevtapi', 'tdh', 'taskschd', 'srvcli', 'pla',
+  'msi', 'mscoree', 'clbcatq', 'activeds', 'adsldp', 'adsldpc',
+  'authz', 'feclient', 'fltlib', 'logoncli', 'msvcp_win',
+  'nsi', 'OneCoreCommonProxyStub', 'OneCoreUAPCommonProxyStub',
+  'profapi', 'rpcss', 'samcli', 'samlib', 'sas', 'sfc', 'srclient',
+  'sti', 'umpdc', 'wbemsvc', 'wbemcomn', 'wbemcore', 'wbemess',
+  'wer', 'wevtsvc', 'win32u', 'wlanhlp', 'wmiclient', 'wmiutils',
+  'wpdshext', 'wpninprc', 'ws2help', 'wtsapi32', 'xmllite'
+];
+
+// ==================== 游戏运行时 DLL ====================
 const gameDlls = [
-  'binkw32', 'bink2w64', 'fmodex', 'fmod', 'libcef', 'lua5.1', 'lua51', 'lua52', 'lua53',
-  'mss32', 'mss64', 'nvapi', 'nvapi64', 'openal32', 'physxloader', 'physxcudart',
-  'sdl', 'sdl2', 'steam_api', 'steam_api64', 'steamclient', 'steamclient64',
-  'vulkan-1', 'wwise', 'xlive', 'zlibwapi'
+  // Bink Video
+  'binkw32', 'binkw64', 'bink2w32', 'bink2w64',
+  // FMOD Audio
+  'fmod', 'fmodex', 'fmodex64', 'fmodexL', 'fmodex64L', 'fmod_event', 'fmod_event64',
+  'fmodevent', 'fmodevent64', 'fmodstudio', 'fmodstudio64',
+  // CEF (Chromium Embedded Framework)
+  'libcef', 'cef', 'cef_sandbox', 'chrome_elf',
+  // Lua
+  'lua5.1', 'lua51', 'lua52', 'lua53', 'lua54', 'lua50', 'luajit',
+  // Miles Sound System
+  'mss32', 'mss64', 'mssmp3', 'mssa3d', 'msseax', 'mssfast', 'mssrsx',
+  // NVIDIA
+  'nvapi', 'nvapi64', 'nvcuda', 'nvEncodeAPI', 'nvEncodeAPI64',
+  'nvml', 'nvwgf2um', 'nvwgf2umx', 'nvoglv32', 'nvoglv64',
+  // OpenAL
+  'openal32', 'openal', 'soft_oal', 'wrap_oal',
+  // PhysX
+  'physxloader', 'physxloader64', 'physxcudart', 'physxcudart64', 'physxcore',
+  'physxcooking', 'physxcommon', 'physxfoundation', 'physxdevice', 'physxgpu', 'apex',
+  // SDL
+  'sdl', 'sdl2', 'sdl2_image', 'sdl2_mixer', 'sdl2_net', 'sdl2_ttf',
+  'sdl_image', 'sdl_mixer', 'sdl_net', 'sdl_ttf',
+  // Steam
+  'steam_api', 'steam_api64', 'steamclient', 'steamclient64', 'steamerrorreporter',
+  'steamerrorreporter64', 'steamnetworkingsockets', 'steamnetworkingsockets64',
+  'sdkencryptedappticket', 'sdkencryptedappticket64', 'vstdlib_s', 'vstdlib_s64',
+  'tier0_s', 'tier0_s64', 'gameoverlayrenderer', 'gameoverlayrenderer64',
+  // Vulkan
+  'vulkan-1', 'vulkan', 'vkd3d', 'vkd3d-shader', 'dxvk_d3d9', 'dxvk_d3d10core', 'dxvk_d3d11', 'dxvk_dxgi',
+  // Unreal Engine
+  'ue4game-win64-shipping', 'ue4prereqsetup_x64', 'crashreporterclient', 'crashreporterclienteditor',
+  // Unity
+  'unityplayer', 'unityplugin', 'mono', 'mono-2.0-bdwgc',
+  // Wwise Audio
+  'wwise', 'wwisesoundengine', 'akpremiumlowlatency', 'akreverb', 'aksoundseedair',
+  // Havok
+  'hk', 'hkBase', 'hkSerialize', 'hkInternal', 'hkCompat', 'hkSceneData',
+  // GameSpy
+  'xlive', 'gfwlive',
+  // RAD Game Tools
+  'granny2', 'granny', 'umbrella',
+  // zlib
+  'zlibwapi', 'zlib', 'zlib1',
+  // 其他游戏库
+  'oo2core', 'oo2core_win64', 'awesomium', 'libcurl', 'curl', 'libssl', 'libeay32', 'ssleay32',
+  'libpng', 'libpng16', 'libjpeg', 'turbojpeg', 'freetype', 'freetype6',
+  'glew32', 'glfw3', 'glad', 'theora', 'vorbis', 'vorbisfile', 'ogg',
+  'libsndfile', 'flac', 'opus', 'opusfile', 'speex', 'mpg123'
+];
+
+// ==================== .NET Framework DLL ====================
+const dotNetDlls = [
+  'clr', 'clrjit', 'mscorlib', 'mscorwks', 'mscoreei', 'mscorsec', 'mscordbi', 'mscordacwks',
+  'clretwrc', 'clrjitni', 'compatjit', 'coreclr', 'hostpolicy', 'hostfxr',
+  'system.core', 'system.data', 'system.drawing', 'system.web', 'system.windows.forms',
+  'system.xml', 'system.linq', 'system.io', 'system.net', 'system.security',
+  'microsoft.csharp', 'microsoft.visualbasic', 'microsoft.jscript',
+  'presentationcore', 'presentationframework', 'windowsbase', 'wpfgfx',
+  'wpfgfx_v0400', 'milcore', 'uiautomationcore', 'uiautomationclient',
+  'microsoft.interop.security.azroles', 'netstandard'
+];
+
+// ==================== Microsoft Office DLL ====================
+const officeDlls = [
+  'mso', 'mso20win32client', 'mso30win32client', 'mso40win32client', 'mso50win32client',
+  'mso98win32client', 'mso99win32client', 'msointl', 'msores', 'msoutl',
+  'wwlib', 'oart', 'oartconv', 'riched20', 'riched32', 'msptls', 'ppcore', 'pptview',
+  'xlcall32', 'vbe7', 'vbe6', 'vbeui', 'fm20', 'scrrun', 'mscomctl',
+  'mscomct2', 'mshflxgd', 'richtx32', 'msstdfmt', 'msflxgrd', 'msmask32',
+  'comdlg32', 'picclp32', 'msadodc', 'msdatgrd', 'msadodcr', 'mschrt20',
+  'owc10', 'owc11', 'excel', 'graph', 'msaccess', 'msword'
+];
+
+// ==================== 数据库客户端 DLL ====================
+const databaseDlls = [
+  // SQL Server
+  'sqlsrv32', 'sqlncli', 'sqlncli10', 'sqlncli11', 'msodbcsql', 'msodbcsql17', 'msodbcsql18',
+  'sqloledb', 'msoledbsql', 'msoledbsql19', 'mssqlsrv', 'mssqlsrvr', 'bcp', 'sqlcmd',
+  // Oracle
+  'oci', 'oraociei', 'oraocci', 'oraclient', 'oranls', 'oravsn',
+  // MySQL
+  'libmysql', 'mysqlclient', 'libmariadb',
+  // PostgreSQL
+  'libpq', 'pgsql',
+  // SQLite
+  'sqlite3', 'system.data.sqlite', 'sqlite3odbc',
+  // ODBC
+  'odbc32', 'odbccp32', 'odbcint', 'odbcji32', 'odbcjt32', 'odbcad32',
+  // OLE DB
+  'oledb32', 'msdaora', 'msdaosp', 'msdaps'
+];
+
+// ==================== 多媒体编解码器 DLL ====================
+const codecDlls = [
+  // FFmpeg
+  'avcodec', 'avcodec-58', 'avcodec-59', 'avcodec-60',
+  'avformat', 'avformat-58', 'avformat-59', 'avformat-60',
+  'avutil', 'avutil-56', 'avutil-57', 'avutil-58',
+  'avfilter', 'avfilter-7', 'avfilter-8', 'avfilter-9',
+  'swscale', 'swscale-5', 'swscale-6', 'swscale-7',
+  'swresample', 'swresample-3', 'swresample-4',
+  'avdevice', 'postproc',
+  // Media Foundation
+  'mf', 'mfplat', 'mfcore', 'mfreadwrite', 'mfmp4srcsnk', 'mfnetcore', 'mfsrcsnk',
+  // LAV Filters
+  'lavcodec', 'lavformat', 'lavutil', 'lavfilters', 'lavaudiosplitter', 'lavvideosplitter',
+  // K-Lite / ffdshow
+  'ffdshow', 'ff_vfw', 'ff_acm', 'ffdshowdecaudio', 'ffdshowdecvideo',
+  // Video codecs
+  'x264', 'x265', 'xvid', 'divx', 'vp8', 'vp9', 'av1', 'openh264',
+  // Audio codecs
+  'lame_enc', 'mp3lame', 'libmp3lame', 'faac', 'faad2', 'libfaac', 'libfaad',
+  'flac', 'libflac', 'ogg', 'vorbis', 'vorbisenc', 'libvorbis',
+  'opus', 'opusfile', 'speex', 'speexdsp',
+  // Image codecs
+  'libjpeg', 'jpeg62', 'jpeglib', 'libpng', 'libpng16', 'png', 'libtiff', 'tiff',
+  'libwebp', 'webp', 'libgif', 'gif', 'libavif', 'libheif', 'jxrlib'
+];
+
+// ==================== 安全和加密 DLL ====================
+const securityDlls = [
+  'libeay32', 'ssleay32', 'libssl', 'libcrypto', 'openssl',
+  'libssl-1_1', 'libssl-1_1-x64', 'libssl-3', 'libssl-3-x64',
+  'libcrypto-1_1', 'libcrypto-1_1-x64', 'libcrypto-3', 'libcrypto-3-x64',
+  'gnutls', 'gcrypt', 'gpgme', 'nettle',
+  'nss3', 'nssutil3', 'softokn3', 'freebl3', 'smime3', 'ssl3',
+  'bouncycastle', 'cryptopp', 'libsodium'
+];
+
+// ==================== 网络库 DLL ====================
+const networkDlls = [
+  'libcurl', 'curl', 'curllib', 'libcurl-4',
+  'winhttp', 'wininet', 'urlmon',
+  'libuv', 'nghttp2', 'c-ares', 'cares',
+  'libssh2', 'ssh2', 'puttycli', 'puttysftp',
+  'libidn2', 'libidn', 'libpsl',
+  'librtmp', 'rtmp', 'mbedtls', 'mbedcrypto', 'mbedx509'
+];
+
+// ==================== 压缩库 DLL ====================
+const compressionDlls = [
+  'zlib', 'zlib1', 'zlibwapi', 'libz',
+  'bz2', 'bzip2', 'libbz2',
+  'lzma', 'liblzma', 'xz',
+  'lz4', 'liblz4', 'lz4frame',
+  'zstd', 'libzstd', 'zstdmt',
+  '7z', '7za', 'lib7zip',
+  'rar', 'unrar', 'unrar64',
+  'minizip', 'libminizip', 'quazip'
+];
+
+// ==================== UI 框架 DLL ====================
+const uiFrameworkDlls = [
+  // Qt
+  'qt5core', 'qt5gui', 'qt5widgets', 'qt5network', 'qt5opengl', 'qt5qml', 'qt5quick',
+  'qt5svg', 'qt5xml', 'qt5sql', 'qt5multimedia', 'qt5webengine', 'qt5webenginecore',
+  'qt5webenginewidgets', 'qt5webkit', 'qt5winextras', 'qt5printsupport',
+  'qt6core', 'qt6gui', 'qt6widgets', 'qt6network', 'qt6opengl', 'qt6qml', 'qt6quick',
+  'qt6svg', 'qt6xml', 'qt6sql', 'qt6multimedia', 'qt6webengine', 'qt6webenginecore',
+  // GTK
+  'gtk-3-0', 'gtk-2-0', 'gdk-3-0', 'gdk-2-0', 'glib-2.0', 'gobject-2.0', 'gio-2.0',
+  'gdk_pixbuf-2.0', 'pango-1.0', 'pangocairo-1.0', 'cairo', 'atk-1.0', 'harfbuzz',
+  // wxWidgets
+  'wxbase', 'wxmsw', 'wxbase315u', 'wxmsw315u', 'wxbase316u', 'wxmsw316u',
+  // CEF
+  'libcef', 'cef', 'cef_sandbox',
+  // Electron / Node
+  'libnode', 'node', 'electron',
+  // WebView2
+  'webview2loader', 'embeddedbrowserwebview'
+];
+
+// ==================== Python 运行时 DLL ====================
+const pythonDlls = [
+  'python27', 'python36', 'python37', 'python38', 'python39', 'python310', 'python311', 'python312',
+  'python3', 'python', 'libpython3.8', 'libpython3.9', 'libpython3.10', 'libpython3.11', 'libpython3.12',
+  'vcruntime140_1',
+  // NumPy / SciPy
+  'mkl_rt', 'mkl_core', 'mkl_intel_thread', 'libiomp5md', 'libopenblas', 'libblas', 'liblapack'
+];
+
+// ==================== Java 运行时 DLL ====================
+const javaDlls = [
+  'jvm', 'java', 'jli', 'jawt', 'jsound', 'jsoundalsa', 'jsoundds',
+  'verify', 'instrument', 'management', 'management_agent', 'management_ext',
+  'nio', 'net', 'prefs', 'zip', 'jaas', 'jdwp', 'dt_socket', 'dt_shmem',
+  'awt', 'fontmanager', 'freetype', 'lcms', 'javaaccessbridge', 'windowsaccessbridge',
+  'j2pkcs11', 'sunec', 'sunmscapi', 'ucrypto', 'w2k_lsa_auth'
+];
+
+// ==================== Adobe 产品 DLL ====================
+const adobeDlls = [
+  'coresync', 'coresynclib', 'logsession', 'vulcan', 'acrobat', 'acroplugin',
+  'agm', 'ace', 'are', 'axe8sharedexpat', 'bibutils', 'cooltype',
+  'flashplayerapp', 'flashplayerclasses', 'nacl64',
+  'icudt', 'icuuc', 'icuin', 'icu',
+  'adobexmp', 'xmpcore', 'xmpscript', 'xmpfiles',
+  'photoshop', 'psart', 'psautomate', 'pscolorpicker', 'psviews',
+  'afterfxlib', 'premiere', 'mediabrowser'
+];
+
+// ==================== 硬件驱动相关 DLL ====================
+const driverDlls = [
+  // AMD
+  'amdxc64', 'amdxc32', 'atioglxx', 'atig6txx', 'amdocl', 'amdocl64',
+  'atiadlxx', 'atiadlxy', 'amd_ags_x64', 'aticfx64', 'aticfx32',
+  // Intel
+  'igdumd32', 'igdumd64', 'igc32', 'igc64', 'igdfcl32', 'igdfcl64',
+  'intelOpenCL64', 'OpenCL',
+  // 打印机
+  'hpzlui', 'hpzuiwn', 'epson', 'canonprinter', 'brotherprinter',
+  // 音频
+  'realtek', 'rtkapo', 'creativesb', 'asiodrv32', 'asiodrv64',
+  // USB
+  'libusb', 'libusb-1.0', 'winusb', 'hidapi',
+  // 其他硬件
+  'tobii_stream_engine', 'steamvr', 'openvr_api', 'oculusrt', 'leapmotion'
 ];
 
 // 官方下载链接映射
