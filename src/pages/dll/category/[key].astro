@@ -1,0 +1,157 @@
+---
+// DLL 分类详情页 - 按分类浏览所有 DLL 文件
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getDllsByCategory, categories } from '../../../data/dllDatabase';
+import { generateBreadcrumbSchema } from '../../../utils/seo';
+
+// 静态路径生成
+export function getStaticPaths() {
+  return Object.entries(categories).map(([key, category]) => ({
+    params: { key },
+    props: { 
+      categoryKey: key,
+      category,
+      dlls: getDllsByCategory(key)
+    }
+  }));
+}
+
+const { categoryKey, category, dlls } = Astro.props;
+
+// 按字母排序
+const sortedDlls = [...dlls].sort((a, b) => a.name.localeCompare(b.name));
+
+// 按首字母分组
+const dllsByLetter: Record<string, typeof dlls> = {};
+sortedDlls.forEach(dll => {
+  const letter = dll.name.charAt(0).toUpperCase();
+  if (!dllsByLetter[letter]) {
+    dllsByLetter[letter] = [];
+  }
+  dllsByLetter[letter].push(dll);
+});
+const sortedLetters = Object.keys(dllsByLetter).sort();
+
+const title = `${category.name} DLL Files - Download & Fix | FixMissingDLL`;
+const description = `Download and fix ${category.name} DLL files. ${category.description}. ${dlls.length}+ verified DLL files with virus scan.`;
+
+const breadcrumbs = [
+  { name: 'Home', url: 'https://fixmissingdll.com/' },
+  { name: 'DLL Directory', url: 'https://fixmissingdll.com/dll/' },
+  { name: category.name, url: `https://fixmissingdll.com/dll/category/${categoryKey}/` }
+];
+---
+
+<BaseLayout 
+  title={title}
+  description={description}
+  canonicalUrl={`https://fixmissingdll.com/dll/category/${categoryKey}/`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(generateBreadcrumbSchema(breadcrumbs))} />
+  
+  <div class="container mx-auto px-4 py-8">
+    <!-- Breadcrumb -->
+    <nav class="text-sm mb-6">
+      <ol class="flex items-center space-x-2">
+        <li><a href="/" class="text-blue-600 hover:underline">Home</a></li>
+        <li class="text-gray-400">/</li>
+        <li><a href="/dll/" class="text-blue-600 hover:underline">DLL Directory</a></li>
+        <li class="text-gray-400">/</li>
+        <li class="text-gray-600">{category.name}</li>
+      </ol>
+    </nav>
+
+    <!-- Header -->
+    <div class="mb-8">
+      <div class="flex items-center gap-4 mb-4">
+        <span class="text-5xl">{category.icon}</span>
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900">{category.name} DLL Files</h1>
+          <p class="text-gray-600">{category.description}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+      <div class="bg-white rounded-lg shadow p-4 text-center">
+        <div class="text-2xl font-bold text-blue-600">{dlls.length}</div>
+        <div class="text-sm text-gray-600">DLL Files</div>
+      </div>
+      <div class="bg-white rounded-lg shadow p-4 text-center">
+        <div class="text-2xl font-bold text-green-600">100%</div>
+        <div class="text-sm text-gray-600">Virus Scanned</div>
+      </div>
+      <div class="bg-white rounded-lg shadow p-4 text-center">
+        <div class="text-2xl font-bold text-purple-600">{sortedLetters.length}</div>
+        <div class="text-sm text-gray-600">Letter Groups</div>
+      </div>
+      <div class="bg-white rounded-lg shadow p-4 text-center">
+        <div class="text-2xl font-bold text-orange-600">Free</div>
+        <div class="text-sm text-gray-600">All Downloads</div>
+      </div>
+    </div>
+
+    <!-- Quick Navigation -->
+    {sortedLetters.length > 1 && (
+      <div class="bg-gray-100 rounded-lg p-4 mb-8">
+        <h2 class="text-lg font-semibold mb-3">Quick Navigation (A-Z)</h2>
+        <div class="flex flex-wrap gap-2">
+          {sortedLetters.map(letter => (
+            <a 
+              href={`#letter-${letter}`}
+              class="w-10 h-10 flex items-center justify-center bg-white rounded-lg shadow hover:bg-blue-600 hover:text-white transition-colors font-semibold"
+            >
+              {letter}
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- All DLLs by Letter -->
+    <section>
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">All {category.name} DLLs</h2>
+      
+      {sortedLetters.map(letter => (
+        <div id={`letter-${letter}`} class="mb-8 scroll-mt-20">
+          <h3 class="text-xl font-bold text-blue-600 border-b-2 border-blue-600 pb-2 mb-4">
+            {letter}
+          </h3>
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+            {dllsByLetter[letter].map(dll => (
+              <a 
+                href={`/dll/${dll.id}`}
+                class="bg-white rounded-lg shadow p-3 hover:shadow-md hover:bg-blue-50 transition-all group"
+              >
+                <div class="font-mono text-sm font-semibold text-gray-900 group-hover:text-blue-600 truncate">
+                  {dll.name}
+                </div>
+                <div class="text-xs text-gray-500 truncate">{dll.description.substring(0, 50)}...</div>
+                <div class="flex items-center gap-2 mt-2">
+                  <span class="text-xs bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded">
+                    {dll.architecture}
+                  </span>
+                  <span class="text-xs text-green-600">✓ Safe</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </section>
+
+    <!-- Back to Directory -->
+    <div class="mt-8 text-center">
+      <a 
+        href="/dll/"
+        class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        </svg>
+        Back to DLL Directory
+      </a>
+    </div>
+  </div>
+</BaseLayout>

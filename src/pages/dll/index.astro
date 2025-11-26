@@ -101,13 +101,13 @@ const breadcrumbs = [
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {dllsByCategory.map(category => (
           <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
-            <div class="flex items-center gap-3 mb-4">
+            <a href={`/dll/category/${category.key}/`} class="flex items-center gap-3 mb-4 group">
               <span class="text-3xl">{category.icon}</span>
               <div>
-                <h3 class="font-bold text-gray-900">{category.name}</h3>
+                <h3 class="font-bold text-gray-900 group-hover:text-blue-600 transition-colors">{category.name}</h3>
                 <p class="text-sm text-gray-500">{category.dlls.length} files</p>
               </div>
-            </div>
+            </a>
             <p class="text-sm text-gray-600 mb-4">{category.description}</p>
             <div class="flex flex-wrap gap-2">
               {category.dlls.slice(0, 4).map(dll => (
@@ -117,11 +117,13 @@ const breadcrumbs = [
                 >
                   {dll.name}
                 </a>
-              ))}
-              {category.dlls.length > 4 && (
-                <span class="text-xs text-gray-500 px-2 py-1">
-                  +{category.dlls.length - 4} more
-                </span>
+              ))}              {category.dlls.length > 4 && (
+                <a 
+                  href={`/dll/category/${category.key}/`}
+                  class="text-xs bg-blue-100 hover:bg-blue-200 text-blue-700 px-2 py-1 rounded transition-colors font-medium"
+                >
+                  +{category.dlls.length - 4} more →
+                </a>
               )}
             </div>
           </div>
