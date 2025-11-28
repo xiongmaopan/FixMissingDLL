@@ -8,8 +8,11 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "generate-sitemaps": "npx ts-node scripts/generate-sitemaps.ts",
-    "deploy": "npm run build && npx wrangler pages deploy dist"
+    "generate-sitemaps": "tsx scripts/generate-sitemaps.ts",
+    "generate-guides": "tsx scripts/generate-seo-guides.ts",
+    "publish-content": "tsx scripts/publish-scheduled-content.ts",
+    "seo-check": "tsx scripts/seo-health-check.ts",
+    "deploy": "npm run build && wrangler pages deploy dist"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",
