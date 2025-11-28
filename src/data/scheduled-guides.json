@@ -1,682 +1,187 @@
 {
-  "generatedAt": "2025-11-28T04:32:16.745Z",
+  "generatedAt": "2025-11-28T06:26:31.616Z",
+  "fixedAt": "2025-11-28T06:26:31.616Z",
   "strategy": "3+2 (3 game guides + 2 system guides per day)",
-  "totalGuides": 150,
-  "gameGuides": 90,
-  "systemGuides": 60,
-  "daysOfContent": 30,
+  "note": "Fixed: moved future-dated articles back to queue",
+  "totalGuides": 145,
+  "daysOfContent": 29,
   "publishSchedule": [
-    {
-      "date": "2025-11-28",
-      "gameCount": 3,
-      "systemCount": 2,
-      "total": 5,
-      "gameGuides": [
-        "fix-vcruntime140_1-black-myth-wukong",
-        "fix-msvcp120-black-myth-wukong",
-        "fix-msvcr120-black-myth-wukong"
-      ],
-      "systemGuides": [
-        "fix-kernel32-windows-11-startup",
-        "fix-ntdll-windows-11-startup"
-      ]
-    },
     {
       "date": "2025-11-29",
       "gameCount": 3,
       "systemCount": 2,
-      "total": 5,
-      "gameGuides": [
-        "fix-msvcp110-black-myth-wukong",
-        "fix-xinput1_3-black-myth-wukong",
-        "fix-xinput1_4-black-myth-wukong"
-      ],
-      "systemGuides": [
-        "fix-user32-windows-11-startup",
-        "fix-gdi32-windows-11-startup"
-      ]
+      "total": 5
     },
     {
       "date": "2025-11-30",
       "gameCount": 3,
       "systemCount": 2,
-      "total": 5,
-      "gameGuides": [
-        "fix-d3dx9_43-black-myth-wukong",
-        "fix-d3dx9_42-black-myth-wukong",
-        "fix-d3dx11_43-black-myth-wukong"
-      ],
-      "systemGuides": [
-        "fix-shell32-windows-11-startup",
-        "fix-advapi32-windows-11-startup"
-      ]
+      "total": 5
     },
     {
       "date": "2025-12-01",
       "gameCount": 3,
       "systemCount": 2,
-      "total": 5,
-      "gameGuides": [
-        "fix-d3dcompiler_47-black-myth-wukong",
-        "fix-x3daudio1_7-black-myth-wukong",
-        "fix-xapofx1_5-black-myth-wukong"
-      ],
-      "systemGuides": [
-        "fix-ole32-windows-11-startup",
-        "fix-comctl32-windows-11-startup"
-      ]
+      "total": 5
     },
     {
       "date": "2025-12-02",
       "gameCount": 3,
       "systemCount": 2,
-      "total": 5,
-      "gameGuides": [
-        "fix-api-ms-win-crt-runtime-l1-1-0-black-myth-wukong",
-        "fix-ucrtbase-black-myth-wukong",
-        "fix-openal32-black-myth-wukong"
-      ],
-      "systemGuides": [
-        "fix-msvcrt-windows-11-startup",
-        "fix-ucrtbase-windows-11-startup"
-      ]
+      "total": 5
     },
     {
       "date": "2025-12-03",
       "gameCount": 3,
       "systemCount": 2,
-      "total": 5,
-      "gameGuides": [
-        "fix-physxloader-black-myth-wukong",
-        "fix-mscorlib-black-myth-wukong",
-        "fix-steam_api64-black-myth-wukong"
-      ],
-      "systemGuides": [
-        "fix-ws2_32-windows-11-startup",
-        "fix-wininet-windows-11-startup"
-      ]
+      "total": 5
     },
     {
       "date": "2025-12-04",
       "gameCount": 3,
       "systemCount": 2,
-      "total": 5,
-      "gameGuides": [
-        "fix-steamclient64-black-myth-wukong",
-        "fix-vcruntime140_1-elden-ring",
-        "fix-msvcp120-elden-ring"
-      ],
-      "systemGuides": [
-        "fix-crypt32-windows-11-startup",
-        "fix-winspool-windows-11-startup"
-      ]
+      "total": 5
     },
     {
       "date": "2025-12-05",
       "gameCount": 3,
       "systemCount": 2,
-      "total": 5,
-      "gameGuides": [
-        "fix-msvcr120-elden-ring",
-        "fix-msvcp110-elden-ring",
-        "fix-xinput1_3-elden-ring"
-      ],
-      "systemGuides": [
-        "fix-dwmapi-windows-11-startup",
-        "fix-kernel32-windows-10-boot"
-      ]
+      "total": 5
     },
     {
       "date": "2025-12-06",
       "gameCount": 3,
       "systemCount": 2,
-      "total": 5,
-      "gameGuides": [
-        "fix-xinput1_4-elden-ring",
-        "fix-d3dx9_43-elden-ring",
-        "fix-d3dx9_42-elden-ring"
-      ],
-      "systemGuides": [
-        "fix-ntdll-windows-10-boot",
-        "fix-user32-windows-10-boot"
-      ]
+      "total": 5
     },
     {
       "date": "2025-12-07",
       "gameCount": 3,
       "systemCount": 2,
-      "total": 5,
-      "gameGuides": [
-        "fix-d3dx11_43-elden-ring",
-        "fix-d3dcompiler_47-elden-ring",
-        "fix-x3daudio1_7-elden-ring"
-      ],
-      "systemGuides": [
-        "fix-gdi32-windows-10-boot",
-        "fix-shell32-windows-10-boot"
-      ]
+      "total": 5
     },
     {
       "date": "2025-12-08",
       "gameCount": 3,
       "systemCount": 2,
-      "total": 5,
-      "gameGuides": [
-        "fix-xapofx1_5-elden-ring",
-        "fix-api-ms-win-crt-runtime-l1-1-0-elden-ring",
-        "fix-ucrtbase-elden-ring"
-      ],
-      "systemGuides": [
-        "fix-advapi32-windows-10-boot",
-        "fix-ole32-windows-10-boot"
-      ]
+      "total": 5
     },
     {
       "date": "2025-12-09",
       "gameCount": 3,
       "systemCount": 2,
-      "total": 5,
-      "gameGuides": [
-        "fix-openal32-elden-ring",
-        "fix-physxloader-elden-ring",
-        "fix-mscorlib-elden-ring"
-      ],
-      "systemGuides": [
-        "fix-comctl32-windows-10-boot",
-        "fix-msvcrt-windows-10-boot"
-      ]
+      "total": 5
     },
     {
       "date": "2025-12-10",
       "gameCount": 3,
       "systemCount": 2,
-      "total": 5,
-      "gameGuides": [
-        "fix-steam_api64-elden-ring",
-        "fix-steamclient64-elden-ring",
-        "fix-msvcp140-baldurs-gate-3"
-      ],
-      "systemGuides": [
-        "fix-ucrtbase-windows-10-boot",
-        "fix-ws2_32-windows-10-boot"
-      ]
+      "total": 5
     },
     {
       "date": "2025-12-11",
       "gameCount": 3,
       "systemCount": 2,
-      "total": 5,
-      "gameGuides": [
-        "fix-vcruntime140-baldurs-gate-3",
-        "fix-vcruntime140_1-baldurs-gate-3",
-        "fix-msvcp120-baldurs-gate-3"
-      ],
-      "systemGuides": [
-        "fix-wininet-windows-10-boot",
-        "fix-crypt32-windows-10-boot"
-      ]
+      "total": 5
     },
     {
       "date": "2025-12-12",
       "gameCount": 3,
       "systemCount": 2,
-      "total": 5,
-      "gameGuides": [
-        "fix-msvcr120-baldurs-gate-3",
-        "fix-msvcp110-baldurs-gate-3",
-        "fix-xinput1_3-baldurs-gate-3"
-      ],
-      "systemGuides": [
-        "fix-winspool-windows-10-boot",
-        "fix-dwmapi-windows-10-boot"
-      ]
+      "total": 5
     },
     {
       "date": "2025-12-13",
       "gameCount": 3,
       "systemCount": 2,
-      "total": 5,
-      "gameGuides": [
-        "fix-xinput1_4-baldurs-gate-3",
-        "fix-d3dx9_43-baldurs-gate-3",
-        "fix-d3dx9_42-baldurs-gate-3"
-      ],
-      "systemGuides": [
-        "fix-kernel32-windows-update",
-        "fix-ntdll-windows-update"
-      ]
+      "total": 5
     },
     {
       "date": "2025-12-14",
       "gameCount": 3,
       "systemCount": 2,
-      "total": 5,
-      "gameGuides": [
-        "fix-d3dx11_43-baldurs-gate-3",
-        "fix-d3dcompiler_47-baldurs-gate-3",
-        "fix-x3daudio1_7-baldurs-gate-3"
-      ],
-      "systemGuides": [
-        "fix-user32-windows-update",
-        "fix-gdi32-windows-update"
-      ]
+      "total": 5
     },
     {
       "date": "2025-12-15",
       "gameCount": 3,
       "systemCount": 2,
-      "total": 5,
-      "gameGuides": [
-        "fix-xapofx1_5-baldurs-gate-3",
-        "fix-api-ms-win-crt-runtime-l1-1-0-baldurs-gate-3",
-        "fix-ucrtbase-baldurs-gate-3"
-      ],
-      "systemGuides": [
-        "fix-shell32-windows-update",
-        "fix-advapi32-windows-update"
-      ]
+      "total": 5
     },
     {
       "date": "2025-12-16",
       "gameCount": 3,
       "systemCount": 2,
-      "total": 5,
-      "gameGuides": [
-        "fix-openal32-baldurs-gate-3",
-        "fix-physxloader-baldurs-gate-3",
-        "fix-mscorlib-baldurs-gate-3"
-      ],
-      "systemGuides": [
-        "fix-ole32-windows-update",
-        "fix-comctl32-windows-update"
-      ]
+      "total": 5
     },
     {
       "date": "2025-12-17",
       "gameCount": 3,
       "systemCount": 2,
-      "total": 5,
-      "gameGuides": [
-        "fix-steam_api64-baldurs-gate-3",
-        "fix-steamclient64-baldurs-gate-3",
-        "fix-msvcp140-starfield"
-      ],
-      "systemGuides": [
-        "fix-msvcrt-windows-update",
-        "fix-ucrtbase-windows-update"
-      ]
+      "total": 5
     },
     {
       "date": "2025-12-18",
       "gameCount": 3,
       "systemCount": 2,
-      "total": 5,
-      "gameGuides": [
-        "fix-vcruntime140-starfield",
-        "fix-vcruntime140_1-starfield",
-        "fix-msvcp120-starfield"
-      ],
-      "systemGuides": [
-        "fix-ws2_32-windows-update",
-        "fix-wininet-windows-update"
-      ]
+      "total": 5
     },
     {
       "date": "2025-12-19",
       "gameCount": 3,
       "systemCount": 2,
-      "total": 5,
-      "gameGuides": [
-        "fix-msvcr120-starfield",
-        "fix-msvcp110-starfield",
-        "fix-xinput1_3-starfield"
-      ],
-      "systemGuides": [
-        "fix-crypt32-windows-update",
-        "fix-winspool-windows-update"
-      ]
+      "total": 5
     },
     {
       "date": "2025-12-20",
       "gameCount": 3,
       "systemCount": 2,
-      "total": 5,
-      "gameGuides": [
-        "fix-xinput1_4-starfield",
-        "fix-d3dx9_43-starfield",
-        "fix-d3dx9_42-starfield"
-      ],
-      "systemGuides": [
-        "fix-dwmapi-windows-update",
-        "fix-kernel32-windows-explorer"
-      ]
+      "total": 5
     },
     {
       "date": "2025-12-21",
       "gameCount": 3,
       "systemCount": 2,
-      "total": 5,
-      "gameGuides": [
-        "fix-d3dx11_43-starfield",
-        "fix-d3dcompiler_47-starfield",
-        "fix-x3daudio1_7-starfield"
-      ],
-      "systemGuides": [
-        "fix-ntdll-windows-explorer",
-        "fix-user32-windows-explorer"
-      ]
+      "total": 5
     },
     {
       "date": "2025-12-22",
       "gameCount": 3,
       "systemCount": 2,
-      "total": 5,
-      "gameGuides": [
-        "fix-xapofx1_5-starfield",
-        "fix-api-ms-win-crt-runtime-l1-1-0-starfield",
-        "fix-ucrtbase-starfield"
-      ],
-      "systemGuides": [
-        "fix-gdi32-windows-explorer",
-        "fix-shell32-windows-explorer"
-      ]
+      "total": 5
     },
     {
       "date": "2025-12-23",
       "gameCount": 3,
       "systemCount": 2,
-      "total": 5,
-      "gameGuides": [
-        "fix-openal32-starfield",
-        "fix-physxloader-starfield",
-        "fix-mscorlib-starfield"
-      ],
-      "systemGuides": [
-        "fix-advapi32-windows-explorer",
-        "fix-ole32-windows-explorer"
-      ]
+      "total": 5
     },
     {
       "date": "2025-12-24",
       "gameCount": 3,
       "systemCount": 2,
-      "total": 5,
-      "gameGuides": [
-        "fix-steam_api64-starfield",
-        "fix-steamclient64-starfield",
-        "fix-vcruntime140_1-hogwarts-legacy"
-      ],
-      "systemGuides": [
-        "fix-comctl32-windows-explorer",
-        "fix-msvcrt-windows-explorer"
-      ]
+      "total": 5
     },
     {
       "date": "2025-12-25",
       "gameCount": 3,
       "systemCount": 2,
-      "total": 5,
-      "gameGuides": [
-        "fix-msvcp120-hogwarts-legacy",
-        "fix-msvcr120-hogwarts-legacy",
-        "fix-msvcp110-hogwarts-legacy"
-      ],
-      "systemGuides": [
-        "fix-ucrtbase-windows-explorer",
-        "fix-ws2_32-windows-explorer"
-      ]
+      "total": 5
     },
     {
       "date": "2025-12-26",
       "gameCount": 3,
       "systemCount": 2,
-      "total": 5,
-      "gameGuides": [
-        "fix-xinput1_3-hogwarts-legacy",
-        "fix-xinput1_4-hogwarts-legacy",
-        "fix-d3dx9_43-hogwarts-legacy"
-      ],
-      "systemGuides": [
-        "fix-wininet-windows-explorer",
-        "fix-crypt32-windows-explorer"
-      ]
+      "total": 5
     },
     {
       "date": "2025-12-27",
       "gameCount": 3,
       "systemCount": 2,
-      "total": 5,
-      "gameGuides": [
-        "fix-d3dx9_42-hogwarts-legacy",
-        "fix-d3dx11_43-hogwarts-legacy",
-        "fix-d3dcompiler_47-hogwarts-legacy"
-      ],
-      "systemGuides": [
-        "fix-winspool-windows-explorer",
-        "fix-dwmapi-windows-explorer"
-      ]
+      "total": 5
     }
   ],
   "queue": [
-    {
-      "id": "fix-vcruntime140_1-black-myth-wukong",
-      "slug": "fix-vcruntime140_1-black-myth-wukong",
-      "title": "How to Fix VCRUNTIME140_1.dll Missing Error in Black Myth Wukong",
-      "metaTitle": "Fix VCRUNTIME140_1.dll Missing in Black Myth Wukong [2025 Guide] | FixMissingDLL",
-      "metaDescription": "VCRUNTIME140_1.dll is missing error in Black Myth Wukong? Complete step-by-step guide to fix this DLL error. Official download links included. Windows 10/11 compatible.",
-      "excerpt": "Complete guide to fix the \"VCRUNTIME140_1.dll is missing\" error when launching Black Myth Wukong. Includes official download links, registry fixes, and troubleshooting steps.",
-      "category": "Gaming",
-      "publishDate": "2025-11-28",
-      "updateDate": "2025-11-28",
-      "author": "DLL Fix Expert",
-      "keywords": [
-        "VCRUNTIME140_1.dll missing Black Myth Wukong",
-        "Black Myth Wukong VCRUNTIME140_1.dll error",
-        "fix VCRUNTIME140_1.dll Black Myth Wukong",
-        "Black Myth Wukong won't start",
-        "VCRUNTIME140_1.dll download",
-        "Black Myth Wukong crash on startup",
-        "Black Myth Wukong dll error"
-      ],
-      "searchVolume": "medium",
-      "sections": [
-        {
-          "heading": "Why Does Black Myth Wukong Show \"VCRUNTIME140_1.dll is Missing\"?",
-          "content": "When you try to launch Black Myth Wukong, Windows cannot find the **VCRUNTIME140_1.dll** file that the game needs to run. This is a Visual C++ component (Visual C++ additional runtime library).\n\nThe error typically appears as:\n\n> \"The program can't start because VCRUNTIME140_1.dll is missing from your computer. Try reinstalling the program to fix this problem.\"\n\n**Common causes:**\n- Visual C++ 2015-2022 Redistributable is not installed or corrupted\n- Antivirus software quarantined the DLL file\n- Incomplete game installation\n- Windows system file corruption\n\n**Good news:** This is one of the most common PC gaming errors and is easy to fix!"
-        },
-        {
-          "heading": "Solution 1: Install Visual C++ 2015-2022 Redistributable (Recommended)",
-          "content": "The safest and most effective way to fix this error is to install the official runtime from Microsoft:\n\n**Step-by-step:**\n1. Download from: [https://aka.ms/vs/17/release/vc_redist.x64.exe](https://aka.ms/vs/17/release/vc_redist.x64.exe)\n2. Close Black Myth Wukong completely\n3. Run the installer **as Administrator** (right-click → Run as administrator)\n4. Follow the installation wizard\n5. Restart your computer\n6. Try launching Black Myth Wukong again\n\n**💡 Pro Tip:** Install BOTH x64 (64-bit) and x86 (32-bit) versions for maximum compatibility. Some games use both!"
-        },
-        {
-          "heading": "Solution 2: Download DLL from FixMissingDLL.com",
-          "content": "If the runtime installation doesn't work, you can download **VCRUNTIME140_1.dll** directly from our secure server:\n\n1. Go to our [VCRUNTIME140_1.dll download page](/dll/vcruntime140_1/)\n2. Select the correct version:\n   - **64-bit** for most modern games\n   - **32-bit** for older games\n3. Download and extract the DLL file\n4. Copy to the appropriate folder:\n   - **64-bit:** `C:\\Windows\\System32\\`\n   - **32-bit:** `C:\\Windows\\SysWOW64\\`\n5. Alternatively, copy to: `[Black Myth Wukong install folder]\\`\n6. Restart Black Myth Wukong\n\n**⚠️ Security Note:** Only download DLL files from trusted sources like FixMissingDLL.com."
-        },
-        {
-          "heading": "Solution 3: Verify Black Myth Wukong Game Files",
-          "content": "Corrupted or incomplete game files can cause DLL errors. Here's how to verify:\n\n**Steam:**\n1. Open Steam Library\n2. Right-click **Black Myth Wukong**\n3. Select **Properties** → **Installed Files**\n4. Click **\"Verify integrity of game files\"**\n5. Wait for the process to complete (may take several minutes)\n\n**Epic Games:**\n1. Open Epic Games Launcher\n2. Find **Black Myth Wukong** in your Library\n3. Click the **three dots (...)** next to it\n4. Select **Manage** → **Verify**\n\n**Xbox/Microsoft Store:**\n1. Open Xbox app\n2. Go to **My Games**\n3. Right-click **Black Myth Wukong**\n4. Select **Manage** → **Files** → **Verify and repair**"
-        },
-        {
-          "heading": "Solution 4: Run System File Checker",
-          "content": "Windows has built-in tools to repair corrupted system files:\n\n**Run SFC Scan:**\n1. Press `Win + X` and select **Terminal (Admin)** or **Command Prompt (Admin)**\n2. Type: `sfc /scannow`\n3. Press Enter and wait for the scan to complete\n4. Restart your computer\n\n**If SFC finds issues, run DISM:**\n```\nDISM /Online /Cleanup-Image /RestoreHealth\n```\n\nThis may take 10-20 minutes. Be patient!"
-        },
-        {
-          "heading": "Solution 5: Check Antivirus Settings",
-          "content": "Sometimes antivirus software mistakenly blocks or quarantines DLL files:\n\n1. Open your antivirus software (Windows Defender, Norton, McAfee, etc.)\n2. Check the **Quarantine** or **Virus Chest** section\n3. Look for **VCRUNTIME140_1.dll** or Black Myth Wukong files\n4. If found, **restore** the files\n5. Add Black Myth Wukong's installation folder to the **exclusion list**\n\n**Windows Defender:**\n- Settings → Privacy & security → Windows Security → Virus & threat protection\n- Click \"Manage settings\" → Add or remove exclusions"
-        }
-      ],
-      "faq": [
-        {
-          "question": "Why does Black Myth Wukong say VCRUNTIME140_1.dll is missing?",
-          "answer": "Black Myth Wukong requires VCRUNTIME140_1.dll (part of Visual C++ 2015-2022 Redistributable) to run properly. This error occurs when the file is missing, corrupted, or blocked by security software. Installing the correct runtime package usually fixes this issue."
-        },
-        {
-          "question": "Is it safe to download VCRUNTIME140_1.dll from the internet?",
-          "answer": "Only download DLL files from trusted sources like FixMissingDLL.com or install the official Visual C++ 2015-2022 Redistributable from Microsoft. Never download DLLs from unknown websites as they may contain malware."
-        },
-        {
-          "question": "Will reinstalling Black Myth Wukong fix the VCRUNTIME140_1.dll error?",
-          "answer": "Reinstalling the game might help, but it's not the most efficient solution. Since VCRUNTIME140_1.dll is a Windows/runtime component (not part of the game), installing Visual C++ 2015-2022 Redistributable first is recommended."
-        },
-        {
-          "question": "I installed the runtime but still get the error. What now?",
-          "answer": "Try these steps: 1) Install BOTH 32-bit and 64-bit versions of the runtime, 2) Verify game files through Steam/Epic, 3) Check if antivirus is blocking the file, 4) Run Windows System File Checker (sfc /scannow)."
-        },
-        {
-          "question": "Does this fix work on Windows 11?",
-          "answer": "Yes! All solutions in this guide work on Windows 10, Windows 11, and even Windows 7/8. The Visual C++ 2015-2022 Redistributable is compatible with all modern Windows versions."
-        }
-      ],
-      "relatedDlls": [
-        "vcruntime140_1"
-      ]
-    },
-    {
-      "id": "fix-msvcp120-black-myth-wukong",
-      "slug": "fix-msvcp120-black-myth-wukong",
-      "title": "How to Fix MSVCP120.dll Missing Error in Black Myth Wukong",
-      "metaTitle": "Fix MSVCP120.dll Missing in Black Myth Wukong [2025 Guide] | FixMissingDLL",
-      "metaDescription": "MSVCP120.dll is missing error in Black Myth Wukong? Complete step-by-step guide to fix this DLL error. Official download links included. Windows 10/11 compatible.",
-      "excerpt": "Complete guide to fix the \"MSVCP120.dll is missing\" error when launching Black Myth Wukong. Includes official download links, registry fixes, and troubleshooting steps.",
-      "category": "Gaming",
-      "publishDate": "2025-11-28",
-      "updateDate": "2025-11-28",
-      "author": "DLL Fix Expert",
-      "keywords": [
-        "MSVCP120.dll missing Black Myth Wukong",
-        "Black Myth Wukong MSVCP120.dll error",
-        "fix MSVCP120.dll Black Myth Wukong",
-        "Black Myth Wukong won't start",
-        "MSVCP120.dll download",
-        "Black Myth Wukong crash on startup",
-        "Black Myth Wukong dll error"
-      ],
-      "searchVolume": "medium",
-      "sections": [
-        {
-          "heading": "Why Does Black Myth Wukong Show \"MSVCP120.dll is Missing\"?",
-          "content": "When you try to launch Black Myth Wukong, Windows cannot find the **MSVCP120.dll** file that the game needs to run. This is a Visual C++ component (Microsoft Visual C++ 2013 runtime library).\n\nThe error typically appears as:\n\n> \"The program can't start because MSVCP120.dll is missing from your computer. Try reinstalling the program to fix this problem.\"\n\n**Common causes:**\n- Visual C++ 2013 Redistributable is not installed or corrupted\n- Antivirus software quarantined the DLL file\n- Incomplete game installation\n- Windows system file corruption\n\n**Good news:** This is one of the most common PC gaming errors and is easy to fix!"
-        },
-        {
-          "heading": "Solution 1: Install Visual C++ 2013 Redistributable (Recommended)",
-          "content": "The safest and most effective way to fix this error is to install the official runtime from Microsoft:\n\n**Step-by-step:**\n1. Download from: [https://www.microsoft.com/en-us/download/details.aspx?id=40784](https://www.microsoft.com/en-us/download/details.aspx?id=40784)\n2. Close Black Myth Wukong completely\n3. Run the installer **as Administrator** (right-click → Run as administrator)\n4. Follow the installation wizard\n5. Restart your computer\n6. Try launching Black Myth Wukong again\n\n**💡 Pro Tip:** Install BOTH x64 (64-bit) and x86 (32-bit) versions for maximum compatibility. Some games use both!"
-        },
-        {
-          "heading": "Solution 2: Download DLL from FixMissingDLL.com",
-          "content": "If the runtime installation doesn't work, you can download **MSVCP120.dll** directly from our secure server:\n\n1. Go to our [MSVCP120.dll download page](/dll/msvcp120/)\n2. Select the correct version:\n   - **64-bit** for most modern games\n   - **32-bit** for older games\n3. Download and extract the DLL file\n4. Copy to the appropriate folder:\n   - **64-bit:** `C:\\Windows\\System32\\`\n   - **32-bit:** `C:\\Windows\\SysWOW64\\`\n5. Alternatively, copy to: `[Black Myth Wukong install folder]\\`\n6. Restart Black Myth Wukong\n\n**⚠️ Security Note:** Only download DLL files from trusted sources like FixMissingDLL.com."
-        },
-        {
-          "heading": "Solution 3: Verify Black Myth Wukong Game Files",
-          "content": "Corrupted or incomplete game files can cause DLL errors. Here's how to verify:\n\n**Steam:**\n1. Open Steam Library\n2. Right-click **Black Myth Wukong**\n3. Select **Properties** → **Installed Files**\n4. Click **\"Verify integrity of game files\"**\n5. Wait for the process to complete (may take several minutes)\n\n**Epic Games:**\n1. Open Epic Games Launcher\n2. Find **Black Myth Wukong** in your Library\n3. Click the **three dots (...)** next to it\n4. Select **Manage** → **Verify**\n\n**Xbox/Microsoft Store:**\n1. Open Xbox app\n2. Go to **My Games**\n3. Right-click **Black Myth Wukong**\n4. Select **Manage** → **Files** → **Verify and repair**"
-        },
-        {
-          "heading": "Solution 4: Run System File Checker",
-          "content": "Windows has built-in tools to repair corrupted system files:\n\n**Run SFC Scan:**\n1. Press `Win + X` and select **Terminal (Admin)** or **Command Prompt (Admin)**\n2. Type: `sfc /scannow`\n3. Press Enter and wait for the scan to complete\n4. Restart your computer\n\n**If SFC finds issues, run DISM:**\n```\nDISM /Online /Cleanup-Image /RestoreHealth\n```\n\nThis may take 10-20 minutes. Be patient!"
-        },
-        {
-          "heading": "Solution 5: Check Antivirus Settings",
-          "content": "Sometimes antivirus software mistakenly blocks or quarantines DLL files:\n\n1. Open your antivirus software (Windows Defender, Norton, McAfee, etc.)\n2. Check the **Quarantine** or **Virus Chest** section\n3. Look for **MSVCP120.dll** or Black Myth Wukong files\n4. If found, **restore** the files\n5. Add Black Myth Wukong's installation folder to the **exclusion list**\n\n**Windows Defender:**\n- Settings → Privacy & security → Windows Security → Virus & threat protection\n- Click \"Manage settings\" → Add or remove exclusions"
-        }
-      ],
-      "faq": [
-        {
-          "question": "Why does Black Myth Wukong say MSVCP120.dll is missing?",
-          "answer": "Black Myth Wukong requires MSVCP120.dll (part of Visual C++ 2013 Redistributable) to run properly. This error occurs when the file is missing, corrupted, or blocked by security software. Installing the correct runtime package usually fixes this issue."
-        },
-        {
-          "question": "Is it safe to download MSVCP120.dll from the internet?",
-          "answer": "Only download DLL files from trusted sources like FixMissingDLL.com or install the official Visual C++ 2013 Redistributable from Microsoft. Never download DLLs from unknown websites as they may contain malware."
-        },
-        {
-          "question": "Will reinstalling Black Myth Wukong fix the MSVCP120.dll error?",
-          "answer": "Reinstalling the game might help, but it's not the most efficient solution. Since MSVCP120.dll is a Windows/runtime component (not part of the game), installing Visual C++ 2013 Redistributable first is recommended."
-        },
-        {
-          "question": "I installed the runtime but still get the error. What now?",
-          "answer": "Try these steps: 1) Install BOTH 32-bit and 64-bit versions of the runtime, 2) Verify game files through Steam/Epic, 3) Check if antivirus is blocking the file, 4) Run Windows System File Checker (sfc /scannow)."
-        },
-        {
-          "question": "Does this fix work on Windows 11?",
-          "answer": "Yes! All solutions in this guide work on Windows 10, Windows 11, and even Windows 7/8. The Visual C++ 2013 Redistributable is compatible with all modern Windows versions."
-        }
-      ],
-      "relatedDlls": [
-        "msvcp120"
-      ]
-    },
-    {
-      "id": "fix-msvcr120-black-myth-wukong",
-      "slug": "fix-msvcr120-black-myth-wukong",
-      "title": "How to Fix MSVCR120.dll Missing Error in Black Myth Wukong",
-      "metaTitle": "Fix MSVCR120.dll Missing in Black Myth Wukong [2025 Guide] | FixMissingDLL",
-      "metaDescription": "MSVCR120.dll is missing error in Black Myth Wukong? Complete step-by-step guide to fix this DLL error. Official download links included. Windows 10/11 compatible.",
-      "excerpt": "Complete guide to fix the \"MSVCR120.dll is missing\" error when launching Black Myth Wukong. Includes official download links, registry fixes, and troubleshooting steps.",
-      "category": "Gaming",
-      "publishDate": "2025-11-28",
-      "updateDate": "2025-11-28",
-      "author": "DLL Fix Expert",
-      "keywords": [
-        "MSVCR120.dll missing Black Myth Wukong",
-        "Black Myth Wukong MSVCR120.dll error",
-        "fix MSVCR120.dll Black Myth Wukong",
-        "Black Myth Wukong won't start",
-        "MSVCR120.dll download",
-        "Black Myth Wukong crash on startup",
-        "Black Myth Wukong dll error"
-      ],
-      "searchVolume": "medium",
-      "sections": [
-        {
-          "heading": "Why Does Black Myth Wukong Show \"MSVCR120.dll is Missing\"?",
-          "content": "When you try to launch Black Myth Wukong, Windows cannot find the **MSVCR120.dll** file that the game needs to run. This is a Visual C++ component (Microsoft Visual C++ 2013 runtime library).\n\nThe error typically appears as:\n\n> \"The program can't start because MSVCR120.dll is missing from your computer. Try reinstalling the program to fix this problem.\"\n\n**Common causes:**\n- Visual C++ 2013 Redistributable is not installed or corrupted\n- Antivirus software quarantined the DLL file\n- Incomplete game installation\n- Windows system file corruption\n\n**Good news:** This is one of the most common PC gaming errors and is easy to fix!"
-        },
-        {
-          "heading": "Solution 1: Install Visual C++ 2013 Redistributable (Recommended)",
-          "content": "The safest and most effective way to fix this error is to install the official runtime from Microsoft:\n\n**Step-by-step:**\n1. Download from: [https://www.microsoft.com/en-us/download/details.aspx?id=40784](https://www.microsoft.com/en-us/download/details.aspx?id=40784)\n2. Close Black Myth Wukong completely\n3. Run the installer **as Administrator** (right-click → Run as administrator)\n4. Follow the installation wizard\n5. Restart your computer\n6. Try launching Black Myth Wukong again\n\n**💡 Pro Tip:** Install BOTH x64 (64-bit) and x86 (32-bit) versions for maximum compatibility. Some games use both!"
-        },
-        {
-          "heading": "Solution 2: Download DLL from FixMissingDLL.com",
-          "content": "If the runtime installation doesn't work, you can download **MSVCR120.dll** directly from our secure server:\n\n1. Go to our [MSVCR120.dll download page](/dll/msvcr120/)\n2. Select the correct version:\n   - **64-bit** for most modern games\n   - **32-bit** for older games\n3. Download and extract the DLL file\n4. Copy to the appropriate folder:\n   - **64-bit:** `C:\\Windows\\System32\\`\n   - **32-bit:** `C:\\Windows\\SysWOW64\\`\n5. Alternatively, copy to: `[Black Myth Wukong install folder]\\`\n6. Restart Black Myth Wukong\n\n**⚠️ Security Note:** Only download DLL files from trusted sources like FixMissingDLL.com."
-        },
-        {
-          "heading": "Solution 3: Verify Black Myth Wukong Game Files",
-          "content": "Corrupted or incomplete game files can cause DLL errors. Here's how to verify:\n\n**Steam:**\n1. Open Steam Library\n2. Right-click **Black Myth Wukong**\n3. Select **Properties** → **Installed Files**\n4. Click **\"Verify integrity of game files\"**\n5. Wait for the process to complete (may take several minutes)\n\n**Epic Games:**\n1. Open Epic Games Launcher\n2. Find **Black Myth Wukong** in your Library\n3. Click the **three dots (...)** next to it\n4. Select **Manage** → **Verify**\n\n**Xbox/Microsoft Store:**\n1. Open Xbox app\n2. Go to **My Games**\n3. Right-click **Black Myth Wukong**\n4. Select **Manage** → **Files** → **Verify and repair**"
-        },
-        {
-          "heading": "Solution 4: Run System File Checker",
-          "content": "Windows has built-in tools to repair corrupted system files:\n\n**Run SFC Scan:**\n1. Press `Win + X` and select **Terminal (Admin)** or **Command Prompt (Admin)**\n2. Type: `sfc /scannow`\n3. Press Enter and wait for the scan to complete\n4. Restart your computer\n\n**If SFC finds issues, run DISM:**\n```\nDISM /Online /Cleanup-Image /RestoreHealth\n```\n\nThis may take 10-20 minutes. Be patient!"
-        },
-        {
-          "heading": "Solution 5: Check Antivirus Settings",
-          "content": "Sometimes antivirus software mistakenly blocks or quarantines DLL files:\n\n1. Open your antivirus software (Windows Defender, Norton, McAfee, etc.)\n2. Check the **Quarantine** or **Virus Chest** section\n3. Look for **MSVCR120.dll** or Black Myth Wukong files\n4. If found, **restore** the files\n5. Add Black Myth Wukong's installation folder to the **exclusion list**\n\n**Windows Defender:**\n- Settings → Privacy & security → Windows Security → Virus & threat protection\n- Click \"Manage settings\" → Add or remove exclusions"
-        }
-      ],
-      "faq": [
-        {
-          "question": "Why does Black Myth Wukong say MSVCR120.dll is missing?",
-          "answer": "Black Myth Wukong requires MSVCR120.dll (part of Visual C++ 2013 Redistributable) to run properly. This error occurs when the file is missing, corrupted, or blocked by security software. Installing the correct runtime package usually fixes this issue."
-        },
-        {
-          "question": "Is it safe to download MSVCR120.dll from the internet?",
-          "answer": "Only download DLL files from trusted sources like FixMissingDLL.com or install the official Visual C++ 2013 Redistributable from Microsoft. Never download DLLs from unknown websites as they may contain malware."
-        },
-        {
-          "question": "Will reinstalling Black Myth Wukong fix the MSVCR120.dll error?",
-          "answer": "Reinstalling the game might help, but it's not the most efficient solution. Since MSVCR120.dll is a Windows/runtime component (not part of the game), installing Visual C++ 2013 Redistributable first is recommended."
-        },
-        {
-          "question": "I installed the runtime but still get the error. What now?",
-          "answer": "Try these steps: 1) Install BOTH 32-bit and 64-bit versions of the runtime, 2) Verify game files through Steam/Epic, 3) Check if antivirus is blocking the file, 4) Run Windows System File Checker (sfc /scannow)."
-        },
-        {
-          "question": "Does this fix work on Windows 11?",
-          "answer": "Yes! All solutions in this guide work on Windows 10, Windows 11, and even Windows 7/8. The Visual C++ 2013 Redistributable is compatible with all modern Windows versions."
-        }
-      ],
-      "relatedDlls": [
-        "msvcr120"
-      ]
-    },
     {
       "id": "fix-msvcp110-black-myth-wukong",
       "slug": "fix-msvcp110-black-myth-wukong",
@@ -7026,154 +6531,6 @@
       ],
       "relatedDlls": [
         "d3dcompiler_47"
-      ]
-    },
-    {
-      "id": "fix-kernel32-windows-11-startup",
-      "slug": "fix-kernel32-windows-11-startup",
-      "title": "How to Fix kernel32.dll Error in Windows 11 startup",
-      "metaTitle": "Fix kernel32.dll Error - Windows 11 startup [2025 Complete Guide]",
-      "metaDescription": "kernel32.dll error affecting Windows 11 startup? Complete troubleshooting guide with SFC, DISM, and registry fixes. Works on Windows 10/11.",
-      "excerpt": "Resolve kernel32.dll errors that cause problems with Windows 11 startup. Step-by-step repair guide using official Windows tools.",
-      "category": "System",
-      "publishDate": "2025-11-28",
-      "updateDate": "2025-11-28",
-      "author": "Windows Expert",
-      "keywords": [
-        "kernel32.dll error",
-        "kernel32.dll missing",
-        "kernel32.dll Windows 11 startup",
-        "fix kernel32.dll",
-        "kernel32.dll Windows 11",
-        "kernel32.dll Windows 10",
-        "Windows 11 startup not working",
-        "Windows kernel32.dll repair"
-      ],
-      "searchVolume": "high",
-      "sections": [
-        {
-          "heading": "Understanding kernel32.dll Errors in Windows 11 startup",
-          "content": "**kernel32.dll** is a critical Windows system file (Windows kernel core library - handles memory, processes, and system calls). When this file becomes corrupted or missing, it can cause serious issues with Windows 11 startup.\n\n**Common symptoms:**\n- \"kernel32.dll is missing or not found\" error\n- \"kernel32.dll failed to load\" message\n- Windows 11 startup crashes or freezes\n- Windows startup problems\n- Blue screen errors (BSOD)\n\n**⚠️ Important:** kernel32.dll is a protected Windows system file. Never download it from third-party websites!"
-        },
-        {
-          "heading": "Solution 1: Run System File Checker (SFC)",
-          "content": "The System File Checker is your first line of defense for repairing corrupted system DLLs:\n\n**Steps:**\n1. Press `Win + X` and select **Terminal (Admin)** or **Command Prompt (Admin)**\n2. Type the following command and press Enter:\n\n```\nsfc /scannow\n```\n\n3. Wait for the scan to complete (this may take 10-15 minutes)\n4. Look for the message:\n   - ✅ \"Windows Resource Protection found corrupt files and successfully repaired them\"\n   - ❌ \"Windows Resource Protection found corrupt files but was unable to fix some of them\"\n5. Restart your computer\n\n**If SFC finds but cannot repair files, proceed to Solution 2.**"
-        },
-        {
-          "heading": "Solution 2: Use DISM to Repair Windows Image",
-          "content": "DISM (Deployment Image Servicing and Management) can repair the Windows component store:\n\n**Run these commands in order:**\n\n```\nDISM /Online /Cleanup-Image /CheckHealth\nDISM /Online /Cleanup-Image /ScanHealth\nDISM /Online /Cleanup-Image /RestoreHealth\n```\n\n**⏱️ Note:** The RestoreHealth command may take 15-30 minutes. Don't interrupt it!\n\nAfter DISM completes, run SFC again:\n```\nsfc /scannow\n```\n\nRestart your computer and check if Windows 11 startup works correctly."
-        },
-        {
-          "heading": "Solution 3: Check for Windows Updates",
-          "content": "Windows updates often include fixes for system DLL issues:\n\n**Steps:**\n1. Press `Win + I` to open Settings\n2. Go to **Windows Update** (or Update & Security on Win10)\n3. Click **Check for updates**\n4. Install all available updates\n5. Restart your computer\n\n**For stuck updates:**\n```\nnet stop wuauserv\nnet stop bits\nren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old\nnet start wuauserv\nnet start bits\n```\n\nThen check for updates again."
-        },
-        {
-          "heading": "Solution 4: Perform a Clean Boot",
-          "content": "A clean boot can help identify if third-party software is interfering with kernel32.dll:\n\n**Steps:**\n1. Press `Win + R`, type `msconfig`, press Enter\n2. Go to the **Services** tab\n3. Check **Hide all Microsoft services**\n4. Click **Disable all**\n5. Go to the **Startup** tab, click **Open Task Manager**\n6. Disable all startup items\n7. Restart your computer\n\nIf Windows 11 startup works after clean boot, enable services one by one to find the culprit."
-        },
-        {
-          "heading": "Solution 5: Reset Windows Components",
-          "content": "If Windows 11 startup still has issues:\n\n**Re-register the DLL:**\n```\nregsvr32 /u kernel32.dll\nregsvr32 kernel32.dll\n```\n\n**Reset Windows Update components:**\n```\nnet stop wuauserv\nnet stop cryptSvc\nnet stop bits\nnet stop msiserver\nren C:\\Windows\\SoftwareDistribution SoftwareDistribution.bak\nren C:\\Windows\\System32\\catroot2 catroot2.bak\nnet start wuauserv\nnet start cryptSvc\nnet start bits\nnet start msiserver\n```"
-        },
-        {
-          "heading": "Solution 6: System Restore or Reset",
-          "content": "If nothing else works, restore Windows to a previous state:\n\n**System Restore:**\n1. Press `Win + R`, type `rstrui`, press Enter\n2. Select a restore point from before the problem started\n3. Follow the wizard to restore\n\n**Reset Windows (keeps files):**\n1. Settings → System → Recovery\n2. Click **Reset PC**\n3. Choose **Keep my files**\n4. Select **Local reinstall** or **Cloud download**\n\n**⚠️ Important:** Back up important data before any reset!"
-        }
-      ],
-      "faq": [
-        {
-          "question": "Can I download kernel32.dll from the internet?",
-          "answer": "No! kernel32.dll is a protected Windows system file. Downloading DLLs from third-party sites for core Windows components is extremely dangerous and may contain malware. Always use official Windows repair tools like SFC and DISM."
-        },
-        {
-          "question": "Why is kernel32.dll causing problems with Windows 11 startup?",
-          "answer": "kernel32.dll is part of Windows Core. Windows kernel core library - handles memory, processes, and system calls. When this file is corrupted, missing, or conflicting with other software, it can cause Windows 11 startup to malfunction. This often happens after Windows updates, malware infections, or improper shutdowns."
-        },
-        {
-          "question": "Will reinstalling Windows fix the kernel32.dll error?",
-          "answer": "Yes, but it's a last resort. Try SFC, DISM, and System Restore first. If those don't work, you can do an in-place upgrade (repair install) which reinstalls Windows while keeping your files and programs. A full reset is rarely needed."
-        },
-        {
-          "question": "Is kernel32.dll error a sign of malware?",
-          "answer": "It can be. Some malware targets or replaces Windows system files like kernel32.dll. Run a full scan with Windows Defender or another antivirus. If malware is found, clean it first, then repair the system files with SFC/DISM."
-        }
-      ],
-      "relatedDlls": [
-        "kernel32"
-      ]
-    },
-    {
-      "id": "fix-ntdll-windows-11-startup",
-      "slug": "fix-ntdll-windows-11-startup",
-      "title": "How to Fix ntdll.dll Error in Windows 11 startup",
-      "metaTitle": "Fix ntdll.dll Error - Windows 11 startup [2025 Complete Guide]",
-      "metaDescription": "ntdll.dll error affecting Windows 11 startup? Complete troubleshooting guide with SFC, DISM, and registry fixes. Works on Windows 10/11.",
-      "excerpt": "Resolve ntdll.dll errors that cause problems with Windows 11 startup. Step-by-step repair guide using official Windows tools.",
-      "category": "System",
-      "publishDate": "2025-11-28",
-      "updateDate": "2025-11-28",
-      "author": "Windows Expert",
-      "keywords": [
-        "ntdll.dll error",
-        "ntdll.dll missing",
-        "ntdll.dll Windows 11 startup",
-        "fix ntdll.dll",
-        "ntdll.dll Windows 11",
-        "ntdll.dll Windows 10",
-        "Windows 11 startup not working",
-        "Windows ntdll.dll repair"
-      ],
-      "searchVolume": "high",
-      "sections": [
-        {
-          "heading": "Understanding ntdll.dll Errors in Windows 11 startup",
-          "content": "**ntdll.dll** is a critical Windows system file (NT Layer DLL - essential for all Windows operations). When this file becomes corrupted or missing, it can cause serious issues with Windows 11 startup.\n\n**Common symptoms:**\n- \"ntdll.dll is missing or not found\" error\n- \"ntdll.dll failed to load\" message\n- Windows 11 startup crashes or freezes\n- Windows startup problems\n- Blue screen errors (BSOD)\n\n**⚠️ Important:** ntdll.dll is a protected Windows system file. Never download it from third-party websites!"
-        },
-        {
-          "heading": "Solution 1: Run System File Checker (SFC)",
-          "content": "The System File Checker is your first line of defense for repairing corrupted system DLLs:\n\n**Steps:**\n1. Press `Win + X` and select **Terminal (Admin)** or **Command Prompt (Admin)**\n2. Type the following command and press Enter:\n\n```\nsfc /scannow\n```\n\n3. Wait for the scan to complete (this may take 10-15 minutes)\n4. Look for the message:\n   - ✅ \"Windows Resource Protection found corrupt files and successfully repaired them\"\n   - ❌ \"Windows Resource Protection found corrupt files but was unable to fix some of them\"\n5. Restart your computer\n\n**If SFC finds but cannot repair files, proceed to Solution 2.**"
-        },
-        {
-          "heading": "Solution 2: Use DISM to Repair Windows Image",
-          "content": "DISM (Deployment Image Servicing and Management) can repair the Windows component store:\n\n**Run these commands in order:**\n\n```\nDISM /Online /Cleanup-Image /CheckHealth\nDISM /Online /Cleanup-Image /ScanHealth\nDISM /Online /Cleanup-Image /RestoreHealth\n```\n\n**⏱️ Note:** The RestoreHealth command may take 15-30 minutes. Don't interrupt it!\n\nAfter DISM completes, run SFC again:\n```\nsfc /scannow\n```\n\nRestart your computer and check if Windows 11 startup works correctly."
-        },
-        {
-          "heading": "Solution 3: Check for Windows Updates",
-          "content": "Windows updates often include fixes for system DLL issues:\n\n**Steps:**\n1. Press `Win + I` to open Settings\n2. Go to **Windows Update** (or Update & Security on Win10)\n3. Click **Check for updates**\n4. Install all available updates\n5. Restart your computer\n\n**For stuck updates:**\n```\nnet stop wuauserv\nnet stop bits\nren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old\nnet start wuauserv\nnet start bits\n```\n\nThen check for updates again."
-        },
-        {
-          "heading": "Solution 4: Perform a Clean Boot",
-          "content": "A clean boot can help identify if third-party software is interfering with ntdll.dll:\n\n**Steps:**\n1. Press `Win + R`, type `msconfig`, press Enter\n2. Go to the **Services** tab\n3. Check **Hide all Microsoft services**\n4. Click **Disable all**\n5. Go to the **Startup** tab, click **Open Task Manager**\n6. Disable all startup items\n7. Restart your computer\n\nIf Windows 11 startup works after clean boot, enable services one by one to find the culprit."
-        },
-        {
-          "heading": "Solution 5: Reset Windows Components",
-          "content": "If Windows 11 startup still has issues:\n\n**Re-register the DLL:**\n```\nregsvr32 /u ntdll.dll\nregsvr32 ntdll.dll\n```\n\n**Reset Windows Update components:**\n```\nnet stop wuauserv\nnet stop cryptSvc\nnet stop bits\nnet stop msiserver\nren C:\\Windows\\SoftwareDistribution SoftwareDistribution.bak\nren C:\\Windows\\System32\\catroot2 catroot2.bak\nnet start wuauserv\nnet start cryptSvc\nnet start bits\nnet start msiserver\n```"
-        },
-        {
-          "heading": "Solution 6: System Restore or Reset",
-          "content": "If nothing else works, restore Windows to a previous state:\n\n**System Restore:**\n1. Press `Win + R`, type `rstrui`, press Enter\n2. Select a restore point from before the problem started\n3. Follow the wizard to restore\n\n**Reset Windows (keeps files):**\n1. Settings → System → Recovery\n2. Click **Reset PC**\n3. Choose **Keep my files**\n4. Select **Local reinstall** or **Cloud download**\n\n**⚠️ Important:** Back up important data before any reset!"
-        }
-      ],
-      "faq": [
-        {
-          "question": "Can I download ntdll.dll from the internet?",
-          "answer": "No! ntdll.dll is a protected Windows system file. Downloading DLLs from third-party sites for core Windows components is extremely dangerous and may contain malware. Always use official Windows repair tools like SFC and DISM."
-        },
-        {
-          "question": "Why is ntdll.dll causing problems with Windows 11 startup?",
-          "answer": "ntdll.dll is part of Windows Core. NT Layer DLL - essential for all Windows operations. When this file is corrupted, missing, or conflicting with other software, it can cause Windows 11 startup to malfunction. This often happens after Windows updates, malware infections, or improper shutdowns."
-        },
-        {
-          "question": "Will reinstalling Windows fix the ntdll.dll error?",
-          "answer": "Yes, but it's a last resort. Try SFC, DISM, and System Restore first. If those don't work, you can do an in-place upgrade (repair install) which reinstalls Windows while keeping your files and programs. A full reset is rarely needed."
-        },
-        {
-          "question": "Is ntdll.dll error a sign of malware?",
-          "answer": "It can be. Some malware targets or replaces Windows system files like ntdll.dll. Run a full scan with Windows Defender or another antivirus. If malware is found, clean it first, then repair the system files with SFC/DISM."
-        }
-      ],
-      "relatedDlls": [
-        "ntdll"
       ]
     },
     {
