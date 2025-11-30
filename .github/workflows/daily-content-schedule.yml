@@ -1,4 +1,4 @@
-﻿name: Daily Content Schedule
+name: Daily Content Schedule
 
 on:
   schedule:
@@ -33,15 +33,32 @@ jobs:
         working-directory: ./astro-site
         run: npm ci
       
-      - name: Publish scheduled content
+      - name: Check if content already published today
+        id: check-today
+        working-directory: ./astro-site
+        run: |
+          TODAY=$(date -u +"%Y-%m-%d")
+          LAST_PUBLISH=$(git log -1 --format=%cd --date=short -- 'src/data/scheduled-guides.json' 2>/dev/null || echo "never")
+          if [ "$LAST_PUBLISH" = "$TODAY" ] && [ "${{ github.event.inputs.force_publish }}" != "true" ]; then
+            echo "already_published=true" >> $GITHUB_OUTPUT
+            echo "Content already published today ($TODAY)"
+          else
+            echo "already_published=false" >> $GITHUB_OUTPUT
+            echo "Ready to publish new content"
+          fi
+      
+      - name: Generate and publish scheduled content
+        if: steps.check-today.outputs.already_published == 'false'
         working-directory: ./astro-site
         run: npx tsx scripts/publish-from-queue.ts
       
       - name: Build site
+        if: steps.check-today.outputs.already_published == 'false'
         working-directory: ./astro-site
         run: npm run build
       
       - name: Commit changes
+        if: steps.check-today.outputs.already_published == 'false'
         working-directory: ./astro-site
         run: |
           git config user.name "GitHub Actions Bot"
@@ -55,9 +72,18 @@ jobs:
           fi
       
       - name: Deploy to Cloudflare Pages
+        if: steps.check-today.outputs.already_published == 'false'
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy dist --project-name=fixmissingdll
           workingDirectory: astro-site
+      
+      - name: Submit to IndexNow
+        if: steps.check-today.outputs.already_published == 'false'
+        run: |
+          curl -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json" \
+            -d '{"host":"fixmissingdll.com","key":"fixmissingdll-indexnow-key","urlList":["https://fixmissingdll.com/guides/"]}' || true
+          echo "Submitted to IndexNow"

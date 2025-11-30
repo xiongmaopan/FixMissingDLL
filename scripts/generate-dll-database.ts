@@ -919,6 +919,130 @@ function generateMoreWindowsDlls(): GeneratedDll[] {
   });
 }
 
+// ============ 老游戏/怀旧游戏专用 DLLs (超高搜索量!) ============
+const legacyGameDlls = [
+  // === RAD Game Tools (几乎所有老游戏) ===
+  { name: 'binkw32', desc: 'Bink Video codec - used by most games from 1999-2015 for cutscenes', url: 'http://www.radgametools.com/bnkdown.htm', category: 'Video Codec' },
+  { name: 'binkw64', desc: 'Bink Video codec 64-bit version', url: 'http://www.radgametools.com/bnkdown.htm', category: 'Video Codec' },
+  { name: 'bink2w32', desc: 'Bink 2 Video codec for newer games', url: 'http://www.radgametools.com/bnkdown.htm', category: 'Video Codec' },
+  { name: 'bink2w64', desc: 'Bink 2 Video codec 64-bit', url: 'http://www.radgametools.com/bnkdown.htm', category: 'Video Codec' },
+  { name: 'smackw32', desc: 'Smacker Video codec - used by older games (1994-2004)', url: 'http://www.radgametools.com/smkdown.htm', category: 'Video Codec' },
+  { name: 'mss32', desc: 'Miles Sound System - audio engine used by hundreds of classic games', url: 'http://www.radgametools.com/mssdist.htm', category: 'Audio Engine' },
+  { name: 'mss64', desc: 'Miles Sound System 64-bit', url: 'http://www.radgametools.com/mssdist.htm', category: 'Audio Engine' },
+  { name: 'mssmp3', desc: 'Miles Sound System MP3 decoder', url: 'http://www.radgametools.com/mssdist.htm', category: 'Audio Engine' },
+  { name: 'mssogg', desc: 'Miles Sound System Ogg Vorbis decoder', url: 'http://www.radgametools.com/mssdist.htm', category: 'Audio Engine' },
+  { name: 'mssvoice', desc: 'Miles Sound System voice component', url: 'http://www.radgametools.com/mssdist.htm', category: 'Audio Engine' },
+  { name: 'mssdsp', desc: 'Miles Sound System DSP effects', url: 'http://www.radgametools.com/mssdist.htm', category: 'Audio Engine' },
+  { name: 'mssds3d', desc: 'Miles Sound System DirectSound 3D', url: 'http://www.radgametools.com/mssdist.htm', category: 'Audio Engine' },
+  { name: 'msseax', desc: 'Miles Sound System EAX support', url: 'http://www.radgametools.com/mssdist.htm', category: 'Audio Engine' },
+  { name: 'miles32', desc: 'Miles Sound System alternative name', url: 'http://www.radgametools.com/mssdist.htm', category: 'Audio Engine' },
+  { name: 'miles64', desc: 'Miles Sound System 64-bit alternative', url: 'http://www.radgametools.com/mssdist.htm', category: 'Audio Engine' },
+  
+  // === Games for Windows Live (臭名昭著的 DRM!) ===
+  { name: 'xlive', desc: 'Games for Windows Live DRM - required by games from 2007-2013 (GTA 4, Fallout 3, RE5, Dark Souls, etc.)', url: 'https://community.pcgamingwiki.com/files/file/1012-microsoft-games-for-windows-live/', category: 'GFWL' },
+  { name: 'gfwlive', desc: 'Games for Windows Live service client', url: 'https://community.pcgamingwiki.com/files/file/1012-microsoft-games-for-windows-live/', category: 'GFWL' },
+  { name: 'gfwlclient', desc: 'Games for Windows Live client library', url: 'https://community.pcgamingwiki.com/files/file/1012-microsoft-games-for-windows-live/', category: 'GFWL' },
+  
+  // === 暴雪游戏专用 ===
+  { name: 'storm', desc: 'Blizzard Storm library - required by StarCraft, Warcraft 3, Diablo 2', url: 'https://www.blizzard.com/', category: 'Blizzard' },
+  { name: 'ijl11', desc: 'Intel JPEG Library - used by Diablo 2 for image decoding', url: 'https://www.intel.com/', category: 'Image' },
+  { name: 'ijl15', desc: 'Intel JPEG Library v15 - used by some Blizzard games', url: 'https://www.intel.com/', category: 'Image' },
+  { name: 'd2game', desc: 'Diablo 2 game engine library', url: 'https://www.blizzard.com/', category: 'Blizzard' },
+  { name: 'd2client', desc: 'Diablo 2 client library', url: 'https://www.blizzard.com/', category: 'Blizzard' },
+  { name: 'd2win', desc: 'Diablo 2 Windows interface', url: 'https://www.blizzard.com/', category: 'Blizzard' },
+  { name: 'd2gfx', desc: 'Diablo 2 graphics library', url: 'https://www.blizzard.com/', category: 'Blizzard' },
+  { name: 'd2sound', desc: 'Diablo 2 sound library', url: 'https://www.blizzard.com/', category: 'Blizzard' },
+  { name: 'd2common', desc: 'Diablo 2 common library', url: 'https://www.blizzard.com/', category: 'Blizzard' },
+  { name: 'd2lang', desc: 'Diablo 2 language library', url: 'https://www.blizzard.com/', category: 'Blizzard' },
+  { name: 'battle.snp', desc: 'Battle.net network provider - for StarCraft online', url: 'https://www.blizzard.com/', category: 'Blizzard' },
+  { name: 'game', desc: 'Warcraft 3 game engine library', url: 'https://www.blizzard.com/', category: 'Blizzard' },
+  
+  // === GTA 系列专用 ===
+  { name: 'vorbisfile', desc: 'Ogg Vorbis audio decoder - used by GTA San Andreas', url: 'https://www.xiph.org/downloads/', category: 'Audio Codec' },
+  { name: 'vorbis', desc: 'Ogg Vorbis audio codec library', url: 'https://www.xiph.org/downloads/', category: 'Audio Codec' },
+  { name: 'ogg', desc: 'Ogg container library - used by GTA series', url: 'https://www.xiph.org/downloads/', category: 'Audio Codec' },
+  { name: 'eax', desc: 'Creative EAX environmental audio - used by GTA series and many older games', url: 'https://www.creative.com/', category: 'Audio' },
+  { name: 'eax2', desc: 'Creative EAX 2.0 environmental audio', url: 'https://www.creative.com/', category: 'Audio' },
+  { name: 'eax3', desc: 'Creative EAX 3.0 environmental audio', url: 'https://www.creative.com/', category: 'Audio' },
+  
+  // === 红警/命令与征服系列 ===
+  { name: 'ra2', desc: 'Red Alert 2 game engine library', url: 'https://www.ea.com/', category: 'EA Games' },
+  { name: 'ra2md', desc: 'Red Alert 2 Yuri\'s Revenge expansion library', url: 'https://www.ea.com/', category: 'EA Games' },
+  { name: 'game', desc: 'Command & Conquer game engine', url: 'https://www.ea.com/', category: 'EA Games' },
+  { name: 'wsock32', desc: 'Windows Sockets - required for online play in older games', url: 'https://support.microsoft.com/', category: 'Network' },
+  
+  // === 3dfx Glide (非常老的游戏) ===
+  { name: 'glide2x', desc: '3dfx Glide 2 API - for very old games designed for Voodoo graphics cards', url: 'http://falconfly.3dfx.pl/glide.htm', category: '3dfx' },
+  { name: 'glide3x', desc: '3dfx Glide 3 API - for old games designed for Voodoo graphics cards', url: 'http://falconfly.3dfx.pl/glide.htm', category: '3dfx' },
+  { name: 'glide', desc: '3dfx Glide base API', url: 'http://falconfly.3dfx.pl/glide.htm', category: '3dfx' },
+  
+  // === 老版 MP3/ASI 解码器 ===
+  { name: 'mp3dec', desc: 'MP3 decoder ASI plugin - used by many older games', url: 'https://www.radgametools.com/', category: 'Audio Codec' },
+  { name: 'mp3dec.asi', desc: 'MP3 decoder ASI plugin file', url: 'https://www.radgametools.com/', category: 'Audio Codec' },
+  { name: 'vorbishook', desc: 'Vorbis audio hook library', url: 'https://www.xiph.org/', category: 'Audio Codec' },
+  
+  // === QuickTime (很多老游戏用) ===
+  { name: 'quicktime', desc: 'Apple QuickTime library - required by some older games for video playback', url: 'https://support.apple.com/kb/DL837', category: 'Video' },
+  { name: 'qtmlclient', desc: 'QuickTime media layer client', url: 'https://support.apple.com/kb/DL837', category: 'Video' },
+  
+  // === GameSpy (老网游) ===
+  { name: 'gamespy', desc: 'GameSpy network library - for older online games', url: '', category: 'Network' },
+  { name: 'peer', desc: 'GameSpy peer-to-peer library', url: '', category: 'Network' },
+  { name: 'gstats', desc: 'GameSpy statistics library', url: '', category: 'Network' },
+  
+  // === SafeDisc/SecuROM (老版 DRM) ===
+  { name: 'secdrv', desc: 'SafeDisc driver - old copy protection for disc-based games', url: '', category: 'DRM' },
+  { name: 'securom', desc: 'SecuROM DRM - old copy protection system', url: '', category: 'DRM' },
+  
+  // === 仙剑/轩辕剑/国产RPG专用 ===
+  { name: 'pal3', desc: 'Chinese Paladin 3 game library', url: '', category: 'Chinese RPG' },
+  { name: 'pal4', desc: 'Chinese Paladin 4 game library', url: '', category: 'Chinese RPG' },
+  { name: 'pal5', desc: 'Chinese Paladin 5 game library', url: '', category: 'Chinese RPG' },
+  { name: 'xys6', desc: 'Xuan Yuan Sword 6 game library', url: '', category: 'Chinese RPG' },
+  { name: 'gujian', desc: 'GuJian game library', url: '', category: 'Chinese RPG' },
+  
+  // === IndieGame/Unity 老版本 ===
+  { name: 'mono', desc: 'Mono runtime - used by Unity games', url: 'https://www.mono-project.com/', category: 'Mono' },
+  { name: 'mono-2.0-bdwgc', desc: 'Mono runtime with Boehm GC', url: 'https://www.mono-project.com/', category: 'Mono' },
+  { name: 'monosgen-2.0', desc: 'Mono SGen GC runtime', url: 'https://www.mono-project.com/', category: 'Mono' },
+  
+  // === GameMaker 老版本 ===
+  { name: 'gm8', desc: 'GameMaker 8 runner', url: 'https://gamemaker.io/', category: 'GameMaker' },
+  { name: 'gms', desc: 'GameMaker Studio runner', url: 'https://gamemaker.io/', category: 'GameMaker' },
+  
+  // === RenderWare (GTA等老游戏引擎) ===
+  { name: 'renderware', desc: 'RenderWare graphics engine - used by GTA 3, VC, SA', url: '', category: 'Engine' },
+  { name: 'rwcore', desc: 'RenderWare core library', url: '', category: 'Engine' },
+  { name: 'rwd3d9', desc: 'RenderWare Direct3D 9 renderer', url: '', category: 'Engine' },
+];
+
+function generateLegacyGameDlls(): GeneratedDll[] {
+  return legacyGameDlls.map(item => {
+    const dllName = item.name.endsWith('.dll') ? item.name : `${item.name}.dll`;
+    return {
+      id: dllName,
+      name: dllName,
+      version: '1.0.0.0',
+      size: `${100 + generateDownloadCount(dllName, 0, 800)} KB`,
+      architecture: dllName.includes('64') ? '64-bit' : dllName.includes('32') ? '32-bit' : 'Both',
+      description: `${item.name.toUpperCase()}.dll - ${item.desc}`,
+      associatedSoftware: item.category,
+      fixType: 'legacy_game',
+      md5: generateHash(dllName, 32),
+      sha256: generateHash(dllName + 'sha', 64),
+      downloadCount: generateDownloadCount(dllName, 200000, 2000000), // 老游戏 DLL 搜索量高!
+      commonErrors: [
+        `${dllName} is missing`,
+        `The program can't start because ${dllName} was not found`,
+        `${dllName} was not found. Re-installing the application may fix this problem.`
+      ],
+      eventIds: ['Event ID 1000'],
+      officialDownloadUrl: item.url || 'https://www.microsoft.com/en-us/download/details.aspx?id=35',
+      relatedDlls: []
+    };
+  });
+}
+
 // ============ 主生成函数 ============
 function generateFullDatabase(): void {
   console.log('Generating DLL database...');
@@ -935,6 +1059,7 @@ function generateFullDatabase(): void {
     ...generateMfcAtlVariants(),
     ...generateGraphicsApiDlls(),
     ...generateMoreWindowsDlls(),
+    ...generateLegacyGameDlls(), // 新增老游戏 DLL!
   ];
 
   // 去重
