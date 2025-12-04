@@ -2828,5 +2828,205 @@
     "relatedDlls": [
       "ntoskrnl.exe"
     ]
+  },
+  {
+    "id": "fix-binkw32-diablo-2",
+    "slug": "fix-binkw32-diablo-2",
+    "title": "Fix binkw32.dll Missing Error in Diablo 2",
+    "metaTitle": "Fix binkw32.dll Missing in Diablo 2 (2000) - Complete Guide",
+    "metaDescription": "How to fix \"binkw32.dll is missing\" error when playing Diablo 2. Step-by-step solution for this classic Action RPG game.",
+    "excerpt": "Getting \"binkw32.dll is missing\" error in Diablo 2? This guide shows you exactly how to fix it and get your favorite 2000 classic running again.",
+    "category": "Gaming",
+    "publishDate": "2025-12-04",
+    "updateDate": "2025-12-04",
+    "author": "System Admin Team",
+    "keywords": [
+      "binkw32.dll missing diablo-2",
+      "Diablo 2 binkw32.dll error",
+      "fix Diablo 2 dll error",
+      "Diablo 2 won't start",
+      "binkw32.dll Diablo 2"
+    ],
+    "searchVolume": "high",
+    "sections": [
+      {
+        "heading": "Why Diablo 2 Shows \"binkw32.dll is Missing\" Error",
+        "content": "When you try to launch **Diablo 2** (2000), you may see an error message stating \"binkw32.dll is missing\" or \"The program can't start because binkw32.dll was not found\".\n\nThis error occurs because:\n\n**1. Missing Legacy Runtime**: Diablo 2 was released in 2000 and requires older runtime libraries that aren't included in modern Windows.\n\n**2. Bink Video codec used by games 1999-2015 for cutscenes**: The binkw32.dll file is essential for Diablo 2 to function properly.\n\n**3. Windows Compatibility**: Modern Windows 10/11 doesn't include some legacy components that 2000-era games need.\n\n**4. Incomplete Installation**: The game's original installer may not have properly installed all required dependencies."
+      },
+      {
+        "heading": "Solution 1: Install RAD Game Tools Bink Video",
+        "content": "The most reliable fix is to install the required runtime:\n\n**Step 1**: Download the official runtime from:\n[RAD Game Tools Bink Video](http://www.radgametools.com/bnkdown.htm)\n\n**Step 2**: Run the installer and follow the prompts.\n\n**Step 3**: Restart your computer.\n\n**Step 4**: Try launching Diablo 2 again.\n\n**Note**: For games from 2000, you may also need to install legacy DirectX components."
+      },
+      {
+        "heading": "Solution 2: Install DirectX End-User Runtime",
+        "content": "Many classic games from 2000 require legacy DirectX components.\n\n**Step 1**: Download [DirectX End-User Runtime](https://www.microsoft.com/en-us/download/details.aspx?id=35)\n\n**Step 2**: Extract and run DXSETUP.exe\n\n**Step 3**: Restart your computer\n\nThis installs DirectX 9.0c components alongside modern DirectX 12, which many 2000-era games need."
+      },
+      {
+        "heading": "Solution 3: Run in Windows Compatibility Mode",
+        "content": "Since Diablo 2 is from 2000, running it in compatibility mode often helps:\n\n**Step 1**: Right-click the game executable\n\n**Step 2**: Select Properties → Compatibility tab\n\n**Step 3**: Check \"Run this program in compatibility mode for:\"\n\n**Step 4**: Select \"Windows XP (Service Pack 3)\" or \"Windows 7\"\n\n**Step 5**: Also check \"Run as administrator\"\n\n**Step 6**: Click Apply and OK"
+      },
+      {
+        "heading": "Solution 4: Verify Game Files",
+        "content": "If you're using Steam, GOG, or other platforms:\n\n**Steam**:\n1. Right-click Diablo 2 → Properties\n2. Go to Local Files tab\n3. Click \"Verify integrity of game files\"\n\n**GOG Galaxy**:\n1. Click the game → Settings (gear icon)\n2. Select \"Verify / Repair\"\n\n**Manual Installation**:\nConsider reinstalling the game from the original media or re-downloading."
+      },
+      {
+        "heading": "Still Having Issues?",
+        "content": "If the error persists:\n\n1. **Install All Visual C++ Runtimes**: Download and install ALL versions from 2005 to 2022\n\n2. **Check Antivirus**: Temporarily disable antivirus and try again\n\n3. **Run as Administrator**: Always run the game as admin\n\n4. **Virtual Machine**: For very old games, consider running them in a Windows XP virtual machine\n\n5. **Community Patches**: Search for \"Diablo 2 modern Windows patch\" for community fixes"
+      }
+    ],
+    "relatedDlls": [
+      "binkw32.dll",
+      "storm.dll",
+      "smackw32.dll",
+      "ijl11.dll",
+      "d2win.dll"
+    ]
+  },
+  {
+    "id": "fix-binkw32-diablo-2-lod",
+    "slug": "fix-binkw32-diablo-2-lod",
+    "title": "Fix binkw32.dll Missing Error in Diablo 2 Lord of Destruction",
+    "metaTitle": "Fix binkw32.dll Missing in Diablo 2 Lord of Destruction (2001) - Complete Guide",
+    "metaDescription": "How to fix \"binkw32.dll is missing\" error when playing Diablo 2 Lord of Destruction. Step-by-step solution for this classic Action RPG game.",
+    "excerpt": "Getting \"binkw32.dll is missing\" error in Diablo 2 Lord of Destruction? This guide shows you exactly how to fix it and get your favorite 2001 classic running again.",
+    "category": "Gaming",
+    "publishDate": "2025-12-04",
+    "updateDate": "2025-12-04",
+    "author": "System Admin Team",
+    "keywords": [
+      "binkw32.dll missing diablo-2-lod",
+      "Diablo 2 Lord of Destruction binkw32.dll error",
+      "fix Diablo 2 Lord of Destruction dll error",
+      "Diablo 2 Lord of Destruction won't start",
+      "binkw32.dll Diablo 2 Lord of Destruction"
+    ],
+    "searchVolume": "high",
+    "sections": [
+      {
+        "heading": "Why Diablo 2 Lord of Destruction Shows \"binkw32.dll is Missing\" Error",
+        "content": "When you try to launch **Diablo 2 Lord of Destruction** (2001), you may see an error message stating \"binkw32.dll is missing\" or \"The program can't start because binkw32.dll was not found\".\n\nThis error occurs because:\n\n**1. Missing Legacy Runtime**: Diablo 2 Lord of Destruction was released in 2001 and requires older runtime libraries that aren't included in modern Windows.\n\n**2. Bink Video codec used by games 1999-2015 for cutscenes**: The binkw32.dll file is essential for Diablo 2 Lord of Destruction to function properly.\n\n**3. Windows Compatibility**: Modern Windows 10/11 doesn't include some legacy components that 2001-era games need.\n\n**4. Incomplete Installation**: The game's original installer may not have properly installed all required dependencies."
+      },
+      {
+        "heading": "Solution 1: Install RAD Game Tools Bink Video",
+        "content": "The most reliable fix is to install the required runtime:\n\n**Step 1**: Download the official runtime from:\n[RAD Game Tools Bink Video](http://www.radgametools.com/bnkdown.htm)\n\n**Step 2**: Run the installer and follow the prompts.\n\n**Step 3**: Restart your computer.\n\n**Step 4**: Try launching Diablo 2 Lord of Destruction again.\n\n**Note**: For games from 2001, you may also need to install legacy DirectX components."
+      },
+      {
+        "heading": "Solution 2: Install DirectX End-User Runtime",
+        "content": "Many classic games from 2001 require legacy DirectX components.\n\n**Step 1**: Download [DirectX End-User Runtime](https://www.microsoft.com/en-us/download/details.aspx?id=35)\n\n**Step 2**: Extract and run DXSETUP.exe\n\n**Step 3**: Restart your computer\n\nThis installs DirectX 9.0c components alongside modern DirectX 12, which many 2001-era games need."
+      },
+      {
+        "heading": "Solution 3: Run in Windows Compatibility Mode",
+        "content": "Since Diablo 2 Lord of Destruction is from 2001, running it in compatibility mode often helps:\n\n**Step 1**: Right-click the game executable\n\n**Step 2**: Select Properties → Compatibility tab\n\n**Step 3**: Check \"Run this program in compatibility mode for:\"\n\n**Step 4**: Select \"Windows XP (Service Pack 3)\" or \"Windows 7\"\n\n**Step 5**: Also check \"Run as administrator\"\n\n**Step 6**: Click Apply and OK"
+      },
+      {
+        "heading": "Solution 4: Verify Game Files",
+        "content": "If you're using Steam, GOG, or other platforms:\n\n**Steam**:\n1. Right-click Diablo 2 Lord of Destruction → Properties\n2. Go to Local Files tab\n3. Click \"Verify integrity of game files\"\n\n**GOG Galaxy**:\n1. Click the game → Settings (gear icon)\n2. Select \"Verify / Repair\"\n\n**Manual Installation**:\nConsider reinstalling the game from the original media or re-downloading."
+      },
+      {
+        "heading": "Still Having Issues?",
+        "content": "If the error persists:\n\n1. **Install All Visual C++ Runtimes**: Download and install ALL versions from 2005 to 2022\n\n2. **Check Antivirus**: Temporarily disable antivirus and try again\n\n3. **Run as Administrator**: Always run the game as admin\n\n4. **Virtual Machine**: For very old games, consider running them in a Windows XP virtual machine\n\n5. **Community Patches**: Search for \"Diablo 2 Lord of Destruction modern Windows patch\" for community fixes"
+      }
+    ],
+    "relatedDlls": [
+      "binkw32.dll",
+      "storm.dll",
+      "fog.dll"
+    ]
+  },
+  {
+    "id": "fix-mso-microsoft-word",
+    "slug": "fix-mso-microsoft-word",
+    "title": "Fix mso.dll Missing Error in Microsoft Word",
+    "metaTitle": "Fix mso.dll Error in Microsoft Word 2024 - Solution Guide",
+    "metaDescription": "Resolve the \"mso.dll is missing\" error in Microsoft Word. Professional software fix guide.",
+    "excerpt": "Microsoft Word not starting due to \"mso.dll is missing\"? Here's how to fix it quickly.",
+    "category": "Installation",
+    "publishDate": "2025-12-04",
+    "updateDate": "2025-12-04",
+    "author": "System Admin Team",
+    "keywords": [
+      "mso.dll microsoft-word",
+      "Microsoft Word mso.dll error",
+      "Microsoft Word won't open",
+      "fix Microsoft Word dll",
+      "Microsoft Word missing dll"
+    ],
+    "searchVolume": "medium",
+    "sections": [
+      {
+        "heading": "Why Microsoft Word Shows \"mso.dll is Missing\"",
+        "content": "Microsoft Word depends on the **mso.dll** library for proper operation. Common causes:\n\n**1. Incomplete Installation**: Microsoft Word installation didn't complete properly.\n\n**2. Missing Runtime**: Required Microsoft Visual C++ Redistributable is not installed.\n\n**3. Corrupted Files**: System or application files have become corrupted.\n\n**4. Permission Issues**: Insufficient permissions to access required system components."
+      },
+      {
+        "heading": "Solution 1: Install Visual C++ Redistributable",
+        "content": "Most Office applications require Visual C++ runtime:\n\n**Step 1**: Download both versions:\n- [VC++ 2015-2022 x64](https://aka.ms/vs/17/release/vc_redist.x64.exe)\n- [VC++ 2015-2022 x86](https://aka.ms/vs/17/release/vc_redist.x86.exe)\n\n**Step 2**: Install both versions\n\n**Step 3**: Restart your computer\n\n**Step 4**: Launch Microsoft Word again"
+      },
+      {
+        "heading": "Solution 2: Repair Application Installation",
+        "content": "**For Microsoft Word**:\n1. Go to Control Panel → Programs → Programs and Features\n2. Find Microsoft Word\n3. Right-click → Change/Repair\n4. Follow the repair wizard\n5. Restart when complete\n\n\n**For Microsoft Office**: Use the Quick Repair or Online Repair option"
+      },
+      {
+        "heading": "Solution 3: Run System File Checker",
+        "content": "Repair corrupted Windows system files:\n\n**Step 1**: Open Command Prompt as Administrator\n\n**Step 2**: Run: `sfc /scannow`\n\n**Step 3**: Wait for the scan to complete (10-15 minutes)\n\n**Step 4**: If issues found, run: `DISM /Online /Cleanup-Image /RestoreHealth`\n\n**Step 5**: Restart and try Microsoft Word again"
+      },
+      {
+        "heading": "Solution 4: Clean Reinstall",
+        "content": "If other solutions don't work:\n\n**Step 1**: Uninstall Microsoft Word completely\n\n**Step 2**: Use an uninstaller tool to remove leftover files\n\n**Step 3**: Restart your computer\n\n**Step 4**: Download the latest version of Microsoft Word\n\n**Step 5**: Install as Administrator"
+      }
+    ],
+    "relatedDlls": [
+      "mso.dll",
+      "vbe7.dll",
+      "vcruntime140.dll"
+    ]
+  },
+  {
+    "id": "fix-shell32-explorer-crash",
+    "slug": "fix-shell32-explorer-crash",
+    "title": "Fix shell32.dll Error - Explorer crash",
+    "metaTitle": "Fix shell32.dll Error During Explorer crash in Windows",
+    "metaDescription": "How to fix shell32.dll errors causing Windows Explorer keeps crashing. Complete Windows repair guide.",
+    "excerpt": "Experiencing Windows Explorer keeps crashing related to shell32.dll? Here's how to fix it.",
+    "category": "System",
+    "publishDate": "2025-12-04",
+    "updateDate": "2025-12-04",
+    "author": "System Admin Team",
+    "keywords": [
+      "shell32.dll error",
+      "Windows Explorer keeps crashing",
+      "fix shell32.dll",
+      "windows shell error",
+      "shell32.dll explorer-crash"
+    ],
+    "searchVolume": "high",
+    "sections": [
+      {
+        "heading": "Understanding the shell32.dll Error",
+        "content": "The **shell32.dll** is a critical Windows shell component. When it fails:\n\n**Symptoms**:\n- Windows Explorer keeps crashing\n- System instability or crashes\n- Error messages referencing shell32.dll\n- Blue screen errors (in severe cases)\n\n**Common Causes**:\n1. Corrupted Windows system files\n2. Failed Windows Update\n3. Malware infection\n4. Hardware issues\n5. Driver conflicts"
+      },
+      {
+        "heading": "Solution 1: Run System File Checker",
+        "content": "Windows built-in repair tool can fix corrupted system files:\n\n**Step 1**: Press Win + X → Terminal (Admin) or Command Prompt (Admin)\n\n**Step 2**: Run: `sfc /scannow`\n\n**Step 3**: Wait for completion (15-30 minutes)\n\n**Step 4**: Restart your computer\n\nIf issues are found but can't be fixed, continue to the next solution."
+      },
+      {
+        "heading": "Solution 2: Run DISM Repair",
+        "content": "DISM can repair the Windows image when SFC fails:\n\n**Step 1**: Open Command Prompt as Administrator\n\n**Step 2**: Run these commands in order:\n\n```\nDISM /Online /Cleanup-Image /CheckHealth\nDISM /Online /Cleanup-Image /ScanHealth\nDISM /Online /Cleanup-Image /RestoreHealth\n```\n\n**Step 3**: This may take 20-30 minutes\n\n**Step 4**: Restart and run `sfc /scannow` again"
+      },
+      {
+        "heading": "Solution 3: Startup Repair",
+        "content": "Use Windows Recovery Environment:\n\n**Step 1**: Go to Settings → System → Recovery\n\n**Step 2**: Click \"Restart now\" under Advanced startup\n\n**Step 3**: Choose: Troubleshoot → Advanced options → Startup Repair\n\n**Step 4**: Let Windows attempt automatic repairs\n\n**Alternative**: Boot from Windows installation media and select \"Repair your computer\""
+      },
+      {
+        "heading": "Solution 4: System Restore",
+        "content": "Restore to a point before the error started:\n\n**Step 1**: Search for \"Create a restore point\" in Start menu\n\n**Step 2**: Click \"System Restore\"\n\n**Step 3**: Select a restore point from before the issue began\n\n**Step 4**: Follow the wizard and restart\n\n**Note**: This doesn't affect personal files, only system settings and programs."
+      },
+      {
+        "heading": "Solution 5: Windows Reset (Last Resort)",
+        "content": "If nothing else works:\n\n**Step 1**: Go to Settings → System → Recovery\n\n**Step 2**: Click \"Reset this PC\"\n\n**Step 3**: Choose \"Keep my files\" to preserve personal data\n\n**Step 4**: Follow the wizard to reinstall Windows\n\nThis reinstalls Windows while optionally keeping your files, but removes all installed applications."
+      }
+    ],
+    "relatedDlls": [
+      "shell32.dll"
+    ]
   }
 ]
