@@ -5,59 +5,56 @@ name: Daily Content Schedule
 
 on:
   schedule:
-    # UTC 8:00 = 北京时间 16:00 (主要)
     - cron: '0 8 * * *'
-    # UTC 9:00 = 北京时间 17:00 (备用，以防错过)
     - cron: '0 9 * * *'
   workflow_dispatch:
 
 permissions:
   contents: write
+  deployments: write
 
 jobs:
-  publish-daily:
+  publish-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       
-      - uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
           cache-dependency-path: package-lock.json
       
-      - run: npm ci
+      - name: Install dependencies
+        run: npm ci
       
-      - run: npx tsx scripts/publish-today.ts
+      - name: Publish today content
+        run: npx tsx scripts/publish-today.ts
+      
+      - name: Check for changes
+        id: changes
+        run: |
+          git add -A
+          if git diff --staged --quiet; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
       
       - name: Commit and Push
+        if: steps.changes.outputs.has_changes == 'true'
         run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add -A
-          git diff --staged --quiet || git commit -m "Daily content $(date +%Y-%m-%d)"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "Daily content $(date +%Y-%m-%d)"
           git push
-
-  # 部署到 Cloudflare Pages (在发布完成后)
-  deploy:
-    needs: publish-daily
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      deployments: write
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: main
       
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-      
-      - run: npm ci
-      
-      - run: npm run build
+      - name: Build site
+        run: npm run build
       
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
