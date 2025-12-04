@@ -5,7 +5,10 @@ name: Daily Content Schedule
 
 on:
   schedule:
+    # UTC 8:00 = 北京时间 16:00 (主要)
     - cron: '0 8 * * *'
+    # UTC 9:00 = 北京时间 17:00 (备用，以防错过)
+    - cron: '0 9 * * *'
   workflow_dispatch:
 
 permissions:
