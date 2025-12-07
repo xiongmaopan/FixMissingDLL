@@ -3205,5 +3205,60 @@
     "game": "Elden Ring",
     "gameYear": 2022,
     "engine": "FromSoftware Engine (Proprietary)"
+  },
+  {
+    "id": "fix-vcruntime140_1-elden-ring",
+    "slug": "fix-vcruntime140_1-elden-ring",
+    "title": "Fix vcruntime140_1.dll Missing Error in ELDEN RING",
+    "metaTitle": "Fix vcruntime140_1.dll in ELDEN RING (2022) - Quick Solution",
+    "metaDescription": "Solve \"vcruntime140_1.dll is missing\" error preventing ELDEN RING from launching. Step-by-step fix guide with ELDEN RING-specific solutions.",
+    "excerpt": "Can't play ELDEN RING due to vcruntime140_1.dll error? This guide provides specific solutions for FromSoftware's 2022 release.",
+    "category": "Gaming",
+    "publishDate": "2025-12-07",
+    "updateDate": "2025-12-07",
+    "author": "System Admin Team",
+    "keywords": [
+      "vcruntime140_1.dll elden ring",
+      "Elden Ring vcruntime140_1.dll error",
+      "Elden Ring won't launch",
+      "Elden Ring dll fix",
+      "Elden Ring crash fix",
+      "fix Elden Ring 2022"
+    ],
+    "searchVolume": "high",
+    "sections": [
+      {
+        "heading": "Why ELDEN RING Needs vcruntime140_1.dll",
+        "content": "Getting hit with **\"vcruntime140_1.dll is missing\"** when trying to launch ELDEN RING? This error has specific causes and specific solutions. Let's diagnose your issue and get you back on track.\n\n### About This DLL\n\n**Visual C++ 2019+ Runtime Extension** Extended runtime library with additional C++ runtime functions introduced in Visual Studio 2019. ELDEN RING, built on FromSoftware Engine (Proprietary), relies on this file for core functionality.\n\n**File Information:**\n- **Source**: Microsoft Visual C++ 2015-2022 Redistributable\n- **Required by**: ELDEN RING (2022) by FromSoftware\n- **Game Platform**: Steam\n- **Anti-Cheat**: Easy Anti-Cheat (EAC)\n\n### Why This Error Occurs in ELDEN RING\n\nThis error typically occurs when the Microsoft Visual C++ 2015-2022 Redistributable is missing or corrupted.\n\nOther common causes:\n- Incomplete game installation\n- Antivirus quarantined the file\n- Windows Update removed runtime components\n- Corrupted game files after update"
+      },
+      {
+        "heading": "Solution 1: Install the Official Runtime Package (Recommended)",
+        "content": "**This solution fixes vcruntime140_1.dll errors for 90%+ of ELDEN RING players.**\n\n### Download Links (Official Microsoft)\n\n- **64-bit**: [Microsoft Visual C++ 2015-2022 Redistributable x64](https://aka.ms/vs/17/release/vc_redist.x64.exe)\n- **32-bit**: [Microsoft Visual C++ 2015-2022 Redistributable x86](https://aka.ms/vs/17/release/vc_redist.x86.exe)\n\n### Installation Steps\n\n**Step 1**: Download BOTH the x64 and x86 versions (yes, even on 64-bit Windows)\n\n**Step 2**: Close ELDEN RING and Steam/Epic/GOG completely\n\n**Step 3**: Run the x64 installer first, then the x86 installer\n\n**Step 4**: Restart your computer (important!)\n\n**Step 5**: Launch ELDEN RING\n\n**Why both versions?** ELDEN RING may include both 32-bit and 64-bit components. Installing both ensures complete compatibility."
+      },
+      {
+        "heading": "Solution 2: Verify Game Files",
+        "content": "If the runtime installation didn't help, your game files may be corrupted.\n\n### For Steam:\n1. Open Steam → Library\n2. Right-click **ELDEN RING** → **Properties**\n3. Go to **Installed Files** tab\n4. Click **\"Verify integrity of game files\"**\n5. Wait for verification (5-30 minutes depending on game size)\n6. Restart Steam and try launching\n\n### For Epic Games:\n1. Open Epic Games Launcher → Library\n2. Click the **three dots (⋯)** next to ELDEN RING\n3. Select **Manage** → **Verify**\n4. Wait for the process to complete\n\n### For GOG Galaxy:\n1. Open GOG Galaxy → Select ELDEN RING\n2. Click **Settings icon (⚙️)**\n3. Select **Manage Installation** → **Verify / Repair**\n\n\n### Note About Easy Anti-Cheat (EAC)\nELDEN RING uses Easy Anti-Cheat (EAC). If verification doesn't fix the issue, navigate to:\n`[Game Folder]\\EasyAntiCheat\\`\nRun `EasyAntiCheat_Setup.exe` and click \"Repair\"."
+      },
+      {
+        "heading": "ELDEN RING-Specific Fixes",
+        "content": "ELDEN RING has some known issues that can cause DLL errors:\n\n### Known Issues\n1. White screen on startup (fixed by running as administrator)\n2. Shader compilation stuttering in first 30 minutes\n3. Controller not detected (install Xbox Controller drivers)\n\n### Performance Tips\n1. Disable Steam Overlay (known to cause stuttering)\n2. Set game priority to High in Task Manager\n3. Cap framerate to 60 FPS to reduce stuttering\n4. Disable ray tracing if experiencing crashes\n\n### Community Resources\nFor additional help: r/Eldenring, Steam Community Forums"
+      },
+      {
+        "heading": "Related DLL Errors",
+        "content": "If you're seeing vcruntime140_1.dll errors, you might also encounter issues with these related files:\n\n- **vcruntime140.dll**: Part of the same runtime package\n- **msvcp140.dll**: Part of the same runtime package\n\nThe solution above (installing Microsoft Visual C++ 2015-2022 Redistributable) will fix ALL of these errors at once."
+      },
+      {
+        "heading": "Preventing Future DLL Errors",
+        "content": "### Before Installing New Games\n1. Install all Visual C++ Redistributable versions (2008, 2010, 2012, 2013, 2015-2022)\n2. Install DirectX End-User Runtime\n3. Keep GPU drivers updated\n\n### Antivirus Configuration\nAdd your games folder to antivirus exceptions:\n- `C:\\Program Files (x86)\\Steam\\steamapps\\common\\`\n- `C:\\Program Files\\Epic Games\\`\n- `C:\\GOG Games\\`\n\n### After Windows Updates\nRun `sfc /scannow` in an admin command prompt after major Windows updates to repair any corrupted system files."
+      }
+    ],
+    "relatedDlls": [
+      "vcruntime140_1.dll",
+      "vcruntime140.dll",
+      "msvcp140.dll"
+    ],
+    "game": "Elden Ring",
+    "gameYear": 2022,
+    "engine": "FromSoftware Engine (Proprietary)"
   }
 ]
