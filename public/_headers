@@ -20,4 +20,7 @@
   Cache-Control: public, max-age=86400
 
 /robots.txt
-  Cache-Control: public, max-age=86400
+  Cache-Control: public, max-age=3600
+
+/llms.txt
+  Cache-Control: public, max-age=3600
