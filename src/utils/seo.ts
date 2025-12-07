@@ -8,35 +8,38 @@ import type { Guide } from '../data/guidesDatabase';
 export const BUILD_DATE = new Date().toISOString().split('T')[0];
 export const BUILD_TIMESTAMP = new Date().toISOString();
 
-// 动态生成页面 Title
+// 动态生成页面 Title (优化: 控制在 60 字符以内，提升 CTR)
 export function generateDllTitle(dll: DllFile): string {
-  const typeMap: Record<DllFile['fixType'], string> = {
-    visual_cpp: 'Visual C++ Runtime',
-    directx: 'DirectX',
-    system_core: 'Windows System',
-    dotnet: '.NET Framework',
-    game: 'Gaming',
-    driver: 'Driver'
-  };
+  // 短标题格式: "Fix {name} Missing - Free Download | FixMissingDLL"
+  // 确保不超过 60 字符，避免 Google 截断
+  const baseName = dll.name.replace('.dll', '');
   
-  return `Fix ${dll.name} Missing Error - Download ${typeMap[dll.fixType]} DLL | FixMissingDLL`;
+  // 根据文件名长度动态调整标题格式
+  if (dll.name.length <= 12) {
+    return `Fix ${dll.name} Missing - Free Download | FixMissingDLL`;
+  } else if (dll.name.length <= 18) {
+    return `${dll.name} Missing? Download Fix | FixMissingDLL`;
+  } else {
+    // 超长文件名，使用最短格式
+    return `Fix ${baseName} DLL Error | FixMissingDLL`;
+  }
 }
 
-// 动态生成 Meta Description
+// 动态生成 Meta Description (优化: 控制在 155 字符，包含 CTA)
 export function generateDllDescription(dll: DllFile): string {
-  const action = dll.fixType === 'visual_cpp' 
-    ? 'Reinstall Visual C++ Redistributable' 
-    : dll.fixType === 'directx'
-    ? 'Install DirectX End-User Runtime'
-    : dll.fixType === 'system_core'
-    ? 'Run System File Checker (sfc /scannow)'
-    : dll.fixType === 'dotnet'
-    ? 'Repair .NET Framework'
-    : dll.fixType === 'game'
-    ? 'Verify game files or reinstall the game'
-    : 'Update your drivers';
-    
-  return `${dll.name} is missing? ${action} to fix this error. Safe download with MD5 verification. Updated ${BUILD_DATE}. Works on Windows 11/10.`;
+  const actionMap: Record<DllFile['fixType'], string> = {
+    visual_cpp: 'Install VC++ Redistributable',
+    directx: 'Install DirectX Runtime',
+    system_core: 'Run sfc /scannow',
+    dotnet: 'Repair .NET Framework',
+    game: 'Verify game files',
+    driver: 'Update drivers'
+  };
+  
+  const action = actionMap[dll.fixType] || 'Download the fix';
+  
+  // 格式: "{name} missing? {action} to fix instantly. ✓ Safe ✓ Free ✓ Windows 11/10. Updated {date}."
+  return `${dll.name} missing? ${action} to fix instantly. ✓ Safe ✓ Free ✓ Windows 11/10 compatible. Updated ${BUILD_DATE}.`;
 }
 
 // 生成 DLL 页面的 JSON-LD Schema (组合 SoftwareApplication + FAQPage + HowTo)

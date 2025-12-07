@@ -315,7 +315,7 @@ const fixInfo = fixTypeLabels[dll.fixType] || fixTypeLabels.driver;
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
               {categoryDlls.map((catDll) => (
                 <a 
-                  href={`/dll/${catDll.id}`}
+                  href={`/dll/${catDll.id}/`}
                   class="text-sm px-3 py-2 bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-200 rounded-lg text-gray-700 hover:text-blue-600 transition-colors truncate text-center"
                   title={catDll.name}
                 >
@@ -324,7 +324,7 @@ const fixInfo = fixTypeLabels[dll.fixType] || fixTypeLabels.driver;
               ))}
             </div>
             <a 
-              href="/dll" 
+              href="/dll/" 
               class="inline-flex items-center gap-1 text-sm text-blue-600 hover:text-blue-700 mt-3"
             >
               View all DLL files
@@ -334,6 +334,56 @@ const fixInfo = fixTypeLabels[dll.fixType] || fixTypeLabels.driver;
             </a>
           </section>
         )}
+
+        <!-- Browse by Letter (增强内链) -->
+        <section class="mb-8">
+          <h2 class="text-xl font-bold text-gray-900 mb-4">Browse DLLs by Letter</h2>
+          <div class="flex flex-wrap gap-1.5">
+            {'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map((letter) => (
+              <a 
+                href={`/dll/letter/${letter.toLowerCase()}/`}
+                class={`w-9 h-9 flex items-center justify-center text-sm font-medium rounded-lg border transition-colors ${
+                  dll.name.toUpperCase().startsWith(letter)
+                    ? 'bg-blue-600 text-white border-blue-600'
+                    : 'bg-gray-50 text-gray-700 border-gray-200 hover:bg-blue-50 hover:border-blue-200 hover:text-blue-600'
+                }`}
+              >
+                {letter}
+              </a>
+            ))}
+            <a 
+              href="/dll/letter/0-9/"
+              class="px-3 h-9 flex items-center justify-center text-sm font-medium rounded-lg border bg-gray-50 text-gray-700 border-gray-200 hover:bg-blue-50 hover:border-blue-200 hover:text-blue-600 transition-colors"
+            >
+              0-9
+            </a>
+          </div>
+        </section>
+
+        <!-- Browse by Category (增强内链) -->
+        <section class="mb-8">
+          <h2 class="text-xl font-bold text-gray-900 mb-4">Browse by Category</h2>
+          <div class="grid grid-cols-2 gap-2">
+            <a href="/dll/category/visual-cpp/" class={`p-3 rounded-lg border text-sm font-medium transition-colors ${dll.fixType === 'visual_cpp' ? 'bg-purple-50 border-purple-200 text-purple-700' : 'bg-gray-50 border-gray-200 text-gray-700 hover:bg-purple-50 hover:border-purple-200 hover:text-purple-600'}`}>
+              Visual C++ DLLs
+            </a>
+            <a href="/dll/category/directx/" class={`p-3 rounded-lg border text-sm font-medium transition-colors ${dll.fixType === 'directx' ? 'bg-green-50 border-green-200 text-green-700' : 'bg-gray-50 border-gray-200 text-gray-700 hover:bg-green-50 hover:border-green-200 hover:text-green-600'}`}>
+              DirectX DLLs
+            </a>
+            <a href="/dll/category/system/" class={`p-3 rounded-lg border text-sm font-medium transition-colors ${dll.fixType === 'system_core' ? 'bg-orange-50 border-orange-200 text-orange-700' : 'bg-gray-50 border-gray-200 text-gray-700 hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600'}`}>
+              Windows System
+            </a>
+            <a href="/dll/category/dotnet/" class={`p-3 rounded-lg border text-sm font-medium transition-colors ${dll.fixType === 'dotnet' ? 'bg-blue-50 border-blue-200 text-blue-700' : 'bg-gray-50 border-gray-200 text-gray-700 hover:bg-blue-50 hover:border-blue-200 hover:text-blue-600'}`}>
+              .NET Framework
+            </a>
+            <a href="/dll/category/game/" class={`p-3 rounded-lg border text-sm font-medium transition-colors ${dll.fixType === 'game' ? 'bg-pink-50 border-pink-200 text-pink-700' : 'bg-gray-50 border-gray-200 text-gray-700 hover:bg-pink-50 hover:border-pink-200 hover:text-pink-600'}`}>
+              Gaming DLLs
+            </a>
+            <a href="/guides/" class="p-3 rounded-lg border text-sm font-medium bg-gray-50 border-gray-200 text-gray-700 hover:bg-indigo-50 hover:border-indigo-200 hover:text-indigo-600 transition-colors">
+              📚 All Guides
+            </a>
+          </div>
+        </section>
 
         <!-- In-article Ad (Between content sections) -->
         <AdUnit slot="in-article" />

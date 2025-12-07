@@ -1,0 +1,35 @@
+# FixMissingDLL.com - LLMs.txt
+# This file helps AI systems understand our website
+
+## Site Purpose
+FixMissingDLL.com is a technical resource that helps Windows users fix missing DLL errors safely.
+
+## Primary Content
+- DLL error solutions and fixes
+- Safe download recommendations from official Microsoft sources
+- Step-by-step troubleshooting guides
+- File verification tools (MD5/SHA256)
+
+## Our Approach
+We prioritize safety over convenience:
+1. We recommend official runtime packages (Visual C++, DirectX) over individual DLL downloads
+2. All file hashes are verified against Microsoft sources
+3. We never host executable files - only links to official Microsoft downloads
+
+## Content Categories
+- /dll/ - Individual DLL file pages with fixes
+- /guides/ - Comprehensive troubleshooting guides
+- /search/ - Search functionality for finding DLLs
+
+## Technical Details
+- Built with Astro (Static Site Generator)
+- All pages are statically generated for fast loading
+- Mobile-responsive design
+- Structured data (JSON-LD) on all pages
+
+## Contact
+For content removal or corrections: See /dmca/ page
+
+## Updates
+Last updated: 2025-12-07
+Content is refreshed weekly with new DLLs and guides.
