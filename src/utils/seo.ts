@@ -8,21 +8,37 @@ import type { Guide } from '../data/guidesDatabase';
 export const BUILD_DATE = new Date().toISOString().split('T')[0];
 export const BUILD_TIMESTAMP = new Date().toISOString();
 
-// 动态生成页面 Title (优化: 控制在 60 字符以内，提升 CTR)
+// 动态生成页面 Title (优化: 严格控制在 60 字符以内)
 export function generateDllTitle(dll: DllFile): string {
-  // 短标题格式: "Fix {name} Missing - Free Download | FixMissingDLL"
-  // 确保不超过 60 字符，避免 Google 截断
-  const baseName = dll.name.replace('.dll', '');
+  const name = dll.name;
+  const baseName = name.replace('.dll', '');
+  const suffix = ' | FixMissingDLL'; // 17 字符
   
-  // 根据文件名长度动态调整标题格式
-  if (dll.name.length <= 12) {
-    return `Fix ${dll.name} Missing - Free Download | FixMissingDLL`;
-  } else if (dll.name.length <= 18) {
-    return `${dll.name} Missing? Download Fix | FixMissingDLL`;
-  } else {
-    // 超长文件名，使用最短格式
-    return `Fix ${baseName} DLL Error | FixMissingDLL`;
-  }
+  // 策略: 根据最终标题长度动态选择格式
+  // 格式1: "Fix {name} Missing - Free Download | FixMissingDLL" (最完整)
+  // 格式2: "{name} Missing? Fix Here | FixMissingDLL" (中等)
+  // 格式3: "Fix {baseName} Error | FixMissingDLL" (简短)
+  // 格式4: "{baseName} Fix | FixMissingDLL" (超短)
+  
+  const format1 = `Fix ${name} Missing - Free Download${suffix}`;
+  if (format1.length <= 60) return format1;
+  
+  const format2 = `${name} Missing? Fix Here${suffix}`;
+  if (format2.length <= 60) return format2;
+  
+  const format3 = `Fix ${baseName} Error${suffix}`;
+  if (format3.length <= 60) return format3;
+  
+  const format4 = `${baseName} Fix${suffix}`;
+  if (format4.length <= 60) return format4;
+  
+  // 极端情况: 截断 baseName，确保不超过 60 字符
+  const maxBaseLen = 60 - ' Fix'.length - suffix.length; // 60 - 4 - 17 = 39
+  const truncatedBase = baseName.length > maxBaseLen 
+    ? baseName.substring(0, maxBaseLen - 3) + '...'
+    : baseName;
+  
+  return `${truncatedBase} Fix${suffix}`;
 }
 
 // 动态生成 Meta Description (优化: 控制在 155 字符，包含 CTA)

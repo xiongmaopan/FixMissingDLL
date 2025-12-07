@@ -11,12 +11,21 @@ interface Props {
 }
 
 const { 
-  title, 
-  description, 
+  title: rawTitle, 
+  description: rawDescription, 
   canonical = Astro.url.href,
   schema,
   noindex = false
 } = Astro.props;
+
+// SEO 优化: 确保 title 不超过 60 字符，description 不超过 160 字符
+const title = rawTitle.length > 60 
+  ? rawTitle.substring(0, 57) + '...'
+  : rawTitle;
+
+const description = rawDescription.length > 160 
+  ? rawDescription.substring(0, 157) + '...'
+  : rawDescription;
 
 const siteUrl = 'https://fixmissingdll.com';
 const buildDate = new Date().toISOString().split('T')[0];
