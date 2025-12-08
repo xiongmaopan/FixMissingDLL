@@ -3260,5 +3260,61 @@
     "game": "Elden Ring",
     "gameYear": 2022,
     "engine": "FromSoftware Engine (Proprietary)"
+  },
+  {
+    "id": "fix-d3d12-black-myth-wukong",
+    "slug": "fix-d3d12-black-myth-wukong",
+    "title": "Fix d3d12.dll Missing Error in Black Myth: Wukong",
+    "metaTitle": "Fix d3d12.dll in Black Myth: Wukong (2024) - Quick Solution",
+    "metaDescription": "Solve \"d3d12.dll is missing\" error preventing Black Myth: Wukong from launching. Step-by-step fix guide with Black Myth: Wukong-specific solutions.",
+    "excerpt": "Can't play Black Myth: Wukong due to d3d12.dll error? This guide provides specific solutions for Game Science's 2024 release.",
+    "category": "Gaming",
+    "publishDate": "2025-12-08",
+    "updateDate": "2025-12-08",
+    "author": "System Admin Team",
+    "keywords": [
+      "d3d12.dll black myth wukong",
+      "Black Myth Wukong d3d12.dll error",
+      "Black Myth Wukong won't launch",
+      "Black Myth Wukong dll fix",
+      "Black Myth Wukong crash fix",
+      "fix Black Myth Wukong 2024"
+    ],
+    "searchVolume": "high",
+    "sections": [
+      {
+        "heading": "Why Black Myth: Wukong Needs d3d12.dll",
+        "content": "Dealing with **Fix d3d12.dll Missing Error in Black Myth: Wukong**? Good news: this is completely fixable."
+      },
+      {
+        "heading": "Solution 1: Install the Official Runtime Package (Recommended)",
+        "content": "**This solution fixes d3d12.dll errors for 90%+ of Black Myth: Wukong players.**\n\n### Download Links (Official Microsoft)\n\n- **64-bit**: [Windows System Component x64](https://www.microsoft.com/en-us/download/details.aspx?id=35)\n- **32-bit**: [Windows System Component x86](https://www.microsoft.com/en-us/download/details.aspx?id=35)\n\n### Installation Steps\n\n**Step 1**: Download BOTH the x64 and x86 versions (yes, even on 64-bit Windows)\n\n**Step 2**: Close Black Myth: Wukong and Steam/Epic/GOG completely\n\n**Step 3**: Run the x64 installer first, then the x86 installer\n\n**Step 4**: Restart your computer (important!)\n\n**Step 5**: Launch Black Myth: Wukong\n\n**Why both versions?** Black Myth: Wukong may include both 32-bit and 64-bit components. Installing both ensures complete compatibility."
+      },
+      {
+        "heading": "Solution 2: Verify Game Files",
+        "content": "If the runtime installation didn't help, your game files may be corrupted.\n\n### For Steam:\n1. Open Steam → Library\n2. Right-click **Black Myth: Wukong** → **Properties**\n3. Go to **Installed Files** tab\n4. Click **\"Verify integrity of game files\"**\n5. Wait for verification (5-30 minutes depending on game size)\n6. Restart Steam and try launching\n\n### For Epic Games:\n1. Open Epic Games Launcher → Library\n2. Click the **three dots (⋯)** next to Black Myth: Wukong\n3. Select **Manage** → **Verify**\n4. Wait for the process to complete\n\n### For GOG Galaxy:\n1. Open GOG Galaxy → Select Black Myth: Wukong\n2. Click **Settings icon (⚙️)**\n3. Select **Manage Installation** → **Verify / Repair**\n\n"
+      },
+      {
+        "heading": "Black Myth: Wukong-Specific Fixes",
+        "content": "Black Myth: Wukong has some known issues that can cause DLL errors:\n\n### Known Issues\n1. Crash on Intel Arc GPUs (wait for driver update)\n2. Memory leak after extended play sessions (restart game every 2-3 hours)\n3. Chinese audio not downloading (change Steam region temporarily)\n\n### Performance Tips\n1. Enable DLSS 3.5 Frame Generation for significant FPS boost (RTX 40 series)\n2. Set VRAM Usage to your actual VRAM minus 2GB\n3. Disable ray tracing on GPUs with less than 10GB VRAM\n4. Use FSR 3 on AMD GPUs for better performance\n\n### Community Resources\nFor additional help: Official Discord, NGA Forums, Steam Community"
+      },
+      {
+        "heading": "Related DLL Errors",
+        "content": "If you're seeing d3d12.dll errors, you might also encounter issues with these related files:\n\n- **d3d11.dll**: Part of the same runtime package\n- **d3d10.dll**: Part of the same runtime package\n- **dxgi.dll**: Part of the same runtime package\n\nThe solution above (installing Windows System Component) will fix ALL of these errors at once."
+      },
+      {
+        "heading": "Preventing Future DLL Errors",
+        "content": "### Before Installing New Games\n1. Install all Visual C++ Redistributable versions (2008, 2010, 2012, 2013, 2015-2022)\n2. Install DirectX End-User Runtime\n3. Keep GPU drivers updated\n\n### Antivirus Configuration\nAdd your games folder to antivirus exceptions:\n- `C:\\Program Files (x86)\\Steam\\steamapps\\common\\`\n- `C:\\Program Files\\Epic Games\\`\n- `C:\\GOG Games\\`\n\n### After Windows Updates\nRun `sfc /scannow` in an admin command prompt after major Windows updates to repair any corrupted system files."
+      }
+    ],
+    "relatedDlls": [
+      "d3d12.dll",
+      "d3d11.dll",
+      "d3d10.dll",
+      "dxgi.dll"
+    ],
+    "game": "Black Myth Wukong",
+    "gameYear": 2024,
+    "engine": "Unreal Engine 5"
   }
 ]
