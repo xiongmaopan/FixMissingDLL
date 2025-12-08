@@ -1,6 +1,7 @@
 ---
 // 基础布局 - 包含完整 SEO head 和全局样式
 import '../styles/global.css';
+import BackToTop from '../components/BackToTop.astro';
 
 interface Props {
   title: string;
@@ -223,6 +224,9 @@ const buildDate = new Date().toISOString().split('T')[0];
       </div>
     </div>
   </footer>
+
+  <!-- Back to Top Button -->
+  <BackToTop />
 
   <!-- Mobile Menu Script (minimal JS) -->
   <script>
