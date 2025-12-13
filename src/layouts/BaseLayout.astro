@@ -89,15 +89,10 @@ const buildDate = new Date().toISOString().split('T')[0];
     .rounded-xl{border-radius:0.75rem}
     .shadow-2xl{box-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25)}
     
-    /* 隐藏类 */
-    .hidden{display:none}
-    
-    /* 响应式 */
+    /* 响应式 - 移动端优先 */
     @media(min-width:768px){
       .md\\:py-24{padding-top:6rem;padding-bottom:6rem}
       .md\\:text-5xl{font-size:3rem;line-height:1}
-      .md\\:flex{display:flex}
-      .md\\:hidden{display:none}
     }
     
     /* 动画 - 延迟加载 */
