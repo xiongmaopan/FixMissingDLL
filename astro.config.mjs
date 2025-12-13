@@ -13,9 +13,9 @@ export default defineConfig({
   
   // Build optimizations
   build: {
-    // 内联小于 4KB 的样式表以减少请求
+    // 内联小于 10KB 的样式表以减少请求 (移动端优化)
     inlineStylesheets: 'auto',
-    // 拆分 CSS 以优化缓存
+    // 资源目录
     assets: '_astro',
   },
   
@@ -24,11 +24,9 @@ export default defineConfig({
   
   integrations: [
     sitemap({
-      // Custom sitemap settings
       changefreq: 'weekly',
       priority: 0.7,
       lastmod: new Date(),
-      // Filter out certain pages
       filter: (page) => !page.includes('/search/') && !page.includes('/404'),
     }),
   ],
@@ -40,6 +38,8 @@ export default defineConfig({
       cssCodeSplit: true,
       // 使用 esbuild 压缩（更快）
       minify: 'esbuild',
+      // CSS 压缩目标
+      cssMinify: 'esbuild',
       // 优化块大小
       chunkSizeWarningLimit: 500,
       rollupOptions: {
@@ -48,12 +48,22 @@ export default defineConfig({
           assetFileNames: '_astro/[name].[hash][extname]',
           chunkFileNames: '_astro/[name].[hash].js',
           entryFileNames: '_astro/[name].[hash].js',
+          // 手动分块 - 分离第三方库
+          manualChunks: (id) => {
+            if (id.includes('node_modules')) {
+              return 'vendor';
+            }
+          },
         },
       },
     },
     // CSS 优化
     css: {
       devSourcemap: false,
+    },
+    // 优化依赖预构建
+    optimizeDeps: {
+      exclude: [],
     },
   },
 });

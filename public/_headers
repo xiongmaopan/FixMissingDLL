@@ -6,29 +6,36 @@
   X-Frame-Options: DENY
   X-XSS-Protection: 1; mode=block
   Referrer-Policy: strict-origin-when-cross-origin
-  # 预加载关键资源
-  Link: </_astro/about.B9nEfdfs.css>; rel=preload; as=style
 
-# 静态资源长期缓存
+# 静态资源长期缓存 (带哈希的文件)
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
 
-/*.css
+# 图片资源缓存
+/*.svg
   Cache-Control: public, max-age=31536000, immutable
-
-/*.js
+/*.ico
   Cache-Control: public, max-age=31536000, immutable
+/*.png
+  Cache-Control: public, max-age=604800
+/*.jpg
+  Cache-Control: public, max-age=604800
+/*.webp
+  Cache-Control: public, max-age=604800
 
-# HTML 页面缓存策略
+# HTML 页面缓存 - stale-while-revalidate 提升性能
+/
+  Cache-Control: public, max-age=300, stale-while-revalidate=86400
+
 /*.html
-  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Cache-Control: public, max-age=300, stale-while-revalidate=86400
 
-# DLL 和指南页面
+# DLL 和指南页面 - 允许 CDN 缓存
 /dll/*
-  Cache-Control: public, max-age=7200, stale-while-revalidate=86400
+  Cache-Control: public, max-age=600, stale-while-revalidate=86400
 
 /guides/*
-  Cache-Control: public, max-age=7200, stale-while-revalidate=86400
+  Cache-Control: public, max-age=600, stale-while-revalidate=86400
 
 # SEO 文件
 /sitemap*.xml
