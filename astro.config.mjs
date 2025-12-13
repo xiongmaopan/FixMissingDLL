@@ -13,7 +13,10 @@ export default defineConfig({
   
   // Build optimizations
   build: {
+    // 内联小于 4KB 的样式表以减少请求
     inlineStylesheets: 'auto',
+    // 拆分 CSS 以优化缓存
+    assets: '_astro',
   },
   
   // Compression and performance
@@ -33,15 +36,24 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
     build: {
-      // Improve build performance
+      // 启用 CSS 代码拆分
+      cssCodeSplit: true,
+      // 使用 esbuild 压缩（更快）
+      minify: 'esbuild',
+      // 优化块大小
+      chunkSizeWarningLimit: 500,
       rollupOptions: {
         output: {
-          // Chunk files for better caching
-          manualChunks: {
-            'search': ['./src/pages/search.astro'],
-          },
+          // 更好的缓存策略
+          assetFileNames: '_astro/[name].[hash][extname]',
+          chunkFileNames: '_astro/[name].[hash].js',
+          entryFileNames: '_astro/[name].[hash].js',
         },
       },
+    },
+    // CSS 优化
+    css: {
+      devSourcemap: false,
     },
   },
 });
