@@ -1,4 +1,4 @@
-﻿# FixMissingDLL.com Robots.txt
+# FixMissingDLL.com Robots.txt
 # Last Updated: 2025-12-13
 
 User-agent: *

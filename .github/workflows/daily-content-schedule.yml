@@ -1,0 +1,45 @@
+# 每日内容发布 - 2+1+1+1 策略
+# 每天发布 5 篇: 2怀旧 + 1热门 + 1办公 + 1系统
+# Cloudflare Pages 会自动检测 push 并部署
+
+name: Daily Content Schedule
+
+on:
+  schedule:
+    - cron: '0 8 * * *'
+    - cron: '0 9 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish-content:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Publish today content
+        run: npx tsx scripts/publish-today.ts
+      
+      - name: Commit and Push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Daily content $(date +%Y-%m-%d)"
+            git push
+          fi
