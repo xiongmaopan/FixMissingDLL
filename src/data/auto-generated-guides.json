@@ -6408,5 +6408,158 @@
     "game": "The Elder Scrolls III: Morrowind",
     "gameYear": 2002,
     "engine": "NetImmerse"
+  },
+  {
+    "id": "fix-d3dx9_34-crysis",
+    "slug": "fix-d3dx9_34-crysis",
+    "title": "Fix d3dx9_34.dll Missing Error in Crysis",
+    "metaTitle": "Fix d3dx9_34.dll in Crysis (2007) - Windows 10/11 Guide",
+    "metaDescription": "d3dx9_34.dll missing when launching Crysis? Complete fix guide for this classic 2007 game. Works on Windows 10/11.",
+    "excerpt": "Can't play Crysis due to d3dx9_34.dll error? This guide provides specific solutions for this classic 2007 game.",
+    "category": "Classic Games",
+    "publishDate": "2025-12-31",
+    "updateDate": "2025-12-31",
+    "author": "System Admin Team",
+    "keywords": [
+      "d3dx9_34.dll crysis",
+      "Crysis d3dx9_34.dll missing",
+      "Crysis won't start",
+      "Crysis Windows 10",
+      "Crysis Windows 11",
+      "fix Crysis 2007"
+    ],
+    "searchVolume": "high",
+    "sections": [
+      {
+        "heading": "Why Crysis (2007) Needs d3dx9_34.dll",
+        "content": "Stopped by **Fix d3dx9_34.dll Missing Error in Crysis**? This error has a straightforward solution."
+      },
+      {
+        "heading": "Solution 1: Install the Required Runtime",
+        "content": "**Install DirectX End-User Runtime**\n\n### For d3dx9_34.dll:\n\n**DirectX End-User Runtime Web Installer:**\n[Download from Microsoft](https://www.microsoft.com/en-us/download/details.aspx?id=35)\n\n**Steps:**\n1. Download the installer\n2. Run as Administrator\n3. Follow the installation wizard\n4. Restart your computer\n5. Launch Crysis\n\n\n\n\n\n\n\n\n\n"
+      },
+      {
+        "heading": "Solution 2: Windows Compatibility Mode",
+        "content": "Classic games often work better with compatibility settings.\n\n### Steps:\n\n1. Navigate to the game folder:\n   `C:\\Program Files (x86)\\Crysis\\`\n\n2. Right-click the game executable (.exe) �?**Properties**\n\n3. Go to the **Compatibility** tab\n\n4. Check **\"Run this program in compatibility mode for:\"**\n   - Try **Windows XP (Service Pack 3)** first\n   - If that fails, try **Windows 7**\n\n5. Check **\"Run as administrator\"**\n\n6. For display issues, check **\"Disable fullscreen optimizations\"**\n\n7. Click **Apply** �?**OK**\n\n8. Launch the game"
+      },
+      {
+        "heading": "Crysis-Specific Fixes",
+        "content": "### Known Issues with Crysis\n\n1. **64-bit issues**\n2. **Black screen**\n\n### Community Patches & Mods\n\nFor Crysis, the community has created fixes:\n\n\n\n\n\n\n\n### Recommended Resources\n\n- [PCGamingWiki - Crysis](https://www.pcgamingwiki.com/wiki/Crysis)\n- Reddit: r/classicpcgaming"
+      },
+      {
+        "heading": "Prevention & Related DLLs",
+        "content": "### Other DLLs Crysis May Need\n\n- **d3dx9_34.dll**: DirectX 9 August 2006\n- **msvcr80.dll**: Visual C++ 2005 Runtime\n- **xinput1_3.dll**: Xbox 360 Controller Support\n\n### Before Playing Classic Games\n\n1. **Install DirectX End-User Runtime** (covers all d3dx9 DLLs)\n2. **Install ALL Visual C++ Redistributables** (2005, 2008, 2010, 2012, 2013, 2015-2022)\n3. **Update GPU drivers**\n4. **Disable antivirus for game folder** (add exception)\n5. **Check PCGamingWiki** for game-specific fixes\n\n### Best Practices for System Health\n\n- **Regular Backups**: Protect your system with periodic backups\n- **Monitor Disk Space**: Ensure adequate free space on your system drive\n- **Update Drivers**: Keep hardware drivers current\n- **Scan for Malware**: Run periodic security scans\n- **Clean Temporary Files**: Remove unnecessary cached data\n\n### Advanced Troubleshooting\n\nIf basic solutions don't work:\n\n```batch\n:: Run these commands in Administrator Command Prompt\nDISM /Online /Cleanup-Image /CheckHealth\nDISM /Online /Cleanup-Image /ScanHealth\nDISM /Online /Cleanup-Image /RestoreHealth\nsfc /scannow\n```\n\nThese commands repair Windows system image and scan for corrupted files."
+      }
+    ],
+    "relatedDlls": [
+      "d3dx9_34.dll",
+      "msvcr80.dll",
+      "xinput1_3.dll"
+    ],
+    "game": "Crysis",
+    "gameYear": 2007,
+    "engine": "CryEngine 2"
+  },
+  {
+    "id": "fix-msvcr80-crysis",
+    "slug": "fix-msvcr80-crysis",
+    "title": "Fix msvcr80.dll Missing Error in Crysis",
+    "metaTitle": "Fix msvcr80.dll in Crysis (2007) - Windows 10/11 Guide",
+    "metaDescription": "msvcr80.dll missing when launching Crysis? Complete fix guide for this classic 2007 game. Works on Windows 10/11.",
+    "excerpt": "Can't play Crysis due to msvcr80.dll error? This guide provides specific solutions for this classic 2007 game.",
+    "category": "Classic Games",
+    "publishDate": "2025-12-31",
+    "updateDate": "2025-12-31",
+    "author": "System Admin Team",
+    "keywords": [
+      "msvcr80.dll crysis",
+      "Crysis msvcr80.dll missing",
+      "Crysis won't start",
+      "Crysis Windows 10",
+      "Crysis Windows 11",
+      "fix Crysis 2007"
+    ],
+    "searchVolume": "high",
+    "sections": [
+      {
+        "heading": "Why Crysis (2007) Needs msvcr80.dll",
+        "content": "Halted by **Fix msvcr80.dll Missing Error in Crysis**? Good news: this is completely fixable."
+      },
+      {
+        "heading": "Solution 1: Install the Required Runtime",
+        "content": "**Install VC++ 2005 Redistributable**\n\n### For msvcr80.dll:\n\n\n\n**Visual C++ Redistributable:**\n- [VC++ 2005](https://www.microsoft.com/en-us/download/details.aspx?id=26347)\n- [VC++ 2008](https://www.microsoft.com/en-us/download/details.aspx?id=26368)\n- [VC++ 2010](https://www.microsoft.com/en-us/download/details.aspx?id=26999)\n\nInstall the version matching the DLL (check the number in the filename).\n\n\n\n\n\n\n\n"
+      },
+      {
+        "heading": "Solution 2: Windows Compatibility Mode",
+        "content": "Classic games often work better with compatibility settings.\n\n### Steps:\n\n1. Navigate to the game folder:\n   `C:\\Program Files (x86)\\Crysis\\`\n\n2. Right-click the game executable (.exe) �?**Properties**\n\n3. Go to the **Compatibility** tab\n\n4. Check **\"Run this program in compatibility mode for:\"**\n   - Try **Windows XP (Service Pack 3)** first\n   - If that fails, try **Windows 7**\n\n5. Check **\"Run as administrator\"**\n\n6. For display issues, check **\"Disable fullscreen optimizations\"**\n\n7. Click **Apply** �?**OK**\n\n8. Launch the game"
+      },
+      {
+        "heading": "Crysis-Specific Fixes",
+        "content": "### Known Issues with Crysis\n\n1. **64-bit issues**\n2. **Black screen**\n\n### Community Patches & Mods\n\nFor Crysis, the community has created fixes:\n\n\n\n\n\n\n\n### Recommended Resources\n\n- [PCGamingWiki - Crysis](https://www.pcgamingwiki.com/wiki/Crysis)\n- Reddit: r/classicpcgaming"
+      },
+      {
+        "heading": "Prevention & Related DLLs",
+        "content": "### Other DLLs Crysis May Need\n\n- **d3dx9_34.dll**: DirectX 9 August 2006\n- **msvcr80.dll**: Visual C++ 2005 Runtime\n- **xinput1_3.dll**: Xbox 360 Controller Support\n\n### Before Playing Classic Games\n\n1. **Install DirectX End-User Runtime** (covers all d3dx9 DLLs)\n2. **Install ALL Visual C++ Redistributables** (2005, 2008, 2010, 2012, 2013, 2015-2022)\n3. **Update GPU drivers**\n4. **Disable antivirus for game folder** (add exception)\n5. **Check PCGamingWiki** for game-specific fixes\n\n### Preventing Future Issues\n\n1. **Keep Windows Updated**: Regular updates patch known issues\n2. **Use Official Sources**: Only download software from trusted websites\n3. **Maintain Runtime Libraries**: Keep Visual C++ and DirectX current\n4. **Create System Restore Points**: Before installing new software\n5. **Run Regular Maintenance**: Use built-in Windows tools monthly\n\n### Advanced Troubleshooting\n\nIf basic solutions don't work:\n\n```batch\n:: Run these commands in Administrator Command Prompt\nDISM /Online /Cleanup-Image /CheckHealth\nDISM /Online /Cleanup-Image /ScanHealth\nDISM /Online /Cleanup-Image /RestoreHealth\nsfc /scannow\n```\n\nThese commands repair Windows system image and scan for corrupted files."
+      }
+    ],
+    "relatedDlls": [
+      "d3dx9_34.dll",
+      "msvcr80.dll",
+      "xinput1_3.dll"
+    ],
+    "game": "Crysis",
+    "gameYear": 2007,
+    "engine": "CryEngine 2"
+  },
+  {
+    "id": "fix-xinput1_3-crysis",
+    "slug": "fix-xinput1_3-crysis",
+    "title": "Fix xinput1_3.dll Missing Error in Crysis",
+    "metaTitle": "Fix xinput1_3.dll in Crysis (2007) - Windows 10/11 Guide",
+    "metaDescription": "xinput1_3.dll missing when launching Crysis? Complete fix guide for this classic 2007 game. Works on Windows 10/11.",
+    "excerpt": "Can't play Crysis due to xinput1_3.dll error? This guide provides specific solutions for this classic 2007 game.",
+    "category": "Classic Games",
+    "publishDate": "2025-12-31",
+    "updateDate": "2025-12-31",
+    "author": "System Admin Team",
+    "keywords": [
+      "xinput1_3.dll crysis",
+      "Crysis xinput1_3.dll missing",
+      "Crysis won't start",
+      "Crysis Windows 10",
+      "Crysis Windows 11",
+      "fix Crysis 2007"
+    ],
+    "searchVolume": "high",
+    "sections": [
+      {
+        "heading": "Why Crysis (2007) Needs xinput1_3.dll",
+        "content": "Encountering **Fix xinput1_3.dll Missing Error in Crysis**? Dont panic - we have solutions."
+      },
+      {
+        "heading": "Solution 1: Install the Required Runtime",
+        "content": "**Install DirectX End-User Runtime**\n\n### For xinput1_3.dll:\n\n**DirectX End-User Runtime Web Installer:**\n[Download from Microsoft](https://www.microsoft.com/en-us/download/details.aspx?id=35)\n\n**Steps:**\n1. Download the installer\n2. Run as Administrator\n3. Follow the installation wizard\n4. Restart your computer\n5. Launch Crysis\n\n\n\n\n\n\n\n\n\n"
+      },
+      {
+        "heading": "Solution 2: Windows Compatibility Mode",
+        "content": "Classic games often work better with compatibility settings.\n\n### Steps:\n\n1. Navigate to the game folder:\n   `C:\\Program Files (x86)\\Crysis\\`\n\n2. Right-click the game executable (.exe) �?**Properties**\n\n3. Go to the **Compatibility** tab\n\n4. Check **\"Run this program in compatibility mode for:\"**\n   - Try **Windows XP (Service Pack 3)** first\n   - If that fails, try **Windows 7**\n\n5. Check **\"Run as administrator\"**\n\n6. For display issues, check **\"Disable fullscreen optimizations\"**\n\n7. Click **Apply** �?**OK**\n\n8. Launch the game"
+      },
+      {
+        "heading": "Crysis-Specific Fixes",
+        "content": "### Known Issues with Crysis\n\n1. **64-bit issues**\n2. **Black screen**\n\n### Community Patches & Mods\n\nFor Crysis, the community has created fixes:\n\n\n\n\n\n\n\n### Recommended Resources\n\n- [PCGamingWiki - Crysis](https://www.pcgamingwiki.com/wiki/Crysis)\n- Reddit: r/classicpcgaming"
+      },
+      {
+        "heading": "Prevention & Related DLLs",
+        "content": "### Other DLLs Crysis May Need\n\n- **d3dx9_34.dll**: DirectX 9 August 2006\n- **msvcr80.dll**: Visual C++ 2005 Runtime\n- **xinput1_3.dll**: Xbox 360 Controller Support\n\n### Before Playing Classic Games\n\n1. **Install DirectX End-User Runtime** (covers all d3dx9 DLLs)\n2. **Install ALL Visual C++ Redistributables** (2005, 2008, 2010, 2012, 2013, 2015-2022)\n3. **Update GPU drivers**\n4. **Disable antivirus for game folder** (add exception)\n5. **Check PCGamingWiki** for game-specific fixes\n\n### Best Practices for System Health\n\n- **Regular Backups**: Protect your system with periodic backups\n- **Monitor Disk Space**: Ensure adequate free space on your system drive\n- **Update Drivers**: Keep hardware drivers current\n- **Scan for Malware**: Run periodic security scans\n- **Clean Temporary Files**: Remove unnecessary cached data\n\n### Advanced Troubleshooting\n\nIf basic solutions don't work:\n\n```batch\n:: Run these commands in Administrator Command Prompt\nDISM /Online /Cleanup-Image /CheckHealth\nDISM /Online /Cleanup-Image /ScanHealth\nDISM /Online /Cleanup-Image /RestoreHealth\nsfc /scannow\n```\n\nThese commands repair Windows system image and scan for corrupted files."
+      }
+    ],
+    "relatedDlls": [
+      "d3dx9_34.dll",
+      "msvcr80.dll",
+      "xinput1_3.dll"
+    ],
+    "game": "Crysis",
+    "gameYear": 2007,
+    "engine": "CryEngine 2"
   }
 ]
