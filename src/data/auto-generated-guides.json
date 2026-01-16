@@ -8771,5 +8771,158 @@
     "game": "Garry's Mod",
     "gameYear": 2006,
     "engine": "Source"
+  },
+  {
+    "id": "fix-lua_shared-garry-s-mod",
+    "slug": "fix-lua_shared-garry-s-mod",
+    "title": "Fix lua_shared.dll Missing Error in Garry's Mod",
+    "metaTitle": "Fix lua_shared.dll in Garry's Mod - Windows 10/11 Guide",
+    "metaDescription": "lua_shared.dll missing when launching Garry's Mod? Complete fix guide for this classic 2006 game. Works on Windows 10/11.",
+    "excerpt": "Can't play Garry's Mod due to lua_shared.dll error? This guide provides specific solutions for this classic 2006 game.",
+    "category": "Classic Games",
+    "publishDate": "2026-01-16",
+    "updateDate": "2026-01-16",
+    "author": "System Admin Team",
+    "keywords": [
+      "lua_shared.dll garry's mod",
+      "Garry's Mod lua_shared.dll missing",
+      "Garry's Mod won't start",
+      "Garry's Mod Windows 10",
+      "Garry's Mod Windows 11",
+      "fix Garry's Mod 2006"
+    ],
+    "searchVolume": "high",
+    "sections": [
+      {
+        "heading": "Why Garry's Mod (2006) Needs lua_shared.dll",
+        "content": "Seeing **Fix lua_shared.dll Missing Error in Garry's Mod**? This DLL is required for the game to run properly."
+      },
+      {
+        "heading": "Solution 1: Install the Required Runtime",
+        "content": "**Reinstall the game**\n\n### For lua_shared.dll:\n\n\n\n\n\n\n\n\n\n\n\n"
+      },
+      {
+        "heading": "Solution 2: Windows Compatibility Mode",
+        "content": "Classic games often work better with compatibility settings.\n\n### Steps:\n\n1. Navigate to the game folder:\n   `C:\\Program Files (x86)\\Steam\\steamapps\\common\\Garry's Mod\\`\n\n2. Right-click the game executable (.exe) �?**Properties**\n\n3. Go to the **Compatibility** tab\n\n4. Check **\"Run this program in compatibility mode for:\"**\n   - Try **Windows XP (Service Pack 3)** first\n   - If that fails, try **Windows 7**\n\n5. Check **\"Run as administrator\"**\n\n6. For display issues, check **\"Disable fullscreen optimizations\"**\n\n7. Click **Apply** �?**OK**\n\n8. Launch the game"
+      },
+      {
+        "heading": "Garry's Mod-Specific Fixes",
+        "content": "### Known Issues with Garry's Mod\n\n1. **Addon crashes**\n2. **Missing textures**\n\n### Community Patches & Mods\n\nFor Garry's Mod, the community has created fixes:\n\n\n\n- Check **Steam Community Guides** for Garry's Mod\n- Look for **PCGamingWiki** page with fixes\n\n- Use **-autoconfig** launch option to reset video settings\n- Add **-dxlevel 90** or **-dxlevel 81** for older DirectX\n\n### Recommended Resources\n\n- [PCGamingWiki - Garry's Mod](https://www.pcgamingwiki.com/wiki/Garry's_Mod)\n- Reddit: r/classicpcgaming"
+      },
+      {
+        "heading": "Prevention & Related DLLs",
+        "content": "### Other DLLs Garry's Mod May Need\n\n- **steam_api.dll**: Steam Integration (32-bit)\n- **d3dx9_40.dll**: DirectX 9 June 2007\n- **lua_shared.dll**: Game component\n\n### Before Playing Classic Games\n\n1. **Install DirectX End-User Runtime** (covers all d3dx9 DLLs)\n2. **Install ALL Visual C++ Redistributables** (2005, 2008, 2010, 2012, 2013, 2015-2022)\n3. **Update GPU drivers**\n4. **Disable antivirus for game folder** (add exception)\n5. **Check PCGamingWiki** for game-specific fixes\n\n### Best Practices for System Health\n\n- **Regular Backups**: Protect your system with periodic backups\n- **Monitor Disk Space**: Ensure adequate free space on your system drive\n- **Update Drivers**: Keep hardware drivers current\n- **Scan for Malware**: Run periodic security scans\n- **Clean Temporary Files**: Remove unnecessary cached data\n\n### Advanced Troubleshooting\n\nIf basic solutions don't work:\n\n```batch\n:: Run these commands in Administrator Command Prompt\nDISM /Online /Cleanup-Image /CheckHealth\nDISM /Online /Cleanup-Image /ScanHealth\nDISM /Online /Cleanup-Image /RestoreHealth\nsfc /scannow\n```\n\nThese commands repair Windows system image and scan for corrupted files."
+      }
+    ],
+    "relatedDlls": [
+      "steam_api.dll",
+      "d3dx9_40.dll",
+      "lua_shared.dll"
+    ],
+    "game": "Garry's Mod",
+    "gameYear": 2006,
+    "engine": "Source"
+  },
+  {
+    "id": "fix-d3dx9_40-arma-2",
+    "slug": "fix-d3dx9_40-arma-2",
+    "title": "Fix d3dx9_40.dll Missing Error in ARMA 2",
+    "metaTitle": "Fix d3dx9_40.dll in ARMA 2 (2009) - Windows 10/11 Guide",
+    "metaDescription": "d3dx9_40.dll missing when launching ARMA 2? Complete fix guide for this classic 2009 game. Works on Windows 10/11.",
+    "excerpt": "Can't play ARMA 2 due to d3dx9_40.dll error? This guide provides specific solutions for this classic 2009 game.",
+    "category": "Classic Games",
+    "publishDate": "2026-01-16",
+    "updateDate": "2026-01-16",
+    "author": "System Admin Team",
+    "keywords": [
+      "d3dx9_40.dll arma 2",
+      "ARMA 2 d3dx9_40.dll missing",
+      "ARMA 2 won't start",
+      "ARMA 2 Windows 10",
+      "ARMA 2 Windows 11",
+      "fix ARMA 2 2009"
+    ],
+    "searchVolume": "high",
+    "sections": [
+      {
+        "heading": "Why ARMA 2 (2009) Needs d3dx9_40.dll",
+        "content": "Struggling with **Fix d3dx9_40.dll Missing Error in ARMA 2**? This frequently occurs on Windows 10 and 11."
+      },
+      {
+        "heading": "Solution 1: Install the Required Runtime",
+        "content": "**Install DirectX End-User Runtime**\n\n### For d3dx9_40.dll:\n\n**DirectX End-User Runtime Web Installer:**\n[Download from Microsoft](https://www.microsoft.com/en-us/download/details.aspx?id=35)\n\n**Steps:**\n1. Download the installer\n2. Run as Administrator\n3. Follow the installation wizard\n4. Restart your computer\n5. Launch ARMA 2\n\n\n\n\n\n\n\n\n\n"
+      },
+      {
+        "heading": "Solution 2: Windows Compatibility Mode",
+        "content": "Classic games often work better with compatibility settings.\n\n### Steps:\n\n1. Navigate to the game folder:\n   `C:\\Program Files (x86)\\Steam\\steamapps\\common\\ARMA 2\\`\n\n2. Right-click the game executable (.exe) �?**Properties**\n\n3. Go to the **Compatibility** tab\n\n4. Check **\"Run this program in compatibility mode for:\"**\n   - Try **Windows XP (Service Pack 3)** first\n   - If that fails, try **Windows 7**\n\n5. Check **\"Run as administrator\"**\n\n6. For display issues, check **\"Disable fullscreen optimizations\"**\n\n7. Click **Apply** �?**OK**\n\n8. Launch the game"
+      },
+      {
+        "heading": "ARMA 2-Specific Fixes",
+        "content": "### Known Issues with ARMA 2\n\n1. **DayZ mod**\n2. **BattlEye issues**\n\n### Community Patches & Mods\n\nFor ARMA 2, the community has created fixes:\n\n\n\n- Check **Steam Community Guides** for ARMA 2\n- Look for **PCGamingWiki** page with fixes\n\n\n\n### Recommended Resources\n\n- [PCGamingWiki - ARMA 2](https://www.pcgamingwiki.com/wiki/ARMA_2)\n- Reddit: r/classicpcgaming"
+      },
+      {
+        "heading": "Prevention & Related DLLs",
+        "content": "### Other DLLs ARMA 2 May Need\n\n- **d3dx9_40.dll**: DirectX 9 June 2007\n- **msvcr90.dll**: Visual C++ 2008 Runtime\n- **steam_api.dll**: Steam Integration (32-bit)\n\n### Before Playing Classic Games\n\n1. **Install DirectX End-User Runtime** (covers all d3dx9 DLLs)\n2. **Install ALL Visual C++ Redistributables** (2005, 2008, 2010, 2012, 2013, 2015-2022)\n3. **Update GPU drivers**\n4. **Disable antivirus for game folder** (add exception)\n5. **Check PCGamingWiki** for game-specific fixes\n\n### Preventing Future Issues\n\n1. **Keep Windows Updated**: Regular updates patch known issues\n2. **Use Official Sources**: Only download software from trusted websites\n3. **Maintain Runtime Libraries**: Keep Visual C++ and DirectX current\n4. **Create System Restore Points**: Before installing new software\n5. **Run Regular Maintenance**: Use built-in Windows tools monthly\n\n### Advanced Troubleshooting\n\nIf basic solutions don't work:\n\n```batch\n:: Run these commands in Administrator Command Prompt\nDISM /Online /Cleanup-Image /CheckHealth\nDISM /Online /Cleanup-Image /ScanHealth\nDISM /Online /Cleanup-Image /RestoreHealth\nsfc /scannow\n```\n\nThese commands repair Windows system image and scan for corrupted files."
+      }
+    ],
+    "relatedDlls": [
+      "d3dx9_40.dll",
+      "msvcr90.dll",
+      "steam_api.dll"
+    ],
+    "game": "ARMA 2",
+    "gameYear": 2009,
+    "engine": "Real Virtuality"
+  },
+  {
+    "id": "fix-msvcr90-arma-2",
+    "slug": "fix-msvcr90-arma-2",
+    "title": "Fix msvcr90.dll Missing Error in ARMA 2",
+    "metaTitle": "Fix msvcr90.dll in ARMA 2 (2009) - Windows 10/11 Guide",
+    "metaDescription": "msvcr90.dll missing when launching ARMA 2? Complete fix guide for this classic 2009 game. Works on Windows 10/11.",
+    "excerpt": "Can't play ARMA 2 due to msvcr90.dll error? This guide provides specific solutions for this classic 2009 game.",
+    "category": "Classic Games",
+    "publishDate": "2026-01-16",
+    "updateDate": "2026-01-16",
+    "author": "System Admin Team",
+    "keywords": [
+      "msvcr90.dll arma 2",
+      "ARMA 2 msvcr90.dll missing",
+      "ARMA 2 won't start",
+      "ARMA 2 Windows 10",
+      "ARMA 2 Windows 11",
+      "fix ARMA 2 2009"
+    ],
+    "searchVolume": "high",
+    "sections": [
+      {
+        "heading": "Why ARMA 2 (2009) Needs msvcr90.dll",
+        "content": "Facing **Fix msvcr90.dll Missing Error in ARMA 2**? This error has a straightforward solution."
+      },
+      {
+        "heading": "Solution 1: Install the Required Runtime",
+        "content": "**Install VC++ 2008 Redistributable**\n\n### For msvcr90.dll:\n\n\n\n**Visual C++ Redistributable:**\n- [VC++ 2005](https://www.microsoft.com/en-us/download/details.aspx?id=26347)\n- [VC++ 2008](https://www.microsoft.com/en-us/download/details.aspx?id=26368)\n- [VC++ 2010](https://www.microsoft.com/en-us/download/details.aspx?id=26999)\n\nInstall the version matching the DLL (check the number in the filename).\n\n\n\n\n\n\n\n"
+      },
+      {
+        "heading": "Solution 2: Windows Compatibility Mode",
+        "content": "Classic games often work better with compatibility settings.\n\n### Steps:\n\n1. Navigate to the game folder:\n   `C:\\Program Files (x86)\\Steam\\steamapps\\common\\ARMA 2\\`\n\n2. Right-click the game executable (.exe) �?**Properties**\n\n3. Go to the **Compatibility** tab\n\n4. Check **\"Run this program in compatibility mode for:\"**\n   - Try **Windows XP (Service Pack 3)** first\n   - If that fails, try **Windows 7**\n\n5. Check **\"Run as administrator\"**\n\n6. For display issues, check **\"Disable fullscreen optimizations\"**\n\n7. Click **Apply** �?**OK**\n\n8. Launch the game"
+      },
+      {
+        "heading": "ARMA 2-Specific Fixes",
+        "content": "### Known Issues with ARMA 2\n\n1. **DayZ mod**\n2. **BattlEye issues**\n\n### Community Patches & Mods\n\nFor ARMA 2, the community has created fixes:\n\n\n\n- Check **Steam Community Guides** for ARMA 2\n- Look for **PCGamingWiki** page with fixes\n\n\n\n### Recommended Resources\n\n- [PCGamingWiki - ARMA 2](https://www.pcgamingwiki.com/wiki/ARMA_2)\n- Reddit: r/classicpcgaming"
+      },
+      {
+        "heading": "Prevention & Related DLLs",
+        "content": "### Other DLLs ARMA 2 May Need\n\n- **d3dx9_40.dll**: DirectX 9 June 2007\n- **msvcr90.dll**: Visual C++ 2008 Runtime\n- **steam_api.dll**: Steam Integration (32-bit)\n\n### Before Playing Classic Games\n\n1. **Install DirectX End-User Runtime** (covers all d3dx9 DLLs)\n2. **Install ALL Visual C++ Redistributables** (2005, 2008, 2010, 2012, 2013, 2015-2022)\n3. **Update GPU drivers**\n4. **Disable antivirus for game folder** (add exception)\n5. **Check PCGamingWiki** for game-specific fixes\n\n### Best Practices for System Health\n\n- **Regular Backups**: Protect your system with periodic backups\n- **Monitor Disk Space**: Ensure adequate free space on your system drive\n- **Update Drivers**: Keep hardware drivers current\n- **Scan for Malware**: Run periodic security scans\n- **Clean Temporary Files**: Remove unnecessary cached data\n\n### Advanced Troubleshooting\n\nIf basic solutions don't work:\n\n```batch\n:: Run these commands in Administrator Command Prompt\nDISM /Online /Cleanup-Image /CheckHealth\nDISM /Online /Cleanup-Image /ScanHealth\nDISM /Online /Cleanup-Image /RestoreHealth\nsfc /scannow\n```\n\nThese commands repair Windows system image and scan for corrupted files."
+      }
+    ],
+    "relatedDlls": [
+      "d3dx9_40.dll",
+      "msvcr90.dll",
+      "steam_api.dll"
+    ],
+    "game": "ARMA 2",
+    "gameYear": 2009,
+    "engine": "Real Virtuality"
   }
 ]
