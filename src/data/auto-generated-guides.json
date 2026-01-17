@@ -8924,5 +8924,158 @@
     "game": "ARMA 2",
     "gameYear": 2009,
     "engine": "Real Virtuality"
+  },
+  {
+    "id": "fix-steam_api-arma-2",
+    "slug": "fix-steam_api-arma-2",
+    "title": "Fix steam_api.dll Missing Error in ARMA 2",
+    "metaTitle": "Fix steam_api.dll in ARMA 2 (2009) - Windows 10/11 Guide",
+    "metaDescription": "steam_api.dll missing when launching ARMA 2? Complete fix guide for this classic 2009 game. Works on Windows 10/11.",
+    "excerpt": "Can't play ARMA 2 due to steam_api.dll error? This guide provides specific solutions for this classic 2009 game.",
+    "category": "Classic Games",
+    "publishDate": "2026-01-17",
+    "updateDate": "2026-01-17",
+    "author": "System Admin Team",
+    "keywords": [
+      "steam_api.dll arma 2",
+      "ARMA 2 steam_api.dll missing",
+      "ARMA 2 won't start",
+      "ARMA 2 Windows 10",
+      "ARMA 2 Windows 11",
+      "fix ARMA 2 2009"
+    ],
+    "searchVolume": "high",
+    "sections": [
+      {
+        "heading": "Why ARMA 2 (2009) Needs steam_api.dll",
+        "content": "Dealing with **Fix steam_api.dll Missing Error in ARMA 2**? Good news: this is completely fixable."
+      },
+      {
+        "heading": "Solution 1: Install the Required Runtime",
+        "content": "**Verify game files in Steam**\n\n### For steam_api.dll:\n\n\n\n\n\n\n\n\n\n**Steam Integration:**\n1. Open Steam\n2. Right-click ARMA 2 �?Properties\n3. Local Files �?Verify integrity of game files\n4. Wait for verification to complete\n5. Restart Steam and launch the game\n\n"
+      },
+      {
+        "heading": "Solution 2: Windows Compatibility Mode",
+        "content": "Classic games often work better with compatibility settings.\n\n### Steps:\n\n1. Navigate to the game folder:\n   `C:\\Program Files (x86)\\Steam\\steamapps\\common\\ARMA 2\\`\n\n2. Right-click the game executable (.exe) �?**Properties**\n\n3. Go to the **Compatibility** tab\n\n4. Check **\"Run this program in compatibility mode for:\"**\n   - Try **Windows XP (Service Pack 3)** first\n   - If that fails, try **Windows 7**\n\n5. Check **\"Run as administrator\"**\n\n6. For display issues, check **\"Disable fullscreen optimizations\"**\n\n7. Click **Apply** �?**OK**\n\n8. Launch the game"
+      },
+      {
+        "heading": "ARMA 2-Specific Fixes",
+        "content": "### Known Issues with ARMA 2\n\n1. **DayZ mod**\n2. **BattlEye issues**\n\n### Community Patches & Mods\n\nFor ARMA 2, the community has created fixes:\n\n\n\n- Check **Steam Community Guides** for ARMA 2\n- Look for **PCGamingWiki** page with fixes\n\n\n\n### Recommended Resources\n\n- [PCGamingWiki - ARMA 2](https://www.pcgamingwiki.com/wiki/ARMA_2)\n- Reddit: r/classicpcgaming"
+      },
+      {
+        "heading": "Prevention & Related DLLs",
+        "content": "### Other DLLs ARMA 2 May Need\n\n- **d3dx9_40.dll**: DirectX 9 June 2007\n- **msvcr90.dll**: Visual C++ 2008 Runtime\n- **steam_api.dll**: Steam Integration (32-bit)\n\n### Before Playing Classic Games\n\n1. **Install DirectX End-User Runtime** (covers all d3dx9 DLLs)\n2. **Install ALL Visual C++ Redistributables** (2005, 2008, 2010, 2012, 2013, 2015-2022)\n3. **Update GPU drivers**\n4. **Disable antivirus for game folder** (add exception)\n5. **Check PCGamingWiki** for game-specific fixes\n\n### Preventing Future Issues\n\n1. **Keep Windows Updated**: Regular updates patch known issues\n2. **Use Official Sources**: Only download software from trusted websites\n3. **Maintain Runtime Libraries**: Keep Visual C++ and DirectX current\n4. **Create System Restore Points**: Before installing new software\n5. **Run Regular Maintenance**: Use built-in Windows tools monthly"
+      }
+    ],
+    "relatedDlls": [
+      "d3dx9_40.dll",
+      "msvcr90.dll",
+      "steam_api.dll"
+    ],
+    "game": "ARMA 2",
+    "gameYear": 2009,
+    "engine": "Real Virtuality"
+  },
+  {
+    "id": "fix-msvcp140-arma-3",
+    "slug": "fix-msvcp140-arma-3",
+    "title": "Fix msvcp140.dll Missing Error in ARMA 3",
+    "metaTitle": "Fix msvcp140.dll in ARMA 3 (2013) - Windows 10/11 Guide",
+    "metaDescription": "msvcp140.dll missing when launching ARMA 3? Complete fix guide for this classic 2013 game. Works on Windows 10/11.",
+    "excerpt": "Can't play ARMA 3 due to msvcp140.dll error? This guide provides specific solutions for this classic 2013 game.",
+    "category": "Classic Games",
+    "publishDate": "2026-01-17",
+    "updateDate": "2026-01-17",
+    "author": "System Admin Team",
+    "keywords": [
+      "msvcp140.dll arma 3",
+      "ARMA 3 msvcp140.dll missing",
+      "ARMA 3 won't start",
+      "ARMA 3 Windows 10",
+      "ARMA 3 Windows 11",
+      "fix ARMA 3 2013"
+    ],
+    "searchVolume": "high",
+    "sections": [
+      {
+        "heading": "Why ARMA 3 (2013) Needs msvcp140.dll",
+        "content": "Seeing **Fix msvcp140.dll Missing Error in ARMA 3**? Dont panic - we have solutions."
+      },
+      {
+        "heading": "Solution 1: Install the Required Runtime",
+        "content": "**Reinstall the game**\n\n### For msvcp140.dll:\n\n\n\n**Visual C++ Redistributable:**\n- [VC++ 2005](https://www.microsoft.com/en-us/download/details.aspx?id=26347)\n- [VC++ 2008](https://www.microsoft.com/en-us/download/details.aspx?id=26368)\n- [VC++ 2010](https://www.microsoft.com/en-us/download/details.aspx?id=26999)\n\nInstall the version matching the DLL (check the number in the filename).\n\n\n\n\n\n\n\n"
+      },
+      {
+        "heading": "Solution 2: Windows Compatibility Mode",
+        "content": "Classic games often work better with compatibility settings.\n\n### Steps:\n\n1. Navigate to the game folder:\n   `C:\\Program Files (x86)\\Steam\\steamapps\\common\\ARMA 3\\`\n\n2. Right-click the game executable (.exe) �?**Properties**\n\n3. Go to the **Compatibility** tab\n\n4. Check **\"Run this program in compatibility mode for:\"**\n   - Try **Windows XP (Service Pack 3)** first\n   - If that fails, try **Windows 7**\n\n5. Check **\"Run as administrator\"**\n\n6. For display issues, check **\"Disable fullscreen optimizations\"**\n\n7. Click **Apply** �?**OK**\n\n8. Launch the game"
+      },
+      {
+        "heading": "ARMA 3-Specific Fixes",
+        "content": "### Known Issues with ARMA 3\n\n1. **Mod compatibility**\n2. **Performance**\n\n### Community Patches & Mods\n\nFor ARMA 3, the community has created fixes:\n\n\n\n- Check **Steam Community Guides** for ARMA 3\n- Look for **PCGamingWiki** page with fixes\n\n\n\n### Recommended Resources\n\n- [PCGamingWiki - ARMA 3](https://www.pcgamingwiki.com/wiki/ARMA_3)\n- Reddit: r/classicpcgaming"
+      },
+      {
+        "heading": "Prevention & Related DLLs",
+        "content": "### Other DLLs ARMA 3 May Need\n\n- **msvcp140.dll**: Game component\n- **vcruntime140.dll**: Game component\n- **steam_api64.dll**: Steam Integration (64-bit)\n\n### Before Playing Classic Games\n\n1. **Install DirectX End-User Runtime** (covers all d3dx9 DLLs)\n2. **Install ALL Visual C++ Redistributables** (2005, 2008, 2010, 2012, 2013, 2015-2022)\n3. **Update GPU drivers**\n4. **Disable antivirus for game folder** (add exception)\n5. **Check PCGamingWiki** for game-specific fixes\n\n### Best Practices for System Health\n\n- **Regular Backups**: Protect your system with periodic backups\n- **Monitor Disk Space**: Ensure adequate free space on your system drive\n- **Update Drivers**: Keep hardware drivers current\n- **Scan for Malware**: Run periodic security scans\n- **Clean Temporary Files**: Remove unnecessary cached data\n\n### Advanced Troubleshooting\n\nIf basic solutions don't work:\n\n```batch\n:: Run these commands in Administrator Command Prompt\nDISM /Online /Cleanup-Image /CheckHealth\nDISM /Online /Cleanup-Image /ScanHealth\nDISM /Online /Cleanup-Image /RestoreHealth\nsfc /scannow\n```\n\nThese commands repair Windows system image and scan for corrupted files."
+      }
+    ],
+    "relatedDlls": [
+      "msvcp140.dll",
+      "vcruntime140.dll",
+      "steam_api64.dll"
+    ],
+    "game": "ARMA 3",
+    "gameYear": 2013,
+    "engine": "Real Virtuality 4"
+  },
+  {
+    "id": "fix-vcruntime140-arma-3",
+    "slug": "fix-vcruntime140-arma-3",
+    "title": "Fix vcruntime140.dll Missing Error in ARMA 3",
+    "metaTitle": "Fix vcruntime140.dll in ARMA 3 (2013) - Windows 10/11 Guide",
+    "metaDescription": "vcruntime140.dll missing when launching ARMA 3? Complete fix guide for this classic 2013 game. Works on Windows 10/11.",
+    "excerpt": "Can't play ARMA 3 due to vcruntime140.dll error? This guide provides specific solutions for this classic 2013 game.",
+    "category": "Classic Games",
+    "publishDate": "2026-01-17",
+    "updateDate": "2026-01-17",
+    "author": "System Admin Team",
+    "keywords": [
+      "vcruntime140.dll arma 3",
+      "ARMA 3 vcruntime140.dll missing",
+      "ARMA 3 won't start",
+      "ARMA 3 Windows 10",
+      "ARMA 3 Windows 11",
+      "fix ARMA 3 2013"
+    ],
+    "searchVolume": "high",
+    "sections": [
+      {
+        "heading": "Why ARMA 3 (2013) Needs vcruntime140.dll",
+        "content": "The error **Fix vcruntime140.dll Missing Error in ARMA 3**? This guide will help you resolve it."
+      },
+      {
+        "heading": "Solution 1: Install the Required Runtime",
+        "content": "**Reinstall the game**\n\n### For vcruntime140.dll:\n\n\n\n\n\n\n\n\n\n\n\n"
+      },
+      {
+        "heading": "Solution 2: Windows Compatibility Mode",
+        "content": "Classic games often work better with compatibility settings.\n\n### Steps:\n\n1. Navigate to the game folder:\n   `C:\\Program Files (x86)\\Steam\\steamapps\\common\\ARMA 3\\`\n\n2. Right-click the game executable (.exe) �?**Properties**\n\n3. Go to the **Compatibility** tab\n\n4. Check **\"Run this program in compatibility mode for:\"**\n   - Try **Windows XP (Service Pack 3)** first\n   - If that fails, try **Windows 7**\n\n5. Check **\"Run as administrator\"**\n\n6. For display issues, check **\"Disable fullscreen optimizations\"**\n\n7. Click **Apply** �?**OK**\n\n8. Launch the game"
+      },
+      {
+        "heading": "ARMA 3-Specific Fixes",
+        "content": "### Known Issues with ARMA 3\n\n1. **Mod compatibility**\n2. **Performance**\n\n### Community Patches & Mods\n\nFor ARMA 3, the community has created fixes:\n\n\n\n- Check **Steam Community Guides** for ARMA 3\n- Look for **PCGamingWiki** page with fixes\n\n\n\n### Recommended Resources\n\n- [PCGamingWiki - ARMA 3](https://www.pcgamingwiki.com/wiki/ARMA_3)\n- Reddit: r/classicpcgaming"
+      },
+      {
+        "heading": "Prevention & Related DLLs",
+        "content": "### Other DLLs ARMA 3 May Need\n\n- **msvcp140.dll**: Game component\n- **vcruntime140.dll**: Game component\n- **steam_api64.dll**: Steam Integration (64-bit)\n\n### Before Playing Classic Games\n\n1. **Install DirectX End-User Runtime** (covers all d3dx9 DLLs)\n2. **Install ALL Visual C++ Redistributables** (2005, 2008, 2010, 2012, 2013, 2015-2022)\n3. **Update GPU drivers**\n4. **Disable antivirus for game folder** (add exception)\n5. **Check PCGamingWiki** for game-specific fixes\n\n### Preventing Future Issues\n\n1. **Keep Windows Updated**: Regular updates patch known issues\n2. **Use Official Sources**: Only download software from trusted websites\n3. **Maintain Runtime Libraries**: Keep Visual C++ and DirectX current\n4. **Create System Restore Points**: Before installing new software\n5. **Run Regular Maintenance**: Use built-in Windows tools monthly\n\n### Advanced Troubleshooting\n\nIf basic solutions don't work:\n\n```batch\n:: Run these commands in Administrator Command Prompt\nDISM /Online /Cleanup-Image /CheckHealth\nDISM /Online /Cleanup-Image /ScanHealth\nDISM /Online /Cleanup-Image /RestoreHealth\nsfc /scannow\n```\n\nThese commands repair Windows system image and scan for corrupted files."
+      }
+    ],
+    "relatedDlls": [
+      "msvcp140.dll",
+      "vcruntime140.dll",
+      "steam_api64.dll"
+    ],
+    "game": "ARMA 3",
+    "gameYear": 2013,
+    "engine": "Real Virtuality 4"
   }
 ]
